@@ -1,0 +1,22 @@
+{
+  "name": "ussr-pomodoro",
+  "version": "1.0.0",
+  "description": "new style a timer pomodoro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikolay1984/USSR-POMODORO.git"
+  },
+  "author": "Nikolay Nikulin and Maxim Kuznecov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikolay1984/USSR-POMODORO/issues"
+  },
+  "homepage": "https://github.com/Nikolay1984/USSR-POMODORO#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
