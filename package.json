@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/Nikolay1984/USSR-POMODORO#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
-  }
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-csscomb": "^3.1.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-uncss-sp": "0.0.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }
