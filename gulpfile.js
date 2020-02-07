@@ -8,13 +8,25 @@ var useref = require('gulp-useref');
 var htmlhint = require("gulp-htmlhint");
 var htmlmin = require('gulp-htmlmin');
 var babel = require('gulp-babel');
-var jscs = require('gulp-jscs');
 var uglify = require('gulp-uglify-es').default;
+var eslint = require('gulp-eslint');
+var browserSync = require('browser-sync').create();
+
+gulp.task('serve', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./app"
+        }
+    });
+
+    browserSync.watch("app",browserSync.reload)
+});
 
 gulp.task('workjs:dev', async function()  {
          gulp.src('dist/js/**/*.js')
-        .pipe(jscs({fix: true}))
-        .pipe(gulp.dest('dist/js'));
+         .pipe(eslint({fix:true}))
+         .pipe(eslint.format())
+         .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('workcss:dev',async function() {
@@ -46,11 +58,12 @@ gulp.task('workhtml',async function() {
         .pipe(useref())
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('app'));
+    console.log("dhfjjjjsjsjkdfhjksdhfjksdjkhsjkdfhjksdhsdf")
 
 });
 
 gulp.task('workcss',async function() {
-        gulp.src('dist/css/**/*.css')
+        gulp.src('./temp/**/*.css')
         .pipe(uncss({
             html: ['dist/index.html']
         }))
@@ -58,7 +71,7 @@ gulp.task('workcss',async function() {
         .pipe(csso({
             debug: true
         }))
-        .pipe(gulp.dest('dist/css/'));
+        .pipe(gulp.dest('app/css/'));
 });
 
 gulp.task('comb', gulp.parallel('workhtml:dev', 'workcss:dev','workjs:dev'));
@@ -69,5 +82,8 @@ gulp.task('watch', async function() {
     gulp.watch('dist/js/**/*.js',gulp.series('workjs'))
 });
 
-// gulp.task("build",gulp.series('uncss', 'autoprefixer'));
+ gulp.task("default",gulp.series(
+     gulp.parallel("watch","serve")
+ ));
 
+gulp.task("start",gulp.series('workhtml','workcss','workjs'));
