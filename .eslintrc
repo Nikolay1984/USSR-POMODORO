@@ -5,7 +5,7 @@
         "node": true
 },
 
-    "extends": "eslint:recommended", // включены рекомендованные правила которые сообщают о частых ощшибках
+//    "extends": "eslint:recommended", // включены рекомендованные правила которые сообщают о частых ощшибках
 
 
     "parserOptions": {
@@ -15,12 +15,12 @@
 
 
     "rules": {
-    "indent": [2, 2],
+    "indent": [2, "tab"],
     "linebreak-style": [2, "windows"],
-    "quotes": [2, "single"],
-    "semi": [2, "always"],
-    "comma-spacing":[ "error",{ "before": true, "after": true }],
-    "strict": [1, "global"]
+    "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],
+    "semi": [2, "always",{"omitLastInOneLineBlock": false}],
+    "comma-spacing":[ "error",{ "before": true, "after": true }]
+//    "strict": [1, "global"]
 
 }
 }
