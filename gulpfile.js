@@ -45,9 +45,6 @@ gulp.task('workhtml:dev',async function() {
 
 gulp.task('workjs',async function() {
     gulp.src('dist/js/**/*.js')
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
         .pipe(uglify(/* options */))
         .pipe(gulp.dest('app/js'))
 
@@ -61,7 +58,7 @@ gulp.task('workhtml',async function() {
 });
 
 gulp.task('workcss',async function() {
-        gulp.src('./app/**/*.css')
+        gulp.src('./app/css/*.css')
         .pipe(uncss({
             html: ['app/index.html']
         }))

@@ -1,0 +1,1 @@
+export class Observable{constructor(){this.listeners={}}on(s,t){null==this.listeners[s]&&(this.listeners[s]={},this.listeners[s].eventProperty={},this.listeners[s].data=[]),this.listeners[s].data.push(t)}emit(s,t){if(null==this.listeners[s]||null==this.listeners[s].data)return;this.listeners[s].data.forEach(s=>{s(t)})}}

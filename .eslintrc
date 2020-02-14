@@ -6,9 +6,9 @@
 },
 //  "extends": "eslint:recommended", // включены рекомендованные правила которые сообщают о частых ощшибках
     "parserOptions": {
-    "ecmaVersion": 6
-
-},
+    "ecmaVersion": 6,
+    "sourceType": "module"
+    },
 
     "rules": {
     "indent": [2, "tab"],
@@ -18,7 +18,8 @@
     "comma-spacing":[ "error",{ "before": true, "after": true }],
     "strict": [2, "global"],
     "for-direction": [2], //смотрет что бы мы не свалились в вечный цикл в fore
-    "getter-return": [2, { "allowImplicit": true }] // геттерное свойство должно либо возвращать явное значение, либо явно возвращать undefined
+    "getter-return": [2, { "allowImplicit": true }], // геттерное свойство должно либо возвращать явное значение, либо явно возвращать undefined
+     "no-cond-assign": ["error", "always"]   // запрещает в условиях операто =
 
 }
 }

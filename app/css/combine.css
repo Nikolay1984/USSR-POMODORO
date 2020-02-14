@@ -1,1 +1,1 @@
-.parent { display: flex; } .bla{ color: green; } p { font-size: 20px; }
+.parent{display:-webkit-box;display:-ms-flexbox;display:flex}.bla,.parent{color:green}p{font-size:20px}
