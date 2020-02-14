@@ -1,1 +1,3 @@
-alert(3);
+"use strict";
+var x = "a";
+alert(2);

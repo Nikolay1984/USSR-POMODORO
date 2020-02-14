@@ -4,23 +4,21 @@
         "es6": true,
         "node": true
 },
-
-//    "extends": "eslint:recommended", // включены рекомендованные правила которые сообщают о частых ощшибках
-
-
+//  "extends": "eslint:recommended", // включены рекомендованные правила которые сообщают о частых ощшибках
     "parserOptions": {
     "ecmaVersion": 6
 
 },
-
 
     "rules": {
     "indent": [2, "tab"],
     "linebreak-style": [2, "windows"],
     "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],
     "semi": [2, "always",{"omitLastInOneLineBlock": false}],
-    "comma-spacing":[ "error",{ "before": true, "after": true }]
-//    "strict": [1, "global"]
+    "comma-spacing":[ "error",{ "before": true, "after": true }],
+    "strict": [2, "global"],
+    "for-direction": [2], //смотрет что бы мы не свалились в вечный цикл в fore
+    "getter-return": [2, { "allowImplicit": true }] // геттерное свойство должно либо возвращать явное значение, либо явно возвращать undefined
 
 }
 }

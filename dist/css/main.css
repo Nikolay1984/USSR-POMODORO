@@ -1,3 +1,10 @@
-.parent{
-	display: flex
+.parent
+{
+    display: flex;
+
+    color: green;
+}
+.bla
+{
+    color: green;
 }

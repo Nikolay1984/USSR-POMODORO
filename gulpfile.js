@@ -58,14 +58,12 @@ gulp.task('workhtml',async function() {
         .pipe(useref())
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest('app'));
-    console.log("dhfjjjjsjsjkdfhjksdhfjksdjkhsjkdfhjksdhsdf")
-
 });
 
 gulp.task('workcss',async function() {
-        gulp.src('./temp/**/*.css')
+        gulp.src('./app/**/*.css')
         .pipe(uncss({
-            html: ['dist/index.html']
+            html: ['app/index.html']
         }))
         .pipe(autoprefixer())
         .pipe(csso({
@@ -78,7 +76,7 @@ gulp.task('comb', gulp.parallel('workhtml:dev', 'workcss:dev','workjs:dev'));
 
 gulp.task('watch', async function() {
     gulp.watch('dist/**/*.html',gulp.series('workhtml'));
-    gulp.watch('dist/css/**/*.css',gulp.series('workcss'));
+    gulp.watch('dist/css/**/*.css',gulp.series('workhtml','workcss'));
     gulp.watch('dist/js/**/*.js',gulp.series('workjs'))
 });
 
