@@ -15,11 +15,15 @@
     "linebreak-style": [2, "windows"],
     "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],
     "semi": [2, "always",{"omitLastInOneLineBlock": false}],
-    "comma-spacing":[ "error",{ "before": true, "after": true }],
+    "comma-spacing":[ 2,{ "before": true, "after": true }],
     "strict": [2, "global"],
     "for-direction": [2], //смотрет что бы мы не свалились в вечный цикл в fore
     "getter-return": [2, { "allowImplicit": true }], // геттерное свойство должно либо возвращать явное значение, либо явно возвращать undefined
-     "no-cond-assign": ["error", "always"]   // запрещает в условиях операто =
-
-}
+     "no-cond-assign": [2, "always"],   // запрещает в условиях операто =
+     "no-debugger": [2],
+     "no-dupe-args": [2], //запрещает дублировать параметры в функции
+     "no-dupe-else-if": [2],
+     "no-dupe-keys": [2],
+     "no-duplicate-case": [2] // запрещает дубливровать case в switch
+    }
 }

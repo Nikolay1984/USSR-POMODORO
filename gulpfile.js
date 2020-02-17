@@ -44,7 +44,7 @@ gulp.task('workhtml:dev',async function() {
 });
 
 gulp.task('workjs',async function() {
-    gulp.src('dist/js/**/*.js')
+    gulp.src('dist/js/*.js')
         .pipe(uglify(/* options */))
         .pipe(gulp.dest('app/js'))
 
