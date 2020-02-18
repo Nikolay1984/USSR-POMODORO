@@ -82,3 +82,13 @@ gulp.task('watch', async function() {
  ));
 
 gulp.task("start",gulp.series('workhtml','workcss','workjs'));
+
+
+gulp.task('babel', async function() {
+        gulp.src('dist/js/*.js')
+            .pipe(babel({
+                presets: ['@babel/env' ]
+            }))
+            .pipe(gulp.dest('dist/js/test'))
+    }
+);

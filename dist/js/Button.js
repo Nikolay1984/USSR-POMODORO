@@ -1,4 +1,7 @@
 
-export class Button{}
-module.exports = Button;
+export class Button{
+	sayHi(){
+		return "Hi";
+	}
+}
 

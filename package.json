@@ -4,7 +4,7 @@
   "description": "new style a timer pomodoro",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha ./dist/js/test/test.js"
+    "test": "./node_modules/.bin/mocha dist/js/test/test.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/Nikolay1984/USSR-POMODORO#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "chai": "^4.2.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -35,8 +39,6 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
     "babel-preset-latest": "^6.24.1",
     "browser-sync": "^2.26.7",
     "gulp-htmlmin": "^5.0.1"

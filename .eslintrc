@@ -24,6 +24,10 @@
      "no-dupe-args": [2], //запрещает дублировать параметры в функции
      "no-dupe-else-if": [2],
      "no-dupe-keys": [2],
-     "no-duplicate-case": [2] // запрещает дубливровать case в switch
+     "no-duplicate-case": [2] ,// запрещает дубливровать case в switch
+      "no-empty": [2, { "allowEmptyCatch": true }],//запрещает пустые блоки кода
+      "no-ex-assign": [2],//запрещает менять в cathe объект ошибки
+      "no-extra-boolean-cast": [2]//запрещает использовать !!! и т.д.
+
     }
 }

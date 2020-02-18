@@ -1,20 +1,13 @@
 var assert = require('chai').assert;
-var Button = require('../Button.js');
-// var Driver = require('../Driver.js');
-// var main = require('../main.js');
-// var Observable = require('../Observable.js');
-// var Timer = require('../Timer.js');
+var Button = require("./Button.js");
+
+ var instBut = new Button.Button();
+
+describe('check Hi', function() {
+	it('should return Hi', function() {
+		var res = instBut.sayHi();
+		assert.equal(res,"Hi");
+	});
+});
 
 
-console.log(Button);
-
-
-
-//
-// describe('Array', function() {
-// 	describe('#indexOf()', function() {
-// 		it('should return -1 when the value is not present', function() {
-// 			assert.equal([1, 2, 3].indexOf(4), -1);
-// 		});
-// 	});
-// });
