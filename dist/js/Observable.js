@@ -1,5 +1,5 @@
 
-export class Observable {
+export default class Observable {
 	constructor() {
 		this.listeners = {};
 	}

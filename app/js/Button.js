@@ -1,1 +1,1 @@
-export class Button{}
+export default class Button{constructor(t){this.state=!1,this.configHandlerEvent=null,this.type=t.type,this.targetButton=t.targetButton}toggle(){}addEventListenerToButton(t){}}

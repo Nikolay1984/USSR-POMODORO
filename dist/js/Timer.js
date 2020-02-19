@@ -1,2 +1,2 @@
 
-export class Timer{}
+export default class Timer{}

@@ -1,1 +1,1 @@
-import{Button}from"./Button.js";import{Driver}from"./Driver.js";import{Timer}from"./Timer.js";import{Observable}from"./Observable.js";console.log(Observable);
+import Button from"./Button.js";let startButton=document.createElement("button");startButton.classList.add("start");let configButton={type:"start",targetButton:startButton},instanceButton=new Button(configButton);console.dir(configButton.targetButton);

@@ -3,12 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Timer = void 0;
+exports.default = void 0;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+class Timer {}
 
-var Timer = function Timer() {
-  _classCallCheck(this, Timer);
-};
-
-exports.Timer = Timer;
+exports.default = Timer;
+module.exports = exports.default;

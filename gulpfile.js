@@ -45,11 +45,16 @@ gulp.task('workhtml:dev',async function() {
 
 gulp.task('workjs',async function() {
     gulp.src('dist/js/*.js')
-        .pipe(uglify(/* options */))
+        .pipe(uglify())
         .pipe(gulp.dest('app/js'))
 
 });
-
+gulp.task('babel', async function() {
+        gulp.src('dist/js/*.js')
+            .pipe(babel())
+            .pipe(gulp.dest('dist/js/test'))
+    }
+);
 gulp.task('workhtml',async function() {
     gulp.src('dist/**/*.html')
         .pipe(useref())
@@ -74,21 +79,15 @@ gulp.task('comb', gulp.parallel('workhtml:dev', 'workcss:dev','workjs:dev'));
 gulp.task('watch', async function() {
     gulp.watch('dist/**/*.html',gulp.series('workhtml'));
     gulp.watch('dist/css/**/*.css',gulp.series('workhtml','workcss'));
-    gulp.watch('dist/js/**/*.js',gulp.series('workjs'))
+    gulp.watch('dist/js/*.js',gulp.series('workjs','babel'));
+    // gulp.watch('dist/js/*.js',gulp.series('babel'))
+
 });
 
- gulp.task("default",gulp.series(
+gulp.task("default",gulp.series(
      gulp.parallel("watch","serve")
- ));
+));
 
 gulp.task("start",gulp.series('workhtml','workcss','workjs'));
 
 
-gulp.task('babel', async function() {
-        gulp.src('dist/js/*.js')
-            .pipe(babel({
-                presets: ['@babel/env' ]
-            }))
-            .pipe(gulp.dest('dist/js/test'))
-    }
-);

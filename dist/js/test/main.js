@@ -1,11 +1,27 @@
 "use strict";
 
-var _Button = require("./Button.js");
+var _Button = _interopRequireDefault(require("./Button.js"));
 
-var _Driver = require("./Driver.js");
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _Timer = require("./Timer.js");
-
-var _Observable = require("./Observable.js");
-
-console.log(_Observable.Observable);
+// import {Driver} from "./Driver.js";
+// import {Timer} from "./Timer.js";
+// import {Observable} from "./Observable.js";
+// let configButton = {
+// 	type:"start",
+// 	targetButton:document.querySelector(".start")
+// };
+// let configHandlerEvent = {
+// 	nameEvent: "click",
+// 	handler: function (event) {
+//
+// 	}
+// };
+let startButton = document.createElement("button");
+startButton.classList.add("start");
+let configButton = {
+  type: "start",
+  targetButton: startButton
+};
+let instanceButton = new _Button.default(configButton);
+console.dir(configButton.targetButton);

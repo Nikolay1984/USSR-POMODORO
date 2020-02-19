@@ -1,5 +1,5 @@
 
-export class Driver{
+export default class Driver{
 
 }
 
