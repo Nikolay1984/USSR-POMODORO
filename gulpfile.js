@@ -52,7 +52,7 @@ gulp.task('workjs',async function() {
 gulp.task('babel', async function() {
         gulp.src('dist/js/*.js')
             .pipe(babel())
-            .pipe(gulp.dest('dist/js/test'))
+            .pipe(gulp.dest('dist/js/test/src'))
     }
 );
 gulp.task('workhtml',async function() {

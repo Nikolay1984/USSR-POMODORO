@@ -1,1 +1,1 @@
-export default class Button{constructor(t){this.state=!1,this.configHandlerEvent=null,this.type=t.type,this.targetButton=t.targetButton}toggle(){}addEventListenerToButton(t){}}
+export default class Button{constructor(t){this.state=!1,this.configHandlerEvent=null,this.type=t.type,this.targetButton=t.targetButton}toggle(){this.state=!1===this.state}addEventListenerToButton(t){if(0==arguments.length)throw new Error("The arguments is not pass");this.targetButton.addEventListener(t.nameEvent,t.handler)}}

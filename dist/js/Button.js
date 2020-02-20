@@ -11,8 +11,14 @@ export default class Button{
 	}
 	toggle(){
 
-		this.state = this.state === true ? false :true;
+		this.state = this.state === false ? true :false;
 	}
-	addEventListenerToButton(configHandlerEvent){}
+	addEventListenerToButton(configHandlerEvent){
+		if(arguments.length == 0){
+			throw new Error("The arguments is not pass");
+		}
+		this.targetButton.addEventListener(configHandlerEvent.nameEvent, configHandlerEvent.handler);
+	}
+
 }
 

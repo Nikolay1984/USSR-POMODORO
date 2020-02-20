@@ -19,7 +19,7 @@ let startButton = document.createElement("button");
 startButton.classList.add("start");
 
 let configButton = {
-	type:"start",
+	type:"start" ,
 	targetButton: startButton
 };
 let instanceButton = new Button(configButton);

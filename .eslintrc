@@ -33,8 +33,11 @@
      "no-func-assign": [2], // не разрешает дублировать декларации функций
      "no-import-assign": [2], //запрешает переназначать переменные прописанные в import
      "no-inner-declarations": [2, "both"], // запрещает дкларировать функции и var  внутри if
-     "no-invalid-regexp": [2, { "allowConstructorFlags": ["u", "y"] }]
-
-
+     "no-invalid-regexp": [2, { "allowConstructorFlags": ["u", "y"] }],
+     "no-irregular-whitespace":[2],//запрещает в коде управляющие символы
+     "no-misleading-character-class":[2],
+     "no-obj-calls":[2],//запроещает вызывать глобальные объекты
+     "no-prototype-builtins" :[2],//запрещает вызов методов Object.prototype в неявном виде
+     "no-regex-spaces":[2]
     }
 }

@@ -1,1 +1,1 @@
-export default class Driver{}
+export default class Driver{constructor(r,i){this.timer=instTime,this.arrOfTimeButtons=i}reportingOfChange(r){}drivingOfTimer(r){}}
