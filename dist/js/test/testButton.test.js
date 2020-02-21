@@ -1,16 +1,22 @@
 var assert = require("chai").assert;
 var expect = require("chai").expect;
 var Button = require("./src/Button.js");
-require("jsdom-global")(); // подключаем DOM в node
-require("geteventlisteners")();// добавляет DOM элементу метод getEventListeners, который позвражает объект с обрабочиками на данном элементе
+require("jsdom-global")();
+// подключаем DOM в node
+require("geteventlisteners")();
+
+// добавляет DOM элементу метод getEventListeners, который позвражает объект с обрабочиками на данном элементе
 
 
 describe("class Button" , function() {
+
 	let startButton , configButton , instanceButton , configHandlerEvent;
+
 
 	describe("create work instance" , function () {
 
 		beforeEach(function () {
+
 			startButton = document.createElement("button");
 			startButton.classList.add("start");
 			configButton = {
@@ -95,12 +101,13 @@ describe("class Button" , function() {
 		});
 
 		it("should add  EventListener To Button" , function() {
+
 			let result = false;
 			let objectOfEvents = instanceButton.targetButton.getEventListeners();
 			let arrEvents = objectOfEvents[configHandlerEvent.nameEvent];
 
 			arrEvents.forEach(function (item) {
-				if(item.listener == configHandlerEvent.handler){
+				if(item.listener === configHandlerEvent.handler){
 					result = true;
 				}
 			});

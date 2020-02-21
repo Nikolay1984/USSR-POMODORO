@@ -1,14 +1,34 @@
-var assert = require("chai").assert;
-var expect = require("chai").expect;
-var Timer = require("./src/Timer.js");
+let assert = require("chai").assert;
+let expect = require("chai").expect;
+let Timer = require("./src/Timer.js");
+require("jsdom-global")();
+require("geteventlisteners")();
+
 
 describe("class Timer" , function() {
-	let instTimer ;
-	it("create work instance" , function(){
-		instTimer = new Timer();
-		assert.typeOf(instTimer , "object");
-		instTimer = null;
-	});
+	let instTimer ,
+		timerDomElement ;
+
+	describe("testing of constructor Timer" , function(){
+		beforeEach(function () {
+			timerDomElement = document.createElement("button");
+			timerDomElement.classList.add("displayTimer");
+			document.body.append(timerDomElement);
+			instTimer = new Timer();
+		});
+		afterEach(function () {
+			instTimer = null;
+			timerDomElement.parentNode.removeChild(timerDomElement);
+			timerDomElement = null;
+		});
+
+		it("create work instance" , function(){
+
+			assert.typeOf(instTimer , "object");
+
+		});
+	})
+
 
 
 });

@@ -38,6 +38,10 @@
      "no-misleading-character-class":[2],
      "no-obj-calls":[2],//запроещает вызывать глобальные объекты
      "no-prototype-builtins" :[2],//запрещает вызов методов Object.prototype в неявном виде
-     "no-regex-spaces":[2]
+     "no-regex-spaces":[2],
+     "no-setter-return": [2], //запрещает возвращать значения из сеттеров
+     "no-sparse-arrays": [2], //запрещает масивы вот такие [,,]
+     "no-unexpected-multiline": [2], //запрещает выражения размазывать на несколько строк
+     "no-unreachable": [2] //запрещает код после return и подобных ...
     }
 }
