@@ -11,3 +11,4 @@ Thumbs.db
 .vscode/
 materials
 temp
+!node_modules\geteventlisteners\src\getEventListeners.js

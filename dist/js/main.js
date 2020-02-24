@@ -1,8 +1,10 @@
-import Button from "./Button.js";
+// import Button from "./Button.js";
 // import {Driver} from "./Driver.js";
-// import {Timer} from "./Timer.js";
+import Timer from "./Timer.js";
 // import {Observable} from "./Observable.js";
 
+let timer = new Timer();
+timer.timeRun();
 
 
 // let configButton = {
@@ -15,15 +17,15 @@ import Button from "./Button.js";
 //
 // 	}
 // };
-let startButton = document.createElement("button");
-startButton.classList.add("start");
-
-let configButton = {
-	type:"start" ,
-	targetButton: startButton
-};
-let instanceButton = new Button(configButton);
-console.dir(configButton.targetButton);
+// let startButton = document.createElement("button");
+// startButton.classList.add("start");
+//
+// let configButton = {
+// 	type:"start" ,
+// 	targetButton: startButton
+// };
+// let instanceButton = new Button(configButton);
+// console.dir(configButton.targetButton);
 
 
 

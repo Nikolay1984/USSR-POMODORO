@@ -42,6 +42,11 @@
      "no-setter-return": [2], //запрещает возвращать значения из сеттеров
      "no-sparse-arrays": [2], //запрещает масивы вот такие [,,]
      "no-unexpected-multiline": [2], //запрещает выражения размазывать на несколько строк
-     "no-unreachable": [2] //запрещает код после return и подобных ...
+     "no-unreachable": [2], //запрещает код после return и подобных ...
+     "no-unsafe-finally":[2],//запрещает  return, throw, break, and continue в finally
+     "no-unsafe-negation":[2], // запрещает  if (!key in object)
+     "use-isnan":[2],
+     "valid-typeof":[2, { "requireStringLiterals": true }]// incorrect typeof foo === "strnig"; correct typeof foo === "string"
+
     }
 }

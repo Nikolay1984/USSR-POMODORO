@@ -27,6 +27,8 @@ describe("class Timer" , function() {
 			assert.typeOf(instTimer , "object");
 
 		});
+
+
 	})
 
 

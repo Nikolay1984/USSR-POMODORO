@@ -1,1 +1,1 @@
-import Button from"./Button.js";let startButton=document.createElement("button");startButton.classList.add("start");let configButton={type:"start",targetButton:startButton},instanceButton=new Button(configButton);console.dir(configButton.targetButton);
+import Timer from"./Timer.js";let timer=new Timer;timer.timeRun();
