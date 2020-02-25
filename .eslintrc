@@ -46,7 +46,9 @@
      "no-unsafe-finally":[2],//запрещает  return, throw, break, and continue в finally
      "no-unsafe-negation":[2], // запрещает  if (!key in object)
      "use-isnan":[2],
-     "valid-typeof":[2, { "requireStringLiterals": true }]// incorrect typeof foo === "strnig"; correct typeof foo === "string"
-
+     "valid-typeof":[2, { "requireStringLiterals": true }],// incorrect typeof foo === "strnig"; correct typeof foo === "string"
+     "array-callback-return": [2, { "allowImplicit": true }], //из методов масива явно возвращай чего нибудь
+     "block-scoped-var": [2], // пиши var с учетом хойстинга, в if их не засовывай, они хойстятся от туда и это не явно может тебя тормознуть
+     "complexity": [2, 3] // цикломатическая сложность функции - максимальное колличество вариантов ветвления функции
     }
 }

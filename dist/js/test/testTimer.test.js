@@ -29,7 +29,7 @@ describe("class Timer" , function() {
 		});
 
 
-	})
+	});
 
 
 

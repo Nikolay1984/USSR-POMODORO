@@ -1,1 +1,24 @@
-export default class Button{constructor(t){this.state=!1,this.configHandlerEvent=null,this.type=t.type,this.targetButton=t.targetButton}toggle(){this.state=!1===this.state}addEventListenerToButton(t){if(0==arguments.length)throw new Error("The arguments is not pass");this.targetButton.addEventListener(t.nameEvent,t.handler)}}
+
+
+
+
+export default class Button{
+	constructor(configButton){
+		this.state = false;
+		this.configHandlerEvent = null;
+		this.type = configButton.type;
+		this.targetButton = configButton.targetButton;
+	}
+	toggle(){
+
+		this.state = this.state === false ? true :false;
+	}
+	addEventListenerToButton(configHandlerEvent){
+		if(arguments.length == 0){
+			throw new Error("The arguments is not pass");
+		}
+		this.targetButton.addEventListener(configHandlerEvent.nameEvent , configHandlerEvent.handler);
+	}
+
+}
+

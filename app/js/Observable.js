@@ -1,1 +1,26 @@
-export default class Observable{constructor(){this.listeners={}}on(s,t){null==this.listeners[s]&&(this.listeners[s]={},this.listeners[s].eventProperty={},this.listeners[s].data=[]),this.listeners[s].data.push(t)}emit(s,t){if(null==this.listeners[s]||null==this.listeners[s].data)return;this.listeners[s].data.forEach(s=>{s(t)})}}
+
+export default class Observable {
+	constructor() {
+		this.listeners = {};
+	}
+	on(e , callback) {
+		if (this.listeners[e] == undefined) {
+			this.listeners[e] = {};
+			this.listeners[e].eventProperty = {};
+			this.listeners[e].data = [];
+		}
+		this.listeners[e].data.push(callback);
+	}
+
+	emit(e , data) {
+		if (this.listeners[e] == undefined || this.listeners[e].data == undefined) {
+			return;
+		}
+
+		let itObj = this;
+
+		this.listeners[e].data.forEach(listener => {
+			listener(data);
+		});
+	}
+}

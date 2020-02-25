@@ -6,7 +6,7 @@ describe("class Driver" , function() {
 	let instTimer = {};
 	describe("create work instance" , function(){
 
-	})
+	});
 
 
 });

@@ -17,7 +17,7 @@ export default class Button{
 		if(arguments.length == 0){
 			throw new Error("The arguments is not pass");
 		}
-		this.targetButton.addEventListener(configHandlerEvent.nameEvent, configHandlerEvent.handler);
+		this.targetButton.addEventListener(configHandlerEvent.nameEvent , configHandlerEvent.handler);
 	}
 
 }
