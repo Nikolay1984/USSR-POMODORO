@@ -2,183 +2,134 @@ export default class Timer {
 	constructor() {
 		this.timerDOM = document.querySelector(".displayTimer");
 		this.onTimer = false;
-		this.workTimeConfig = this.getWorkTimeConfigFromButton();
-		this.soundConfig = this.getSoundConfigFromButton();
+		this.workTimeConfig = this._getWorkTimeConfigFromButton();
+		this.soundConfig = this._getSoundConfigFromButton();
+
+		this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
+		this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
+		this._timeController = this._timeController.bind(this);
+	}
+
+
+	_drawDisplayTimer(string) {
+		let timerDOM = this.timerDOM;
+		timerDOM.innerHTML = string + " " + this.workTimeConfig.hint;
+	}
+
+	_createStringForDisplayTimer(minute) {
+		let minuteString = "";
+		let secondsString = "";
+		let countOfWork = "";
+
+		if(this.workTimeConfig.countOfRest > 0){
+			countOfWork = String(this.workTimeConfig.countOfRest + 1);
+		}else{
+			countOfWork = "На последнем рабочем цикле" ;
+		}
+
+		if(minute < 10){
+			minuteString = "0" + minute;
+		}else{
+			minuteString = String(minute);
+		}
+
+		if(this.workTimeConfig.seconds < 10){
+			secondsString = "0" + this.workTimeConfig.seconds;
+		}else{
+			secondsString = String(this.workTimeConfig.seconds);
+		}
+
+		let currentTimeString = `${minuteString} : ${secondsString} : осталось циклов ${countOfWork}`;
+		return currentTimeString;
+	}
+
+	_timeController(configOfTimer) {
+		let minute;
+		configOfTimer.seconds--;
+
+		if (configOfTimer.hint === "work") {
+			minute = configOfTimer.minuteOfWork;
+			if (configOfTimer.seconds === -1) {
+				configOfTimer.minuteOfWork--;
+				configOfTimer.seconds = 59;
+				if (configOfTimer.minuteOfWork === -1) {
+					configOfTimer.hint = "rest";
+					configOfTimer.seconds = 60;
+					configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
+					return;
+				}
+
+			}
+
+		}
+
+		if (configOfTimer.hint === "rest") {
+			minute = configOfTimer.minuteOfRest;
+			if (configOfTimer.countOfRest === 0) {
+				configOfTimer.hint = "bigRest";
+				configOfTimer.seconds = 60;
+				return;
+			}
+			if (configOfTimer.seconds === -1) {
+				configOfTimer.minuteOfRest--;
+				configOfTimer.seconds = 59;
+
+				if (configOfTimer.minuteOfRest === -1) {
+					configOfTimer.countOfRest--;
+					configOfTimer.seconds = 60;
+					configOfTimer.minuteOfRest = configOfTimer.cloneConfig.minuteOfRest;
+					configOfTimer.hint = "work";
+					return;
+				}
+			}
+		}
+
+		if (configOfTimer.hint === "bigRest") {
+			minute = configOfTimer.minuteOfBigRest;
+			if (configOfTimer.seconds === -1){
+				configOfTimer.minuteOfBigRest--;
+				configOfTimer.seconds = 59;
+				if(configOfTimer.minuteOfBigRest === -1){
+					configOfTimer.seconds = 60;
+					configOfTimer.minuteOfBigRest = configOfTimer.cloneConfig.minuteOfBigRest;
+					configOfTimer.countOfRest = configOfTimer.cloneConfig.countOfRest;
+					configOfTimer.hint = "work";
+					return;
+				}
+			}
+	}
+
+		let timeString = this._createStringForDisplayTimer(minute);
+		this._drawDisplayTimer(timeString);
 
 	}
 
 	timeRun() {
-		//	берет наш домовский таймер задает ему время, которе у нас равно this.workTimeConfig
-		//
+		this.onTimer = true;
 
-		let hint = "work";
-		let self = this;
-		let seconds = 60;
-		let configOfTimer = this.workTimeConfig;
-		let cloneConfigOfTimer = Object.assign(configOfTimer);
+		let handlerSetInterval = function () {
+			this._timeController(this.workTimeConfig);
+		};
+		handlerSetInterval = handlerSetInterval.bind(this);
 
-		function drawMinuteAndSecond(string) {
+		this.timerId = setInterval(handlerSetInterval , 100);
 
-		}
-
-		function formStringOfMinuteAndSecond(minute) {
-			let resString = "";
-			return resString;
-		}
-
-
-		function timeController(configOfTimer) {
-			let minute;
-			seconds--;
-
-			if (hint === "work") {
-				minute = configOfTimer.minuteOfWork;
-				if (seconds == -1) {
-					configOfTimer.minuteOfWork--;
-					seconds = 59;
-					if (minute == -1) {
-						hint = "rest";
-						seconds = 60;
-						configOfTimer.minuteOfWork = cloneConfigOfTimer.minuteOfWork - 1;
-						return;
-					}
-					
-				}
-				minute = String(minute);
-			}
-			
-			if (hint === "rest") {
-				minute = configOfTimer.minuteOfRest;
-				if (configOfTimer.countOfRest === 0) {
-					hint = "bigRest";
-					return;
-				}
-				if (seconds == -1) {
-					configOfTimer.minuteOfRest--;
-					seconds = 59;
-
-					if (minute == -1) {
-						configOfTimer.countOfRest--;
-						seconds = 60;
-						configOfTimer.minuteOfRest = cloneConfigOfTimer.minuteOfRest - 1;
-						hint = "work";
-						return;
-					}
-				}
-			}
-			
-			if (hint === "bigRest") {
-			}
-			
-
-			let timeString = formStringOfMinuteAndSecond(minute);
-			drawMinuteAndSecond(timeString);
-
-		}
-
-
-		let timerId = setInterval(function () {
-			timeController(configOfTimer);
-		} , 100);
-
-
-		// let mainTime = this.workTimeConfig.mainTime -1;
-		// let	restTime = this.workTimeConfig.restTime -1;
-		// let	breakTime = this.workTimeConfig.breakTime -1;
-		// let	breakInterval = this.workTimeConfig.breakInterval;
-		// let timerDOM = this.timerDOM;
-		// let seconds = 59;
-		// let self = this;
-		// this.onTimer = true;
-		// function createStringToDrawDisplayTimer(minute) {
-		// 	let minuteString = "";
-		// 	let secondsString = "";
-		//
-		//
-		//
-		// 	if(minute < 10){
-		// 		minuteString = '0' + minute;
-		// 	}else{
-		// 		minuteString = minute;
-		// 	}
-		//
-		// 	if(seconds < 10){
-		// 		secondsString = '0' + seconds;
-		// 	}else{
-		// 		secondsString = seconds;
-		// 	}
-		//
-		// 	let currentTimeString = `${minuteString} : ${secondsString}`;
-		//
-		//
-		// 	return currentTimeString;
-		// };
-		// function changeDisplayTimerOfRest() {
-		// 	if (breakInterval === 0){
-		// 		clearInterval(idTimer);
-		// 		idTimer = setInterval(changeDisplayTimerOfBigRest,300);
-		// 		return;
-		// 	}
-		// 	timerDOM.innerHTML = createStringToDrawDisplayTimer(restTime) + "Rest";
-		// 	seconds--;
-		// 	if (seconds == -1){
-		// 		restTime--;
-		// 		seconds = 59;
-		// 		if(restTime == -1){
-		// 			clearInterval(idTimer);
-		// 			breakInterval--;
-		// 			seconds = 59;
-		// 			restTime = self.workTimeConfig.restTime -1;
-		// 			idTimer =  setInterval(changeDisplayTimerOfWork, 300);
-		// 			return;
-		// 		}
-		// 	}
-		//
-		// };
-		// function changeDisplayTimerOfWork () {
-		// 	timerDOM.innerHTML = createStringToDrawDisplayTimer(mainTime) + "Work";
-		// 	seconds--;
-		// 	if (seconds == -1){
-		// 		mainTime--;
-		// 		seconds = 59;
-		// 		if (mainTime == -1) {
-		// 			clearInterval(idTimer);
-		// 			seconds = 59;
-		// 			mainTime = self.workTimeConfig.mainTime -1;
-		// 			idTimer = setInterval(changeDisplayTimerOfRest, 300);
-		// 			return;
-		// 		};
-		// 	}
-		//
-		//
-		// };
-		// function changeDisplayTimerOfBigRest(){
-		// 	timerDOM.innerHTML = createStringToDrawDisplayTimer(breakTime) + "BigRest";
-		// 	seconds--;
-		// 	if (seconds == -1){
-		// 		breakTime--;
-		// 		seconds = 59;
-		// 		if(breakTime == -1){
-		// 			clearInterval(idTimer);
-		// 			seconds = 59;
-		// 			breakTime = self.workTimeConfig.mainTime -1;
-		// 			breakInterval = self.workTimeConfig.breakInterval;
-		// 			idTimer = setInterval(changeDisplayTimerOfWork, 300);
-		// 			return;
-		// 		}
-		// 	}
-		//
-		// };
-		//
-		// let idTimer = setInterval(changeDisplayTimerOfWork,300);
 	}
 
+
 	stopTimeRun() {
-		this.workTimeConfig = this.getCurrentWorkTimeConfigFromForm();
+		this.onTimer = false;
+		clearInterval(this.timerId);
 	}
 
 	resetTimer() {
-		this.workTimeConfig = this.getWorkTimeConfigFromButton();
+		this.onTimer = false;
+		clearInterval(this.timerId);
+		this.workTimeConfig = this._getWorkTimeConfigFromButton();
+
+		let timeString = this._createStringForDisplayTimer(this.workTimeConfig.minuteOfWork);
+		this._drawDisplayTimer(timeString);
+
 	}
 
 	changeBeep() {}
@@ -187,25 +138,23 @@ export default class Timer {
 
 	changeSignalAlarm() {}
 
-	getWorkTimeConfigFromButton() {
-		// return  {
-		// 	mainTime : 1,
-		// 	restTime : 1,
-		// 	breakTime: 0,
-		// 	breakInterval: 1
-		// };
+	_getWorkTimeConfigFromButton() {
 
-		return {
-			minuteOfWork: 1 ,
-			minuteOfRest: 1 ,
-			minuteOfBigRest: 0 ,
+		let config = {
+			hint: "work" ,
+			seconds: 60 ,
+			minuteOfWork: 1 - 1 ,
+			minuteOfRest: 1 - 1 ,
+			minuteOfBigRest: 1 - 1 ,
 			countOfRest: 1
 		};
-
+		config.cloneConfig = Object.assign({} , config);
+		//минимальное время работы, отдыха и большого перерыва 1 мин
+		return config ;
 
 	}
 
-	getSoundConfigFromButton() {
+	_getSoundConfigFromButton() {
 		return {
 			volume: 2 ,
 			flip: false ,
