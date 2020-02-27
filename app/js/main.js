@@ -69,4 +69,3 @@ buttonReset.addEventListenerToButton(configHandlerEventForButtonReset);
 
 
 
-
