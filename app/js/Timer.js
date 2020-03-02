@@ -21,7 +21,7 @@ export default class Timer {
 			numberOfWork = "На последнем рабочем цикле" ;
 		}else {
 			numberOfWork= this.workTimeConfig.countOfRest + 1;
-		};
+		}
 
 		displaySecondsAndMinuteDiv.innerHTML = stringSecondAndMinute + " " + this.workTimeConfig.hint;
 		displayCountOfWorkDiv.innerHTML = numberOfWork;
