@@ -58,7 +58,11 @@
      "grouped-accessor-pairs": [2], // группируем сетторы и геттеры рядом друг с другом
      "max-classes-per-file": [2, 1], //определяет максимальное число class defenition на один файл
      "no-caller": [2], // запрещает использоваьть метод caller
-     "no-case-declarations":[2] //запрещает лексические дикларации внутри swich  - case, defaulft
-
+     "no-case-declarations":[2], //запрещает лексические дикларации внутри swich  - case, defaulft
+     "no-else-return": [2], //запрещает корявые returnы в else  и else if
+     "no-empty-function": [2],//запрещает пустые функции без коментариев
+     "no-empty-pattern": [2], //запрещает пустую деструктуризацию
+     "no-eq-null": [2], // предупреждает о не строгом сравнении null с чем либо
+     "no-eval": [2]
     }
 }
