@@ -1,3 +1,6 @@
+*{
+    border: 1px solid green;
+}
 .circle{
      width: 300px;
      height: 300px;
@@ -27,8 +30,8 @@
     position: absolute;
     border: 3px solid black;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 30px;
+    height: 30px;
     background: green;
     top:0%;
     left: 45%;
