@@ -20,6 +20,12 @@ ball.addEventListener("mousedown", function (e) {
 });
 
 function moveAt(e, elem) {
+  let circleMiddle = document.querySelector(".circleMiddle");
+  let offsetCircleMiddleX = circleMiddle.offsetLeft;
+  let offsetCircleMiddleY = circleMiddle.offsetTop;
+  let circleMiddleRadius = circleMiddle.offsetWidth / 2;
+  let centerCircleMiddleToOffsetParentY = offsetCircleMiddleY + circleMiddleRadius;
+  let centerCircleMiddleToOffsetParentX = offsetCircleMiddleX + circleMiddleRadius;
   let ballOffsetLeft = elem.offsetLeft;
   let ballOffsetTop = elem.offsetTop;
   let ballOffsetWidth = elem.offsetWidth;
@@ -57,8 +63,20 @@ function moveAt(e, elem) {
     finalX = Number(arrfinalX.join(""));
   }
 
-  console.log(finalX, "finalX");
-  console.log(finalY, "finalY");
+  function offset(x, y) {
+    let horizonCathet;
+    let verticalCathet;
+    let hypotenuse;
+    verticalCathet = Math.abs(centerCircleMiddleToOffsetParentY - centerBallY);
+    horizonCathet = Math.abs(centerCircleMiddleToOffsetParentX - centerBallX);
+    hypotenuse = Math.sqrt(horizonCathet * horizonCathet + verticalCathet * verticalCathet);
+    let ang = verticalCathet / hypotenuse;
+    let smallHypotenuse = Math.abs(hypotenuse - circleMiddleRadius);
+    let newKat = smallHypotenuse * ang;
+    console.log(newKat);
+  }
+
+  offset();
   elem.style.left = finalX + "px";
   elem.style.top = finalY + "px";
 }
