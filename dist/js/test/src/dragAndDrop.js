@@ -20,18 +20,13 @@ ball.addEventListener("mousedown", function (e) {
 });
 
 function moveAt(e, elem) {
-  let circleMiddle = document.querySelector(".circleMiddle");
-  let offsetCircleMiddleX = circleMiddle.offsetLeft;
-  let offsetCircleMiddleY = circleMiddle.offsetTop;
-  let circleMiddleRadius = circleMiddle.offsetWidth / 2;
-  let centerCircleMiddleToOffsetParentY = offsetCircleMiddleY + circleMiddleRadius;
-  let centerCircleMiddleToOffsetParentX = offsetCircleMiddleX + circleMiddleRadius;
   let ballOffsetLeft = elem.offsetLeft;
   let ballOffsetTop = elem.offsetTop;
-  let ballOffsetWidth = elem.offsetWidth;
-  let ballOffsetHeight = elem.offsetHeight;
-  let centerBallX = ballOffsetWidth / 2 + ballOffsetLeft;
-  let centerBallY = ballOffsetHeight / 2 + ballOffsetTop;
+  let ballRadius = elem.offsetWidth / 2;
+  let radiusParentBig = elem.offsetParent.offsetWidth / 2;
+  let radiusParentSmall = radiusParentBig - ballRadius * 2;
+  let centerBallX = ballRadius + ballOffsetLeft;
+  let centerBallY = ballRadius + ballOffsetTop;
   let mouseClickOfViewX = e.clientX;
   let mouseClickOfViewY = e.clientY;
   let offsetParentViewX = elem.offsetParent.getBoundingClientRect().x;
@@ -63,18 +58,35 @@ function moveAt(e, elem) {
     finalX = Number(arrfinalX.join(""));
   }
 
-  function offset(x, y) {
-    let horizonCathet;
-    let verticalCathet;
-    let hypotenuse;
-    verticalCathet = Math.abs(centerCircleMiddleToOffsetParentY - centerBallY);
-    horizonCathet = Math.abs(centerCircleMiddleToOffsetParentX - centerBallX);
-    hypotenuse = Math.sqrt(horizonCathet * horizonCathet + verticalCathet * verticalCathet);
-    let ang = verticalCathet / hypotenuse;
-    let smallHypotenuse = Math.abs(hypotenuse - circleMiddleRadius);
-    let newKat = smallHypotenuse * ang;
-    console.log(newKat);
-  }
+  function offset() {
+    let newCenterBallX = finalX + ballRadius;
+    let newCenterBallY = finalY + ballRadius;
+    let bigHorizonCathet = Math.abs(radiusParentBig - newCenterBallX);
+    let bigVerticalCathet = Math.abs(radiusParentBig - newCenterBallY);
+    let bigHypotenuse = Math.sqrt(Math.pow(bigHorizonCathet, 2) + Math.pow(bigVerticalCathet, 2));
+    let sinusAlfa = bigHorizonCathet / bigHypotenuse;
+    let smallHypotenuse = Math.abs(radiusParentSmall - bigHypotenuse);
+    let smallHorizonCathet = sinusAlfa * smallHypotenuse;
+    let smallVerticalCathet = Math.sqrt(Math.pow(smallHypotenuse, 2) - Math.pow(smallHorizonCathet, 2));
+    finalY = finalY - (smallVerticalCathet - ballRadius);
+    finalX = finalX - (smallHorizonCathet - ballRadius);
+  } //  function offset(x,y ){
+  // 	 let horizonCathet;
+  // 	 let verticalCathet;
+  // 	 let hypotenuse;
+  // 		verticalCathet = Math.abs(centerCircleMiddleToOffsetParentY - centerBallY);
+  // 		horizonCathet  = Math.abs(centerCircleMiddleToOffsetParentX - centerBallX);
+  // 		hypotenuse = Math.sqrt((horizonCathet * horizonCathet) + (verticalCathet * verticalCathet));
+  // 		let ang = verticalCathet/hypotenuse;
+  // 		let smallHypotenuse = Math.abs(hypotenuse - circleMiddleRadius);
+  // 		let newKatVertical = smallHypotenuse * ang;
+  // 	 let newKatHorizon = Math.sqrt((smallHypotenuse*smallHypotenuse) - (newKatVertical*newKatVertical));
+  // 	 finalY = centerBallY + newKatVertical;
+  // 	 finalX = centerBallX +  newKatHorizon;
+  //
+  //
+  //  }
+
 
   offset();
   elem.style.left = finalX + "px";
