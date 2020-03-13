@@ -70,5 +70,6 @@
      "no-floating-decimal": [2], // запрещает цифры с плавающей точкой
      "no-global-assign": [2], // запрещает переприсваивание нативных объектов и нативных глобальных пременных
      "no-implicit-coercion": [2], // запрещает неявное преобразование данных например var s = "" + foo; переделает в var s = String(foo);
+     "no-magic-numbers": [[2], { "ignore": [0,1,2],"ignoreArrayIndexes": true, "enforceConst": true }] // запрещает использовать магические числа
     }
 }
