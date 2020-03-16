@@ -16,9 +16,9 @@ ball.addEventListener("mousedown" , function (e) {
 
 });
 
-	function handlerMousemove(e) {
+function handlerMousemove(e) {
 
-	}
+}
 function moveAt(e , elem) {
 
 	// let ballOffsetLeft = elem.offsetLeft;
@@ -122,3 +122,5 @@ function moveAt(e , elem) {
 	elem.style.top = finalY + "px";
 
 }
+
+var a = 1 + 3;
