@@ -37,5 +37,3 @@ let configHandlerEventForButtonReset = {
   }
 };
 buttonReset.addEventListenerToButton(configHandlerEventForButtonReset);
-
-function foo() {}

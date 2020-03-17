@@ -19,6 +19,5 @@ export default class Button{
 		}
 		this.targetButton.addEventListener(configHandlerEvent.nameEvent , configHandlerEvent.handler);
 	}
-
 }
 

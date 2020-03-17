@@ -40,10 +40,11 @@ function handlerMousemove(e) {
 	let mouseCordsPolar = {
 		angle: Math.atan(mouseCordsDecard.y/mouseCordsDecard.x)
 	};
-
-	if(mouseCordsDecard.x<0){
+	if(mouseCordsDecard.x<0)
+	{
 		mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI
 	}
+
 
 	let targetCordsDecard = {
 		x: innerRadius * Math.cos(mouseCordsPolar.angle),
@@ -53,8 +54,30 @@ function handlerMousemove(e) {
 		x: parentRadius + targetCordsDecard.x - ballCords.radius,
 		y: parentRadius + targetCordsDecard.y - ballCords.radius
 	}
-	console.log(targetCordsDecard);
-	  ball.style.left = targetCordsOffset.x + "px";
-	  ball.style.top = targetCordsOffset.y + "px";
+
+	ball.style.left = targetCordsOffset.x + "px";
+	ball.style.top = targetCordsOffset.y + "px";
+	var out = document.querySelector(".out");
+	out.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, 2);
+
+}
+function calculateValuePosition(angle, radius, ratio = 1){
+	let correctAngle = (angle+ Math.PI/2 ) * 57;
+	let lengthArc = (correctAngle * Math.PI * radius)/180;
+	let resultValue = Math.round(lengthArc/8.65/ ratio);
+	return resultValue;
 }
 
+
+let config = {
+	classNameTargetToPage: ".circle",
+	classNameBall : "ball",
+	classCircleBig: "circleBig",
+	classCircleSmall: "circleSmall",
+	ratio: "2"
+}
+
+function transformElementToCircleSlider(config) {
+	let target = document.querySelector(config.classNameTargetToPage);
+	let ball = document.createElement("div")
+}
