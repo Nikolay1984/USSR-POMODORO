@@ -6,14 +6,51 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 class Timer {
-  constructor() {
-    this.timerDOM = document.querySelector(".displayTimer");
+  constructor(config) {
+    this.timerDOM = document.querySelector(config.selectorTargetToPage);
     this.onTimer = false;
     this.workTimeConfig = this._getWorkTimeConfigFromButton();
     this.soundConfig = this._getSoundConfigFromButton();
     this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
     this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
     this._timeController = this._timeController.bind(this);
+
+    this._buildTimer(config);
+  }
+
+  _buildTimer({
+    stringCaptionTimer,
+    stringCaptionCountOfWork
+  }) {
+    let target = this.timerDOM;
+    let wrapperDisplayTimer = document.createElement("div");
+    let nameDisplayTimer = document.createElement("span");
+    let displayTimer = document.createElement("div");
+    let displaySecondsAndMinute = document.createElement("div");
+    let currentSecondsAndMinute = document.createElement("span");
+    let wrapperDisplayCountOfWork = document.createElement("div");
+    let nameDisplayCountOfWork = document.createElement("span");
+    let displayCountOfWork = document.createElement("div");
+    let currentCountOfWork = document.createElement("span");
+    wrapperDisplayTimer.classList.add("wrapperDisplayTimer");
+    nameDisplayTimer.classList.add("nameDisplayTimer");
+    displayTimer.classList.add("displayTimer");
+    displaySecondsAndMinute.classList.add("displaySecondsAndMinute");
+    currentSecondsAndMinute.classList.add("currentSecondsAndMinute");
+    wrapperDisplayCountOfWork.classList.add("wrapperDisplayCountOfWork");
+    nameDisplayCountOfWork.classList.add("nameDisplayCountOfWork");
+    displayCountOfWork.classList.add("displayCountOfWork");
+    currentCountOfWork.classList.add("currentCountOfWork");
+    nameDisplayTimer.innerHTML = stringCaptionTimer;
+    nameDisplayCountOfWork.innerHTML = stringCaptionCountOfWork;
+    currentSecondsAndMinute.innerHTML = "25:00";
+    currentCountOfWork.innerHTML = "3";
+    wrapperDisplayTimer.prepend(nameDisplayTimer, displayTimer);
+    displayTimer.prepend(displaySecondsAndMinute, wrapperDisplayCountOfWork);
+    displaySecondsAndMinute.prepend(currentSecondsAndMinute);
+    wrapperDisplayCountOfWork.prepend(nameDisplayCountOfWork, displayCountOfWork);
+    displayCountOfWork.prepend(currentCountOfWork);
+    target.prepend(wrapperDisplayTimer);
   }
 
   _drawDisplayTimer(stringSecondAndMinute) {

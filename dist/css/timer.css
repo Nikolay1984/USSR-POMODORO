@@ -1,0 +1,11 @@
+.displayTimer{
+    display: flex;
+}
+.displaySecondsAndMinute{
+    width: 20px;
+    height: 20px;
+}
+.displayCountOfWork{
+    width: 20px;
+    height: 20px;
+}

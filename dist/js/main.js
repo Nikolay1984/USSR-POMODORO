@@ -2,8 +2,12 @@ import Button from "./Button.js";
 // import {Driver} from "./Driver.js";
 import Timer from "./Timer.js";
 // import {Observable} from "./Observable.js";
-
-let timer = new Timer();
+let configTimer = {
+	selectorTargetToPage:".placeTimer",
+	stringCaptionTimer:"Основное табло таймера",
+	stringCaptionCountOfWork:"Осталось циклов",
+}
+let timer = new Timer(configTimer);
 let buttonStartConfig = {
 	type: "start" ,
 	targetButton: document.querySelector(".start")
@@ -15,8 +19,10 @@ let configHandlerEventForButtonStart = {
 	handler: function (event) {
 		if(timer.onTimer) {
 			timer.stopTimeRun();
+			this.innerHTML = "start";
 		}else {
 			timer.timeRun();
+			this.innerHTML = "stop";
 		}
 	}
 };
@@ -35,6 +41,8 @@ let configHandlerEventForButtonReset = {
 		timer.resetTimer();
 	}
 };
+
+
 
 buttonReset.addEventListenerToButton(configHandlerEventForButtonReset);
 

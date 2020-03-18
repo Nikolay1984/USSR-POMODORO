@@ -8,7 +8,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import {Driver} from "./Driver.js";
 // import {Observable} from "./Observable.js";
-let timer = new _Timer.default();
+let configTimer = {
+  selectorTargetToPage: ".placeTimer",
+  stringCaptionTimer: "Основное табло таймера",
+  stringCaptionCountOfWork: "Осталось циклов"
+};
+let timer = new _Timer.default(configTimer);
 let buttonStartConfig = {
   type: "start",
   targetButton: document.querySelector(".start")
@@ -19,8 +24,10 @@ let configHandlerEventForButtonStart = {
   handler: function (event) {
     if (timer.onTimer) {
       timer.stopTimeRun();
+      this.innerHTML = "start";
     } else {
       timer.timeRun();
+      this.innerHTML = "stop";
     }
   }
 };

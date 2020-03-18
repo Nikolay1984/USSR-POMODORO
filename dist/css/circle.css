@@ -2,9 +2,13 @@
     border: 1px solid green;
     outline: 1px solid red;
 }
-.circle{
+.sliderMinute{
      width: 300px;
      height: 300px;
+ }
+.sliderVolume{
+     width: 100px;
+     height: 100px;
  }
 
 .circleBig{
@@ -30,10 +34,10 @@
 }
 .ball{
     position: absolute;
-    border: 3px solid black;
+    border: 1px solid black;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 9%;
+    height: 9%;
     background: green;
     top:0%;
     left: 45%;
