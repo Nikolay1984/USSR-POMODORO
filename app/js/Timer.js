@@ -10,7 +10,7 @@ export default class Timer {
 		this._timeController = this._timeController.bind(this);
 		this._buildTimer(config);
 	}
-	_buildTimer({stringCaptionTimer, stringCaptionCountOfWork}){
+	_buildTimer({stringCaptionTimer , stringCaptionCountOfWork}){
 		let target = this.timerDOM;
 		let wrapperDisplayTimer = document.createElement("div");
 		let nameDisplayTimer = document.createElement("span");
@@ -37,12 +37,15 @@ export default class Timer {
 		currentSecondsAndMinute.innerHTML = "25:00";
 		currentCountOfWork.innerHTML = "3";
 
-		wrapperDisplayTimer.prepend(nameDisplayTimer,displayTimer);
-		displayTimer.prepend(displaySecondsAndMinute,wrapperDisplayCountOfWork);
+		wrapperDisplayTimer.prepend(nameDisplayTimer , displayTimer);
+		displayTimer.prepend(displaySecondsAndMinute , wrapperDisplayCountOfWork);
 		displaySecondsAndMinute.prepend(currentSecondsAndMinute);
-		wrapperDisplayCountOfWork.prepend(nameDisplayCountOfWork,displayCountOfWork);
+		wrapperDisplayCountOfWork.prepend(nameDisplayCountOfWork , displayCountOfWork);
 		displayCountOfWork.prepend(currentCountOfWork);
 		target.prepend(wrapperDisplayTimer);
+	}
+	_buildTimerControl(){
+
 	}
 
 	_drawDisplayTimer(stringSecondAndMinute) {

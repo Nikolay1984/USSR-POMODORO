@@ -53,6 +53,8 @@ class Timer {
     target.prepend(wrapperDisplayTimer);
   }
 
+  _buildTimerControl() {}
+
   _drawDisplayTimer(stringSecondAndMinute) {
     let timerDOM = this.timerDOM;
     let displaySecondsAndMinuteDiv = timerDOM.querySelector(".displaySecondsAndMinute");

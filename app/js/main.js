@@ -3,10 +3,10 @@ import Button from "./Button.js";
 import Timer from "./Timer.js";
 // import {Observable} from "./Observable.js";
 let configTimer = {
-	selectorTargetToPage:".placeTimer",
-	stringCaptionTimer:"Основное табло таймера",
-	stringCaptionCountOfWork:"Осталось циклов",
-}
+	selectorTargetToPage:".placeTimer" ,
+	stringCaptionTimer:"Основное табло таймера" ,
+	stringCaptionCountOfWork:"Осталось циклов" ,
+};
 let timer = new Timer(configTimer);
 let buttonStartConfig = {
 	type: "start" ,
@@ -41,9 +41,6 @@ let configHandlerEventForButtonReset = {
 		timer.resetTimer();
 	}
 };
-
-
-
 buttonReset.addEventListenerToButton(configHandlerEventForButtonReset);
 
 

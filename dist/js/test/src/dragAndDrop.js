@@ -1,11 +1,10 @@
 "use strict";
 
-console.log(document.querySelector(".currentSecondsAndMinute"));
-
 function transformElementToCircleSlider(config) {
   //Get target objects from page and create new slider elements
   let target = document.querySelector(config.selectorTargetToPage);
   let outputElem = document.querySelector(config.selectorOutputElem);
+  console.log(outputElem);
   let ratio = config.ratio;
   let ball = document.createElement("div");
   let circleBig = document.createElement("div");
@@ -82,9 +81,10 @@ function transformElementToCircleSlider(config) {
       x: parentRadius + targetCordsDecard.x - ballCords.radius,
       y: parentRadius + targetCordsDecard.y - ballCords.radius
     };
+    let correctAngle = (mouseCordsPolar.angle + Math.PI / 2) * 57;
     ball.style.left = targetCordsOffset.x + "px";
     ball.style.top = targetCordsOffset.y + "px";
-    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, ratio);
+    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, ratio) + ":00";
   }
 
   function calculateValuePosition(angle, radius, ratio = 1) {
@@ -107,7 +107,7 @@ let configTime = {
   ratio: "2"
 };
 let configVolume = {
-  selectorOutputElem: ".displaySecondsAndMinute",
+  selectorOutputElem: ".currentSecondsAndMinute",
   selectorTargetToPage: ".sliderVolume",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballVolume"],
