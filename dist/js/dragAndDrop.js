@@ -10,7 +10,8 @@ function transformElementToCircleSlider(config) {
 	let circleBig = document.createElement("div");
 	let circleSmall = document.createElement("div");
 	let objNamesOfSlider = config.objNamesOfSlider;
-
+	const maxLengthCirclePercent = 99;
+	let saveLengthCirclePercent = 0;
 	//Configure slider  elements and add to page
 
 	for (let nameOfArrNamesElem in objNamesOfSlider){
@@ -52,12 +53,6 @@ function transformElementToCircleSlider(config) {
 	}
 	function handlerMousemove(e) {
 		let ball = this;
-		let mouseCords ={
-			x: e.clientX ,
-			y: e.clientY
-		};
-		let parent = this.offsetParent;
-		let parentRadius = parent.offsetWidth/2;
 		let ballCords = {
 			offsetLeft: ball.offsetLeft ,
 			offsetTop: ball.offsetTop ,
@@ -65,38 +60,115 @@ function transformElementToCircleSlider(config) {
 			viewY: ball.getBoundingClientRect().y ,
 			radius: ball.offsetWidth/2
 		};
-		let innerRadius = parentRadius - ballCords.radius;
-
-		let mouseCordsDecard = {
-			x:(mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
-			y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius
+		let mouseCords ={
+			x: e.clientX ,
+			y: e.clientY
 		};
-		let mouseCordsPolar = {
-			angle: Math.atan(mouseCordsDecard.y/mouseCordsDecard.x)
-		};
-		if(mouseCordsDecard.x<0)
-		{
-			mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
-		}
+
+		    let parent = this.offsetParent;
+			let parentRadius = parent.offsetWidth / 2;
+			let innerRadius = parentRadius - ballCords.radius;
+
+			let mouseCordsDecard = {
+				x: (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
+				y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius
+			};
+			let mouseCordsPolar = {
+				angle: Math.atan(mouseCordsDecard.y / mouseCordsDecard.x)
+			};
+			if (mouseCordsDecard.x < 0) {
+				mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
+			}
 
 
+			let targetCordsDecard = {
+				x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
+				y: innerRadius * Math.sin(mouseCordsPolar.angle)
+			};
+			let targetCordsOffset = {
+				x: parentRadius + targetCordsDecard.x - ballCords.radius ,
+				y: parentRadius + targetCordsDecard.y - ballCords.radius
+			};
+			let currentArc = calculateValuePosition(mouseCordsPolar.angle , innerRadius , 1);
+			console.log("----------------------");
+			console.log(currentArc,"currentArc");
+			console.log(saveLengthCirclePercent,"saveLengthCirclePercent");
 
-		let targetCordsDecard = {
-			x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
-			y: innerRadius * Math.sin(mouseCordsPolar.angle)
-		};
-		let targetCordsOffset = {
-			x: parentRadius + targetCordsDecard.x - ballCords.radius ,
-			y: parentRadius + targetCordsDecard.y - ballCords.radius
-		};
-		let correctAngle = (mouseCordsPolar.angle+ Math.PI/2 ) * 57;
+			if(saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)){
+				return;
+			}
 
-		ball.style.left = targetCordsOffset.x + "px";
-		ball.style.top = targetCordsOffset.y + "px";
+			if(saveLengthCirclePercent <= 10 && currentArc > 50){
+				return;
+			}
+			saveLengthCirclePercent = currentArc;
 
-		outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle , innerRadius , ratio) + ":00";
+			ball.style.left = targetCordsOffset.x + "px";
+			ball.style.top = targetCordsOffset.y + "px";
+
+			outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle , innerRadius , ratio) + ":00";
+
+
 
 	}
+
+	// function handlerMousemove(e) {
+	// 	let ball = this;
+	// 	let ballCords = {
+	// 		offsetLeft: ball.offsetLeft ,
+	// 		offsetTop: ball.offsetTop ,
+	// 		viewX: ball.getBoundingClientRect().x ,
+	// 		viewY: ball.getBoundingClientRect().y ,
+	// 		radius: ball.offsetWidth/2
+	// 	};
+	// 	let mouseCords ={
+	// 		x: e.clientX ,
+	// 		y: e.clientY
+	// 	};
+	//
+	// 	if (currentLenghtCirclePercent == 0 && mouseCords.x < ( ballCords.viewX + ballCords.radius)) {
+	// 		return
+	// 	}
+	// 	else if ((mouseCords.x < ballCords.viewX && currentLenghtCirclePercent >= maxLengthCirclePercent) || (mouseCords.x > ballCords.viewX && currentLenghtCirclePercent < maxLengthCirclePercent))
+	// 	{
+	//
+	// 		let parent = this.offsetParent;
+	// 		let parentRadius = parent.offsetWidth / 2;
+	// 		let innerRadius = parentRadius - ballCords.radius;
+	//
+	// 		let mouseCordsDecard = {
+	// 			x: (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
+	// 			y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius
+	// 		};
+	// 		let mouseCordsPolar = {
+	// 			angle: Math.atan(mouseCordsDecard.y / mouseCordsDecard.x)
+	// 		};
+	// 		if (mouseCordsDecard.x < 0) {
+	// 			mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
+	// 		}
+	//
+	//
+	// 		let targetCordsDecard = {
+	// 			x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
+	// 			y: innerRadius * Math.sin(mouseCordsPolar.angle)
+	// 		};
+	// 		let targetCordsOffset = {
+	// 			x: parentRadius + targetCordsDecard.x - ballCords.radius ,
+	// 			y: parentRadius + targetCordsDecard.y - ballCords.radius
+	// 		};
+	//
+	//
+	// 		ball.style.left = targetCordsOffset.x + "px";
+	// 		ball.style.top = targetCordsOffset.y + "px";
+	//
+	// 		currentLenghtCirclePercent = calculateValuePosition(mouseCordsPolar.angle , innerRadius , ratio);
+	// 		outputElem.innerHTML = currentLenghtCirclePercent + ":00";
+	//
+	// 	} else if(currentLenghtCirclePercent >= maxLengthCirclePercent){
+	// 		return
+	// 	}
+	//
+	// }
 	function calculateValuePosition(angle , radius , ratio = 1){
 		let lengthCircle = radius * 2 * Math.PI;
 		let correctAngle = (angle+ Math.PI/2 ) * 57;
@@ -115,7 +187,7 @@ let configTime = {
 		arrClassNamesCircleBig: ["circleBig" , "circleBigTime"] ,
 		arrClassNamesCircleSmall: ["circleSmall" , "circleSmallTime"]
 	} ,
-	ratio: "2"
+	ratio: "1"
 };
 let configVolume = {
 	selectorOutputElem: ".currentSecondsAndMinute" ,
