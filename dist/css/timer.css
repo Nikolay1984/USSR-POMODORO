@@ -1,6 +1,14 @@
-.displayTimer{
-    /*display: flex;*/
+.root{
+    max-width: 1900px;
+    min-width: 900px;
+
 }
-.wrapperDisplayCountOfWork{
-    display: flex;
+.wrapperTimer{
+    width: max-content;
+    margin: 0 auto;
+    border: 2px solid red;
 }
+
+
+
+

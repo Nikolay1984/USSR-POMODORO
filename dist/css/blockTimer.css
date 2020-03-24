@@ -1,0 +1,43 @@
+.blockTimer {
+    /*padding: var(--padding-mainBlockTimer);*/
+    border: var(--border-style);
+    border-radius: var(--border-style-radius);
+    display: inline-block;
+    margin-right: 10%;
+    /*width: 30%;*/
+}
+.wrapperDisplayTimer{
+    margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
+}
+.wrapperControlTimer{
+    padding: var(--padding-wrapperDisplayAndControl);
+}
+.displayTimer{
+    display: flex;
+    border: var(--border-style);
+    border-radius: var(--border-style-radius);
+    padding: var(--padding-wrapperDisplayAndControl) ;
+}
+.displaySecondsAndMinute{
+    align-self: center;
+}
+
+.wrapperDisplayCountOfWork{
+    display: flex;
+}
+
+.displayCountOfWork{
+    border: var(--border-style);
+
+}
+
+.currentCountOfWork{
+    text-align: center
+}
+.wrapperButtonCountOfWork{
+    display: flex;
+    justify-content: center;
+}
+.buttonOfWork{
+    margin: 0 10px ;
+}

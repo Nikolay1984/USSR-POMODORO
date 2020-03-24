@@ -2,7 +2,9 @@ import Button from "./Button.js";
 // import {Driver} from "./Driver.js";
 import Timer from "./Timer.js";
 // import {Observable} from "./Observable.js";
+
 let configTimer = {
+
 	selectorTargetToPage:".placeTimer" ,
 	stringCaptionTimer:"Основное табло таймера" ,
 	stringCaptionCountOfWork:"Осталось циклов" ,

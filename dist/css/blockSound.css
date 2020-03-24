@@ -1,0 +1,16 @@
+.blockSound{
+    /*padding: var(--padding-mainBlockTimer);*/
+    border: var(--border-style);
+    border-radius: var(--border-style-radius);
+    display: inline-block;
+    /*width: 20%;*/
+}
+.wrapperDisplayVolume{
+    display: flex;
+    margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
+    padding: var(--padding-wrapperDisplayAndControl);
+}
+.wrapperControlSound{
+    padding: var(--padding-wrapperDisplayAndControl);
+
+}

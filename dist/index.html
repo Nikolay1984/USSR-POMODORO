@@ -5,32 +5,16 @@
     <title>Document</title>
     <!-- build:css ./css/combine.css-->
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/variables.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/circle.css">
     <link rel="stylesheet" href="./css/timer.css">
+    <link rel="stylesheet" href="./css/blockTimer.css">
+    <link rel="stylesheet" href="./css/blockSound.css">
 
     <!-- endbuild -->
 </head>
 <body>
-<div class="root">
-
-    <div class="placeTimer"></div>
-    <button class="start">start</button>
-    <button class="reset">reset</button>
-    <div class="sliderMinute"></div>
-    <div class="sliderVolume"></div>
-</div>
-<script defer src="./js/main.js" type="module"></script>
-<script defer src="./js/dragAndDrop.js" ></script>
-</body>
-</html>
-
-
-
-
-
-<!--
-
 
 <div class="root">
   <div class="wrapperTimer">
@@ -43,18 +27,20 @@
 
         <div class="displayTimer">
 
-          <span class="nameDisplayCountOfWork">Осталось циклов</span>
-
           <div class="displaySecondsAndMinute">
             <span class="currentSecondsAndMinute">25:00</span>
           </div>
+            <div class="wrapperDisplayCountOfWork">
+                  <span class="nameDisplayCountOfWork">Осталось циклов</span>
+                  <div class="displayCountOfWork">
+                      <div class="currentCountOfWork">3</div>
+                      <div class="wrapperButtonCountOfWork">
+                          <button class="countOfWorkUp buttonOfWork">+</button>
+                          <button class="countOfWorkDown buttonOfWork">-</button>
+                      </div>
 
-          <div class="displayCountOfWork">
-              <div class="currentCountOfWork">3</div>
-              <button class="countOfWorkUp">+</button>
-              <button class="countOfWorkDown">-</button>
-
-          </div>
+                  </div>
+        </div>
 
         </div>
 
@@ -109,7 +95,6 @@
       </div>
 
     </div>
-<br>
     <div class="blockSound">
 
       <div class="wrapperDisplayVolume">
@@ -160,4 +145,20 @@
 </div>
 
 
--->
+
+
+<script defer src="./js/main.js" type="module"></script>
+<script defer src="./js/dragAndDrop.js" ></script>
+</body>
+</html>
+
+<!--<div class="root">-->
+<!--    <div class="placeTimer"></div>-->
+<!--    <button class="start">start</button>-->
+<!--    <button class="reset">reset</button>-->
+<!--    <div class="sliderMinute"></div>-->
+<!--    <div class="sliderVolume"></div>-->
+<!--</div>-->
+
+
+
