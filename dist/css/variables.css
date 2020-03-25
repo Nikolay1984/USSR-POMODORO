@@ -1,8 +1,9 @@
-.wrapperTimer {
+.wrapperTimer
+{
     --margin-bottom-firstBlockOfTimerAndSound: 30px;
-    --padding-mainBlockTimer: 30px;
-    --padding-wrapperDisplayAndControl : 10px;
+    --padding-mainBlockTimer: 10px;
+    --padding-wrapperDisplayAndControl: 10px;
+    --border-style: 1px solid black;
+    --border-style-radius: 15px;
 
-    --border-style:1px solid black;
-    --border-style-radius:15px;
 }

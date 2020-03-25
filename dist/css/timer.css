@@ -1,14 +1,19 @@
-.root{
+.root
+{
+    min-width: 700px;
     max-width: 1900px;
-    min-width: 900px;
-
-}
-.wrapperTimer{
-    width: max-content;
     margin: 0 auto;
-    border: 2px solid red;
+    /*border: 1px solid blue;*/
 }
+.wrapperTimer
+{
+    display: flex;
 
+    padding: 20px 0;
+
+    justify-content: space-evenly;
+    /*border: 2px solid red;*/
+}
 
 
 

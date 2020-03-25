@@ -1,43 +1,88 @@
-.blockTimer {
-    /*padding: var(--padding-mainBlockTimer);*/
+.blockTimer
+{
+    width: 30%;
+    margin-left: 15%;
+    padding: var(--padding-mainBlockTimer);
     border: var(--border-style);
     border-radius: var(--border-style-radius);
-    display: inline-block;
-    margin-right: 10%;
-    /*width: 30%;*/
+
 }
-.wrapperDisplayTimer{
+
+.wrapperDisplayTimer
+{
     margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
+
+    text-align: center;
 }
-.wrapperControlTimer{
-    padding: var(--padding-wrapperDisplayAndControl);
+.nameDisplayTimer
+{
+    font-size: 25px;
 }
-.displayTimer{
+.displayTimer
+{
     display: flex;
+
+    padding: var(--padding-wrapperDisplayAndControl) ;
+
     border: var(--border-style);
     border-radius: var(--border-style-radius);
-    padding: var(--padding-wrapperDisplayAndControl) ;
+
+    justify-content: space-evenly;
 }
-.displaySecondsAndMinute{
+.displaySecondsAndMinute
+{
     align-self: center;
 }
-
-.wrapperDisplayCountOfWork{
-    display: flex;
+.currentSecondsAndMinute
+{
+    font-size: 50px;
 }
-
-.displayCountOfWork{
+.wrapperDisplayCountOfWork
+{
+    /*display: flex;*/
+}
+.nameDisplayCountOfWork
+{
+    font-size: 20px;
+}
+.displayCountOfWork
+{
     border: var(--border-style);
+border-radius: 15px;
+}
+.currentCountOfWork
+{
+    font-size: 50px;
+
+    text-align: center;
+
+
 
 }
 
-.currentCountOfWork{
-    text-align: center
+.buttonOfWork
+{
+
+
+    line-height:50%;
+    font-size: 30px;
+    width: 45%;
+    border-radius: 15px;
 }
-.wrapperButtonCountOfWork{
+
+
+.wrapperControlTimer
+{
     display: flex;
-    justify-content: center;
+
+    border: 4px solid red;
 }
-.buttonOfWork{
-    margin: 0 10px ;
+.controlMinuteAndDriveTimer{
+    border: 4px solid green;
+}
+.controlMinuteOfBigRest{
+    border: 4px solid green;
+}
+.displayOfRests{
+    border: 4px solid green;
 }

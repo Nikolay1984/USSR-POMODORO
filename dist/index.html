@@ -17,138 +17,134 @@
 <body>
 
 <div class="root">
-  <div class="wrapperTimer">
 
-    <div class="blockTimer">
+    <div class="wrapperTimer">
 
-      <div class="wrapperDisplayTimer">
 
-        <span class="nameDisplayTimer">Основное табло таймера</span>
+        <div class="blockTimer">
 
-        <div class="displayTimer">
+            <div class="wrapperDisplayTimer">
 
-          <div class="displaySecondsAndMinute">
-            <span class="currentSecondsAndMinute">25:00</span>
-          </div>
-            <div class="wrapperDisplayCountOfWork">
-                  <span class="nameDisplayCountOfWork">Осталось циклов</span>
-                  <div class="displayCountOfWork">
-                      <div class="currentCountOfWork">3</div>
-                      <div class="wrapperButtonCountOfWork">
-                          <button class="countOfWorkUp buttonOfWork">+</button>
-                          <button class="countOfWorkDown buttonOfWork">-</button>
-                      </div>
+                <span class="nameDisplayTimer">Основное табло таймера</span>
 
-                  </div>
+                <div class="displayTimer">
+
+                    <div class="displaySecondsAndMinute">
+                        <span class="currentSecondsAndMinute">25:00</span>
+                    </div>
+                    <div class="wrapperDisplayCountOfWork">
+                        <span class="nameDisplayCountOfWork">Осталось циклов</span>
+                        <div class="displayCountOfWork">
+                            <div class="currentCountOfWork">3</div>
+                            <div class="wrapperButtonCountOfWork">
+                                <button class="countOfWorkUp buttonOfWork">+</button>
+                                <button class="countOfWorkDown buttonOfWork">-</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="wrapperControlTimer">
+
+                <div class="controlMinuteAndDriveTimer">
+                    <div class="circleBig circleBigTime">
+                        <div class="ball ballTime"></div>
+                        <div class="circleSmall circleSmallTime"></div>
+
+                    </div>
+                    <span class="titelControlMinute">время</span>
+                    <div class="onOffTimer">
+                        <button class="start">start</button>
+                        <button class="reset">reset</button>
+                    </div>
+                </div>
+
+                <div class="controlRest">
+                    <div class="controlMinuteOfBigRest">
+                        <div class="circleBig circleBigTime">
+                            <div class="ball ballTime"></div>
+                            <div class="circleSmall circleSmallTime"></div>
+
+                        </div>
+                        <span class="titelMinuteOfBigRest">большой перерыв</span>
+                    </div>
+                    <div class="controlMinuteOfRest">
+                        <div class="circleBig circleBigTime">
+                            <div class="ball ballTime"></div>
+                            <div class="circleSmall circleSmallTime"></div>
+
+                        </div>
+                        <span class="titelMinuteOfRest">маленький перерыв</span>
+                    </div>
+                </div>
+
+
+                <div class="displayOfRests">
+
+                </div>
+
+
+            </div>
+
         </div>
 
+
+        <div class="blockSound">
+
+            <div class="wrapperDisplayVolume">
+
+                <div class="displayVolume"><span class="currentVolume">99:dB</span></div>
+
+                <div class="controlVolume">
+                    <div class="circleBig circleBigVolume">
+                        <div class="ball ballVolume"></div>
+                        <div class="circleSmall circleSmallVolume"></div>
+                    </div>
+                    <span class="nameControlVolume">звук</span>
+                </div>
+
+            </div>
+
+            <div class="wrapperControlSound">
+
+                <button class="onOffSound">вкл/выкл звук</button>
+
+                <div class="wrapperCheckBeep">
+                    <div class="checkBeep">
+                        <input type="radio" name="beep"></input>
+                        <input type="radio" name="beep"></input>
+                        <input type="radio" name="beep"></input>
+                        <input type="radio" name="beep"></input>
+                    </div>
+                    <span class="nameCheckBeep"></span>
+                </div>
+
+                <div class="wrapperCheckAlarm">
+                    <div class="checkAlarm">
+                        <input type="radio" name="alarm"></input>
+                        <input type="radio" name="alarm"></input>
+                        <input type="radio" name="alarm"></input>
+                        <input type="radio" name="alarm"></input>
+                    </div>
+                    <span class="nameCheckAlarm"></span>
+                </div>
+
+            </div>
+
+
         </div>
 
-      </div>
-
-      <div class="wrapperControlTimer">
-
-          <div class="controlMinute">
-          <div class="circleBig circleBigTime">
-            <div class="ball ballTime"></div>
-            <div class="circleSmall circleSmallTime"></div>
-
-          </div>
-          <span class="titelControlMinute">время</span>
-        </div>
-
-
-         <div class="controlMinuteOfBigRest">
-          <div class="circleBig circleBigTime">
-            <div class="ball ballTime"></div>
-            <div class="circleSmall circleSmallTime"></div>
-
-          </div>
-          <span class="titelMinuteOfBigRest">большой перерыв</span>
-        </div>
-
-        <div class="displayOfRests">
-
-        </div>
-
-
-        <div class="onOffTimer">
-        <button class="start">start</button>
-        <button class="reset">reset</button>
-        </div>
-
-
-
-        <div class="controlMinuteOfRest">
-          <div class="circleBig circleBigTime">
-            <div class="ball ballTime"></div>
-            <div class="circleSmall circleSmallTime"></div>
-
-          </div>
-          <span class="titelMinuteOfRest">маленький перерыв</span>
-        </div>
-
-
-
-
-
-      </div>
 
     </div>
-    <div class="blockSound">
-
-      <div class="wrapperDisplayVolume">
-
-        <div class="displayVolume">  <span class="currentVolume">99:dB</span>  </div>
-
-        <div class="controlVolume">
-          <div class="circleBig circleBigVolume">
-          <div class="ball ballVolume"></div>
-          <div class="circleSmall circleSmallVolume"></div>
-        </div>
-          <span class="nameControlVolume">звук</span>
-        </div>
-
-      </div>
-
-      <div class="wrapperControlSound">
-
-        <button class="onOffSound">вкл/выкл звук</button>
-
-        <div class="wrapperCheckBeep">
-          <div class="checkBeep">
-            <input type="radio" name="beep"></input>
-            <input type="radio" name="beep"></input>
-            <input type="radio" name="beep"></input>
-            <input type="radio" name="beep"></input>
-          </div>
-          <span class="nameCheckBeep"></span>
-        </div>
-
-        <div class="wrapperCheckAlarm">
-          <div class="checkAlarm">
-            <input type="radio" name="alarm"></input>
-            <input type="radio" name="alarm"></input>
-            <input type="radio" name="alarm"></input>
-            <input type="radio" name="alarm"></input>
-          </div>
-          <span class="nameCheckAlarm"></span>
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
 
 </div>
 
-
-
-
 <script defer src="./js/main.js" type="module"></script>
-<script defer src="./js/dragAndDrop.js" ></script>
+<script defer src="./js/dragAndDrop.js"></script>
 </body>
 </html>
 
