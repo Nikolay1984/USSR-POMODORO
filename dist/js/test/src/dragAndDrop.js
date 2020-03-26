@@ -178,6 +178,26 @@ let configTime = {
   },
   ratio: "1"
 };
+let configBigRest = {
+  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorTargetToPage: ".sliderBigRest",
+  objNamesOfSlider: {
+    arrClassNamesBall: ["ball", "ballTime"],
+    arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
+    arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
+  },
+  ratio: "1"
+};
+let configRest = {
+  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorTargetToPage: ".sliderRest",
+  objNamesOfSlider: {
+    arrClassNamesBall: ["ball", "ballTime"],
+    arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
+    arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
+  },
+  ratio: "1"
+};
 let configVolume = {
   selectorOutputElem: ".currentSecondsAndMinute",
   selectorTargetToPage: ".sliderVolume",
@@ -188,5 +208,7 @@ let configVolume = {
   },
   ratio: "1"
 };
-transformElementToCircleSlider(configTime);
-transformElementToCircleSlider(configVolume);
+transformElementToCircleSlider(configTime); // transformElementToCircleSlider(configVolume);
+
+transformElementToCircleSlider(configBigRest);
+transformElementToCircleSlider(configRest);
