@@ -66,47 +66,47 @@ function transformElementToCircleSlider(config) {
 		};
 
 		    let parent = this.offsetParent;
-			let parentRadius = parent.offsetWidth / 2;
-			let innerRadius = parentRadius - ballCords.radius;
+		let parentRadius = parent.offsetWidth / 2;
+		let innerRadius = parentRadius - ballCords.radius;
 
-			let mouseCordsDecard = {
-				x: (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
-				y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius
-			};
-			let mouseCordsPolar = {
-				angle: Math.atan(mouseCordsDecard.y / mouseCordsDecard.x)
-			};
-			if (mouseCordsDecard.x < 0) {
-				mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
-			}
+		let mouseCordsDecard = {
+			x: (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
+			y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius
+		};
+		let mouseCordsPolar = {
+			angle: Math.atan(mouseCordsDecard.y / mouseCordsDecard.x)
+		};
+		if (mouseCordsDecard.x < 0) {
+			mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
+		}
 
 
-			let targetCordsDecard = {
-				x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
-				y: innerRadius * Math.sin(mouseCordsPolar.angle)
-			};
-			let targetCordsOffset = {
-				x: parentRadius + targetCordsDecard.x - ballCords.radius ,
-				y: parentRadius + targetCordsDecard.y - ballCords.radius
-			};
-			let currentArc = calculateValuePosition(mouseCordsPolar.angle , innerRadius , 1);
-			console.log("----------------------");
-			console.log(currentArc,"currentArc");
-			console.log(saveLengthCirclePercent,"saveLengthCirclePercent");
+		let targetCordsDecard = {
+			x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
+			y: innerRadius * Math.sin(mouseCordsPolar.angle)
+		};
+		let targetCordsOffset = {
+			x: parentRadius + targetCordsDecard.x - ballCords.radius ,
+			y: parentRadius + targetCordsDecard.y - ballCords.radius
+		};
+		let currentArc = calculateValuePosition(mouseCordsPolar.angle , innerRadius , 1);
+		console.log("----------------------");
+		console.log(currentArc , "currentArc");
+		console.log(saveLengthCirclePercent , "saveLengthCirclePercent");
 
-			if(saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)){
-				return;
-			}
+		if(saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)){
+			return;
+		}
 
-			if(saveLengthCirclePercent <= 10 && currentArc > 50){
-				return;
-			}
-			saveLengthCirclePercent = currentArc;
+		if(saveLengthCirclePercent <= 10 && currentArc > 50){
+			return;
+		}
+		saveLengthCirclePercent = currentArc;
 
-			ball.style.left = targetCordsOffset.x + "px";
-			ball.style.top = targetCordsOffset.y + "px";
+		ball.style.left = targetCordsOffset.x + "px";
+		ball.style.top = targetCordsOffset.y + "px";
 
-			outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle , innerRadius , ratio) + ":00";
+		outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle , innerRadius , ratio) + ":00";
 
 
 
@@ -213,7 +213,7 @@ let configRest = {
 };
 
 let configVolume = {
-	selectorOutputElem: ".currentSecondsAndMinute" ,
+	selectorOutputElem: ".currentVolume" ,
 	selectorTargetToPage: ".sliderVolume" ,
 	objNamesOfSlider:{
 		arrClassNamesBall : ["ball" , "ballVolume"] ,
@@ -224,6 +224,6 @@ let configVolume = {
 };
 
 transformElementToCircleSlider(configTime);
-// transformElementToCircleSlider(configVolume);
+transformElementToCircleSlider(configVolume);
 transformElementToCircleSlider(configBigRest);
 transformElementToCircleSlider(configRest);

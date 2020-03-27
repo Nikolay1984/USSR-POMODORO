@@ -3,9 +3,9 @@
     width: 30%;
     margin-left: 15%;
     padding: var(--padding-mainBlockTimer);
+
     border: var(--border-style);
     border-radius: var(--border-style-radius);
-
 }
 
 .wrapperDisplayTimer
@@ -37,10 +37,7 @@
 {
     font-size: 50px;
 }
-.wrapperDisplayCountOfWork
-{
-    /*display: flex;*/
-}
+
 .nameDisplayCountOfWork
 {
     font-size: 20px;
@@ -48,25 +45,22 @@
 .displayCountOfWork
 {
     border: var(--border-style);
-border-radius: 15px;
+    border-radius: 15px;
 }
 .currentCountOfWork
 {
     font-size: 50px;
 
     text-align: center;
-
-
-
 }
 
 .buttonOfWork
 {
-
-
-    line-height:50%;
     font-size: 30px;
+    line-height: 50%;
+
     width: 45%;
+
     border-radius: 15px;
 }
 
@@ -74,74 +68,119 @@ border-radius: 15px;
 .wrapperControlTimer
 {
     display: flex;
+
     justify-content: space-evenly;
 }
-.controlMinuteAndDriveTimer{
+.controlMinuteAndDriveTimer
+{
+    flex-basis: 180px;
     text-align: center;
 }
-.sliderSettings{
+.sliderSettings
+{
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
 }
-.sliderMinute {
-    width: 100px;
-    height: 100px;
-}
-.titelControlMinute{
+
+.titelControlMinute
+{
     font-size: 20px;
 }
-.onOffTimer{
+.onOffTimer
+{
     padding-top: 15px;
 }
-.buttonControlTimer{
-    width: 100%;
-    display: block;
-    border-radius: 10px;
+.buttonControlTimer
+{
     font-size: 25px;
+
+    display: block;
+
+    width: 100%;
+
+    border-radius: 10px;
     background-color: red;
 }
-.start{
+.start
+{
     margin-bottom: 15px;
 }
-.controlRest{
 
-}
-.controlMinuteOfBigRest{
-     text-align: center;
-}
-.sliderBigRest {
-    width: 100px;
-    height: 100px;
-}
-.titelMinuteOfBigRest{
-    font-size: 20px;
-}
-.controlMinuteOfRest{
+.controlRest{
+    flex-basis: 180px;
     text-align: center;
 }
-.sliderRest {
+.controlMinuteOfBigRest
+{
+    text-align: center;
+}
+
+.titelMinuteOfBigRest
+{
+    font-size: 20px;
+}
+.controlMinuteOfRest
+{
+    text-align: center;
+}
+.sliderRest
+{
     width: 100px;
     height: 100px;
 }
-.titelMinuteOfRest{
+.titelMinuteOfRest
+{
     font-size: 20px;
 }
 
-.displayOfRests{
- border: 2px solid red;
-    width: 100px;
+.displayOfRests
+{
+    position: relative;
+    background: url(../src/img/range.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /*flex-basis: 150px;*/
+
+    border: 2px solid black;
+    border-radius: 10px;
 }
 
-.labelBigRest{
+.labelBigRest
+{
+    left: 50%;
+    top:3%;
+    position: absolute;
+
+
     width: 0;
     height: 0;
-    border-top: 12px solid transparent;
-    border-right: 25px solid green;
-    border-bottom: 12px solid transparent;
+    transform: translate(-100%, 0);
+
+    border-top: 10px solid transparent;
+    border-right: 20px solid red;
+    border-bottom: 10px solid transparent;
 }
-.labelRest{
+.labelRest
+{
+    position: absolute;
     width: 0;
     height: 0;
-    border-top: 12px solid transparent;
-    border-left: 25px solid red;
-    border-bottom: 12px solid transparent;
+    left: 50%;
+    top:3%;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid green;
+
+}
+.displayOfRestsSize{
+    width: 100px;
+    height: 200px;
+}
+.controlMinuteAndDriveTimerSize{
+    width: 180px;
+}
+.controlRestSize{
+    width: 170px;
 }

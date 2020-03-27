@@ -199,7 +199,7 @@ let configRest = {
   ratio: "1"
 };
 let configVolume = {
-  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorOutputElem: ".currentVolume",
   selectorTargetToPage: ".sliderVolume",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballVolume"],
@@ -208,7 +208,7 @@ let configVolume = {
   },
   ratio: "1"
 };
-transformElementToCircleSlider(configTime); // transformElementToCircleSlider(configVolume);
-
+transformElementToCircleSlider(configTime);
+transformElementToCircleSlider(configVolume);
 transformElementToCircleSlider(configBigRest);
 transformElementToCircleSlider(configRest);

@@ -6,16 +6,40 @@
     padding: var(--padding-mainBlockTimer);
 
     border: var(--border-style);
-    border: 4px solid green;
+    border: 1px solid black;
     border-radius: var(--border-style-radius);
 }
 .wrapperDisplayVolume
 {
     display: flex;
 
+    justify-content: space-evenly;
     margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
     /*padding: var(--padding-wrapperDisplayAndControl);*/
 }
+.displayVolume{
+    padding: 10px;
+    border-radius: 15px;
+    align-self: center;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.currentVolume{
+    font-size: 50px;
+}
+.controlVolume{
+    text-align: center;
+
+}
+.nameControlVolume{
+
+    font-size: 20px;
+}
+
+
+
+
 .wrapperControlSound
 {
     padding: var(--padding-wrapperDisplayAndControl);
