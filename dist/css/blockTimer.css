@@ -1,9 +1,7 @@
 .blockTimer
 {
-    width: 30%;
-    margin-left: 15%;
+    margin-right: 50px;
     padding: var(--padding-mainBlockTimer);
-
     border: var(--border-style);
     border-radius: var(--border-style-radius);
 }

@@ -4,8 +4,8 @@ function transformElementToCircleSlider(config) {
   //Get target objects from page and create new slider elements
   let target = document.querySelector(config.selectorTargetToPage);
   let outputElem = document.querySelector(config.selectorOutputElem);
-  console.log(outputElem);
   let ratio = config.ratio;
+  let hint = config.hint;
   let ball = document.createElement("div");
   let circleBig = document.createElement("div");
   let circleSmall = document.createElement("div");
@@ -99,7 +99,7 @@ function transformElementToCircleSlider(config) {
     saveLengthCirclePercent = currentArc;
     ball.style.left = targetCordsOffset.x + "px";
     ball.style.top = targetCordsOffset.y + "px";
-    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, ratio) + ":00";
+    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, ratio, hint);
   } // function handlerMousemove(e) {
   // 	let ball = this;
   // 	let ballCords = {
@@ -159,11 +159,28 @@ function transformElementToCircleSlider(config) {
   // }
 
 
-  function calculateValuePosition(angle, radius, ratio = 1) {
+  function calculateValuePosition(angle, radius, ratio = 1, hint) {
     let lengthCircle = radius * 2 * Math.PI;
     let correctAngle = (angle + Math.PI / 2) * 57;
     let lengthArc = correctAngle * Math.PI * radius / 180;
     let resultValue = Math.round(lengthArc / (lengthCircle / 100) / ratio);
+
+    if (resultValue < 10) {
+      resultValue = "0" + resultValue;
+    }
+
+    switch (hint) {
+      case "time":
+        resultValue = resultValue + ":00";
+        break;
+
+      case "rest":
+        break;
+
+      case "sound":
+        break;
+    }
+
     return resultValue;
   }
 }
@@ -176,17 +193,19 @@ let configTime = {
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1"
+  ratio: "1",
+  hint: "time"
 };
 let configBigRest = {
-  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorOutputElem: ".rootHidden",
   selectorTargetToPage: ".sliderBigRest",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1"
+  ratio: "1",
+  hint: "rest"
 };
 let configRest = {
   selectorOutputElem: ".currentSecondsAndMinute",
@@ -196,7 +215,8 @@ let configRest = {
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1"
+  ratio: "1",
+  hint: "rest"
 };
 let configVolume = {
   selectorOutputElem: ".currentVolume",
@@ -206,7 +226,8 @@ let configVolume = {
     arrClassNamesCircleBig: ["circleBig", "circleBigVolume"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallVolume"]
   },
-  ratio: "1"
+  ratio: "1",
+  hint: "sound"
 };
 transformElementToCircleSlider(configTime);
 transformElementToCircleSlider(configVolume);

@@ -1,3 +1,14 @@
+import checkOptionsSound from "./checkOptionsSound.js";
+checkOptionsSound();
+
+let observeOfRootHidden = new MutationObserver(function (arr) {
+	console.log(arr);
+});
+observeOfRootHidden.observe(document.querySelector(".rootHidden"),{
+	childList:true,
+	characterData:true
+})
+
 // import Button from "./Button.js";
 // // import {Driver} from "./Driver.js";
 // import Timer from "./Timer.js";
@@ -75,9 +86,4 @@
 //
 //
 //
-var a = 1;
-var b = 1;
-var v = 1;
-var t = 1;
 
-console.log(a+b);

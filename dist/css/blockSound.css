@@ -1,10 +1,6 @@
 .blockSound
 {
-    width: 20%;
-    /*display: inline-block;*/
-    margin-right: 15%;
     padding: var(--padding-mainBlockTimer);
-
     border: var(--border-style);
     border: 1px solid black;
     border-radius: var(--border-style-radius);
@@ -22,6 +18,7 @@
     align-self: center;
     text-align: center;
     border: 1px solid black;
+    margin-right: 15px;
 }
 
 .currentVolume{
@@ -77,8 +74,15 @@
     background-color: red;
 
 }
-.wrapperControlSound input{
-    margin: 1px 15px;
-    width: 30px;
-    height: 30px;
+.checkSoundInput{
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: blue;
+}
+
+.checkSoundInputActive{
+    border: 3px solid red;
+    background-color: green;
 }

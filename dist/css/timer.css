@@ -8,10 +8,8 @@
 .wrapperTimer
 {
     display: flex;
-
     padding: 20px 0;
-
-    justify-content: space-evenly;
+    justify-content: center;
     /*border: 2px solid red;*/
 }
 

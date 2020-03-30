@@ -1,6 +1,17 @@
 "use strict";
 
-// import Button from "./Button.js";
+var _checkOptionsSound = _interopRequireDefault(require("./checkOptionsSound.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(0, _checkOptionsSound.default)();
+let observeOfRootHidden = new MutationObserver(function (arr) {
+  console.log(arr);
+});
+observeOfRootHidden.observe(document.querySelector(".rootHidden"), {
+  childList: true,
+  characterData: true
+}); // import Button from "./Button.js";
 // // import {Driver} from "./Driver.js";
 // import Timer from "./Timer.js";
 // // import {Observable} from "./Observable.js";
@@ -77,8 +88,3 @@
 //
 //
 //
-var a = 1;
-var b = 1;
-var v = 1;
-var t = 1;
-console.log(a + b);
