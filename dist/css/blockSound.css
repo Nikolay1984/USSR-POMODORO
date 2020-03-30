@@ -12,10 +12,9 @@
 .wrapperDisplayVolume
 {
     display: flex;
-
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
-    /*padding: var(--padding-wrapperDisplayAndControl);*/
+    padding: 0 20px;
 }
 .displayVolume{
     padding: 10px;
@@ -37,10 +36,49 @@
     font-size: 20px;
 }
 
-
-
-
 .wrapperControlSound
 {
-    padding: var(--padding-wrapperDisplayAndControl);
+    padding: 0 20px;
+    text-align: center;
+}
+
+.wrapperCheckBeep{
+
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+
+}
+.checkBeep{
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.wrapperCheckAlarm{
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.checkAlarm{
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.onOffSound {
+    font-size: 25px;
+    border-radius: 10px;
+    background-color: red;
+
+}
+.wrapperControlSound input{
+    margin: 1px 15px;
+    width: 30px;
+    height: 30px;
 }
