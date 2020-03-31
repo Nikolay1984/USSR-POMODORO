@@ -138,6 +138,9 @@
     background: url(../src/img/range.png);
     background-size: cover;
     background-repeat: no-repeat;
+    width: 100px;
+    height: 250px;
+
 
 
     /*flex-basis: 150px;*/
@@ -173,10 +176,7 @@
     border-left: 20px solid green;
 
 }
-.displayOfRestsSize{
-    width: 100px;
-    height: 200px;
-}
+
 .controlMinuteAndDriveTimerSize{
     width: 180px;
 }

@@ -84,9 +84,6 @@ function transformElementToCircleSlider(config) {
       y: parentRadius + targetCordsDecard.y - ballCords.radius
     };
     let currentArc = calculateValuePosition(mouseCordsPolar.angle, innerRadius, 1);
-    console.log("----------------------");
-    console.log(currentArc, "currentArc");
-    console.log(saveLengthCirclePercent, "saveLengthCirclePercent");
 
     if (saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)) {
       return;
@@ -165,12 +162,12 @@ function transformElementToCircleSlider(config) {
     let lengthArc = correctAngle * Math.PI * radius / 180;
     let resultValue = Math.round(lengthArc / (lengthCircle / 100) / ratio);
 
-    if (resultValue < 10) {
-      resultValue = "0" + resultValue;
-    }
-
     switch (hint) {
       case "time":
+        if (resultValue < 10) {
+          resultValue = "0" + resultValue;
+        }
+
         resultValue = resultValue + ":00";
         break;
 
@@ -178,6 +175,10 @@ function transformElementToCircleSlider(config) {
         break;
 
       case "sound":
+        if (resultValue < 10) {
+          resultValue = "0" + resultValue;
+        }
+
         break;
     }
 
@@ -197,7 +198,7 @@ let configTime = {
   hint: "time"
 };
 let configBigRest = {
-  selectorOutputElem: ".rootHidden",
+  selectorOutputElem: ".bigRestHidden",
   selectorTargetToPage: ".sliderBigRest",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],
@@ -208,7 +209,7 @@ let configBigRest = {
   hint: "rest"
 };
 let configRest = {
-  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorOutputElem: ".restHidden",
   selectorTargetToPage: ".sliderRest",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],
