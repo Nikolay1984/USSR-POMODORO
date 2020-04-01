@@ -35,7 +35,12 @@
 {
     font-size: 50px;
 }
-
+.nameCurrentPeriod{
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 100%;
+    font-size: 25px;
+}
 .nameDisplayCountOfWork
 {
     font-size: 20px;
@@ -176,7 +181,27 @@
     border-left: 20px solid green;
 
 }
-
+.bigRestHidden{
+    position: absolute;
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    background: red;
+    text-align: center;
+    z-index: 1000;
+}
+.restHidden{
+    position: absolute;
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    background: green;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+}
 .controlMinuteAndDriveTimerSize{
     width: 180px;
 }

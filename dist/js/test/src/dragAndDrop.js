@@ -4,8 +4,9 @@ function transformElementToCircleSlider(config) {
   //Get target objects from page and create new slider elements
   let target = document.querySelector(config.selectorTargetToPage);
   let outputElem = document.querySelector(config.selectorOutputElem);
-  let ratio = config.ratio;
+  let maxRange = config.maxRange;
   let hint = config.hint;
+  let limiter = config.limiter;
   let ball = document.createElement("div");
   let circleBig = document.createElement("div");
   let circleSmall = document.createElement("div");
@@ -83,20 +84,23 @@ function transformElementToCircleSlider(config) {
       x: parentRadius + targetCordsDecard.x - ballCords.radius,
       y: parentRadius + targetCordsDecard.y - ballCords.radius
     };
-    let currentArc = calculateValuePosition(mouseCordsPolar.angle, innerRadius, 1);
+    let currentArc = calculateValuePosition(mouseCordsPolar.angle, innerRadius);
 
-    if (saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)) {
-      return;
+    if (limiter) {
+      if (saveLengthCirclePercent == maxLengthCirclePercent && (currentArc >= maxLengthCirclePercent || currentArc < 50)) {
+        return;
+      }
+
+      if (saveLengthCirclePercent <= 10 && currentArc > 50) {
+        return;
+      }
+
+      saveLengthCirclePercent = currentArc;
     }
 
-    if (saveLengthCirclePercent <= 10 && currentArc > 50) {
-      return;
-    }
-
-    saveLengthCirclePercent = currentArc;
     ball.style.left = targetCordsOffset.x + "px";
     ball.style.top = targetCordsOffset.y + "px";
-    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, ratio, hint);
+    outputElem.innerHTML = calculateValuePosition(mouseCordsPolar.angle, innerRadius, maxRange, hint);
   } // function handlerMousemove(e) {
   // 	let ball = this;
   // 	let ballCords = {
@@ -156,11 +160,12 @@ function transformElementToCircleSlider(config) {
   // }
 
 
-  function calculateValuePosition(angle, radius, ratio = 1, hint) {
+  function calculateValuePosition(angle, radius, maxRange = 100, hint) {
     let lengthCircle = radius * 2 * Math.PI;
     let correctAngle = (angle + Math.PI / 2) * 57;
     let lengthArc = correctAngle * Math.PI * radius / 180;
-    let resultValue = Math.round(lengthArc / (lengthCircle / 100) / ratio);
+    let value = Math.round(lengthArc / (lengthCircle / 100));
+    let resultValue = Math.ceil(value * maxRange / 100);
 
     switch (hint) {
       case "time":
@@ -194,8 +199,9 @@ let configTime = {
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1",
-  hint: "time"
+  maxRange: 100,
+  hint: "time",
+  limiter: false
 };
 let configBigRest = {
   selectorOutputElem: ".bigRestHidden",
@@ -205,8 +211,9 @@ let configBigRest = {
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1",
-  hint: "rest"
+  maxRange: 30,
+  hint: "rest",
+  limiter: true
 };
 let configRest = {
   selectorOutputElem: ".restHidden",
@@ -216,8 +223,9 @@ let configRest = {
     arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
-  ratio: "1",
-  hint: "rest"
+  maxRange: 10,
+  hint: "rest",
+  limiter: true
 };
 let configVolume = {
   selectorOutputElem: ".currentVolume",
@@ -227,8 +235,9 @@ let configVolume = {
     arrClassNamesCircleBig: ["circleBig", "circleBigVolume"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallVolume"]
   },
-  ratio: "1",
-  hint: "sound"
+  maxRange: 100,
+  hint: "sound",
+  limiter: false
 };
 transformElementToCircleSlider(configTime);
 transformElementToCircleSlider(configVolume);
