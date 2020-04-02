@@ -18,7 +18,7 @@ function _default() {
       triangle = document.querySelector(".labelRest");
     }
 
-    let value = 1 * arr[0].target.innerText;
+    let value = Number(arr[0].target.innerText);
     let parentHeight = document.querySelector(".displayOfRests").offsetHeight;
     let lengthRange = parentHeight - parentHeight * 6 / 100;
     let offset = parentHeight * 3 / 100;
@@ -74,24 +74,31 @@ function _default() {
     });
   }
 
+  let bigRestHidden = document.querySelector(".bigRestHidden");
+  let restHidden = document.querySelector(".restHidden");
   let configMutationObserver = {
     childList: true,
     characterData: true
   };
   let observeOfBigRestHidden = new MutationObserver(handlerChangeOfRest);
-  observeOfBigRestHidden.observe(document.querySelector(".bigRestHidden"), configMutationObserver);
+  observeOfBigRestHidden.observe(bigRestHidden, configMutationObserver);
   let observeOfRestHidden = new MutationObserver(handlerChangeOfRest);
-  observeOfRestHidden.observe(document.querySelector(".restHidden"), configMutationObserver);
+  observeOfRestHidden.observe(restHidden, configMutationObserver);
   let controlMinuteOfBigRest = document.querySelector(".controlMinuteOfBigRest");
   let controlMinuteOfRest = document.querySelector(".controlMinuteOfRest");
   let controlMinuteOfBigRestBall = controlMinuteOfBigRest.querySelector(".ball ");
   let controlMinuteOfRestBall = controlMinuteOfRest.querySelector(".ball ");
-  let bigRestHidden = document.querySelector(".bigRestHidden");
-  let restHidden = document.querySelector(".restHidden");
   let labelBigRest = document.querySelector(".labelBigRest");
   let labelRest = document.querySelector(".labelRest");
   controlMinuteOfBigRestBall.addEventListener("mousedown", handlerMouseDownRest);
   controlMinuteOfRestBall.addEventListener("mousedown", handlerMouseDownRest);
+  let circleBig = document.querySelector(".sliderBigRest ");
+  let ballHeight = controlMinuteOfBigRestBall.offsetHeight;
+  let circleBigHeight = circleBig.offsetHeight;
+  controlMinuteOfBigRestBall.style.top = circleBigHeight - ballHeight + "px";
+  controlMinuteOfRestBall.style.top = circleBigHeight - ballHeight + "px";
+  bigRestHidden.innerHTML = 15;
+  restHidden.innerHTML = 5;
 }
 
 module.exports = exports.default;

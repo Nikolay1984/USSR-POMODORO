@@ -4,6 +4,7 @@ function transformElementToCircleSlider(config) {
   //Get target objects from page and create new slider elements
   let target = document.querySelector(config.selectorTargetToPage);
   let outputElem = document.querySelector(config.selectorOutputElem);
+  let startPos = config.startPosition;
   let maxRange = config.maxRange;
   let hint = config.hint;
   let limiter = config.limiter;
@@ -201,7 +202,8 @@ let configTime = {
   },
   maxRange: 100,
   hint: "time",
-  limiter: false
+  limiter: false,
+  startPosition: 25
 };
 let configBigRest = {
   selectorOutputElem: ".bigRestHidden",
@@ -213,7 +215,8 @@ let configBigRest = {
   },
   maxRange: 30,
   hint: "rest",
-  limiter: true
+  limiter: true,
+  startPosition: 15
 };
 let configRest = {
   selectorOutputElem: ".restHidden",
@@ -225,7 +228,8 @@ let configRest = {
   },
   maxRange: 10,
   hint: "rest",
-  limiter: true
+  limiter: true,
+  startPosition: 5
 };
 let configVolume = {
   selectorOutputElem: ".currentVolume",
@@ -237,7 +241,8 @@ let configVolume = {
   },
   maxRange: 100,
   hint: "sound",
-  limiter: false
+  limiter: false,
+  startPosition: 99
 };
 transformElementToCircleSlider(configTime);
 transformElementToCircleSlider(configVolume);

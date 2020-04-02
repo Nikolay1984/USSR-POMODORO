@@ -6,10 +6,13 @@ var _checkOptionsRest = _interopRequireDefault(require("./checkOptionsRest.js"))
 
 var _checkOptionsRound = _interopRequireDefault(require("./checkOptionsRound.js"));
 
+var _checkOptionsTime = _interopRequireDefault(require("./checkOptionsTime.js"));
+
 var _Timer = _interopRequireDefault(require("./Timer.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _checkOptionsTime.default)();
 (0, _checkOptionsSound.default)();
 (0, _checkOptionsRest.default)();
 (0, _checkOptionsRound.default)();

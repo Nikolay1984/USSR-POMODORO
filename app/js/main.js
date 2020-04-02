@@ -1,9 +1,10 @@
 import checkOptionsSound from "./checkOptionsSound.js";
 import checkOptionsRest from "./checkOptionsRest.js";
 import checkOptionsRound from "./checkOptionsRound.js";
+import checkOptionsTime from "./checkOptionsTime.js";
 import Timer from "./Timer.js";
 
-
+checkOptionsTime();
 checkOptionsSound();
 checkOptionsRest();
 checkOptionsRound();
