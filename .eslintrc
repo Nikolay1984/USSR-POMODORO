@@ -15,7 +15,11 @@
     "indent": [2, 4 , {
      "SwitchCase": 1,
      "VariableDeclarator" : "first",
-     "MemberExpression": 1
+     "MemberExpression": 1,
+     "FunctionDeclaration": {"body": 1},
+     "FunctionExpression": {"body": 1},
+     "ArrayExpression": "first",
+     "ObjectExpression":"first"
     }
     ],
     "linebreak-style": [2, "windows"],
@@ -98,13 +102,22 @@
      "block-spacing": [2], // ставит пробелы в начале и конце {}
      "brace-style": [2, "stroustrup"], // стиль написания блоков кода
      "camelcase": [2], //требует везде камелкейс
-     "comma-dangle": [2, "always"], // ставит запятую после последнего свойства в объекте
+     "comma-dangle": [2, {
+      "arrays": "never",
+      "objects": "always",
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+     }], // ставит запятую после последнего свойства в объекте и в других штуках
      "comma-style": [2, "last"], // правила расстановки запяых в строках
      "computed-property-spacing": [2, "always"], //ставит пробелы вокруг свойства, которое вычисляется
      "consistent-this": [2, "self"], //сохраняем значение this только в переменную self
      "func-call-spacing": [2, "never"],//убирает пробел между идетификатором функции и ее вызовом
      "function-call-argument-newline": [2, "never"],//запрещает перенос аргументов внутри вызова функции на новые строки
      "function-paren-newline": [2, "never"],//запрещает перенос параметров внутри объявления функции на новые строки
-     "implicit-arrow-linebreak": [2, "beside"] // выстраивает стрелочную функцию без {} в одну линию
+     "implicit-arrow-linebreak": [2, "beside"], // выстраивает стрелочную функцию без {} в одну линию
+     "object-property-newline":[2], // выстраивает свойства в объекте с новой строки
+     "object-curly-newline": [2, "always"], // переносит первое и последнее свойство объекта на новую строчку, отделяя его от скобочки
+     "jsx-quotes": [2, "prefer-double"] // определяет какие ковычки использвать в атрибутах jsx
     }
 }

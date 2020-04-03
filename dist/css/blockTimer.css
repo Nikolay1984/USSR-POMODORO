@@ -8,8 +8,6 @@
 
 .wrapperDisplayTimer
 {
-    margin-bottom: var(--margin-bottom-firstBlockOfTimerAndSound);
-
     text-align: center;
 }
 .nameDisplayTimer
@@ -84,8 +82,37 @@
 
     border-radius: 15px;
 }
-
-
+.wrapperChangeTime{
+    margin: var(--margin-bottom-firstBlockOfTimerAndSound) 0;
+}
+.displayOfTime{
+    position: relative;
+    background: url(../src/img/rangeTime.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.timeHidden{
+    position: absolute;
+    display: none;
+    width: 40px;
+    height: 20px;
+    border: 1px solid black;
+    background: blue;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+}
+.labelTime{
+    position: absolute;
+    top: 5px;
+    left:23%;
+    width: 5px;
+    height: 20px;
+    background: blue;
+}
 .wrapperControlTimer
 {
     display: flex;

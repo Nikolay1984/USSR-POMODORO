@@ -1,12 +1,15 @@
 
 export default class Observable {
     constructor() {
-        this.listeners = {};
+        this.listeners = {
+        };
     }
     on(e , callback) {
         if (this.listeners[ e ] == undefined) {
-            this.listeners[ e ] = {};
-            this.listeners[ e ].eventProperty = {};
+            this.listeners[ e ] = {
+            };
+            this.listeners[ e ].eventProperty = {
+            };
             this.listeners[ e ].data = [];
         }
         this.listeners[ e ].data.push(callback);

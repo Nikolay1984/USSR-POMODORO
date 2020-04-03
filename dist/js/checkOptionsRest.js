@@ -64,7 +64,9 @@ export default function () {
             document.removeEventListener("mousemove" , handlerMove);
             bigRestHidden.style.display = "none";
             restHidden.style.display = "none";
-        } , {once: true , });
+        } , {
+            once: true , 
+        });
     }
     let bigRestHidden = document.querySelector(".bigRestHidden");
     let restHidden = document.querySelector(".restHidden");
@@ -77,7 +79,7 @@ export default function () {
     observeOfBigRestHidden.observe(bigRestHidden , configMutationObserver);
 
     let observeOfRestHidden = new MutationObserver(handlerChangeOfRest);
-    observeOfRestHidden.observe( restHidden, configMutationObserver);
+    observeOfRestHidden.observe( restHidden , configMutationObserver);
 
     let controlMinuteOfBigRest = document.querySelector(".controlMinuteOfBigRest");
     let controlMinuteOfRest = document.querySelector(".controlMinuteOfRest");
@@ -92,7 +94,7 @@ export default function () {
     controlMinuteOfRestBall.addEventListener("mousedown" , handlerMouseDownRest);
 
 
-    let circleBig =  document.querySelector(".sliderBigRest ");
+    let circleBig = document.querySelector(".sliderBigRest ");
     let ballHeight = controlMinuteOfBigRestBall.offsetHeight;
     let circleBigHeight = circleBig.offsetHeight;
     controlMinuteOfBigRestBall.style.top = circleBigHeight - ballHeight + "px";

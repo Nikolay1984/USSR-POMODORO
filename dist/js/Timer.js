@@ -56,26 +56,26 @@ export default class Timer {
         let numberOfRest = this.workTimeConfig.countOfRest;
         if(numberOfRest === 0){
             numberOfWork = "Последний" ;
-            displayCountOfWorkDiv.classList.add("lastWork")
+            displayCountOfWorkDiv.classList.add("lastWork");
         }
         else {
             numberOfWork= this.workTimeConfig.countOfRest ;
-            displayCountOfWorkDiv.classList.remove("lastWork")
+            displayCountOfWorkDiv.classList.remove("lastWork");
         }
 
         switch (this.workTimeConfig.hint) {
             case "work":
-                displayCountOfWorkDiv.classList.remove("styleRest")
+                displayCountOfWorkDiv.classList.remove("styleRest");
                 period = "Работа";
                 break;
 
             case "rest":
-                displayCountOfWorkDiv.classList.add("styleRest")
+                displayCountOfWorkDiv.classList.add("styleRest");
                 period = "Перемена";
                 break;
 
             case "bigRest":
-                displayCountOfWorkDiv.classList.add("styleRest")
+                displayCountOfWorkDiv.classList.add("styleRest");
                 period = "Перерыв";
                 break;
         }
@@ -107,13 +107,14 @@ export default class Timer {
     }
 
     _timeController(configOfTimer) {
-
-
-
         let minute;
         configOfTimer.seconds--;
 
         if (configOfTimer.hint === "work") {
+            if (configOfTimer.seconds == 60){
+                configOfTimer.seconds--;
+                configOfTimer.minuteOfWork--;
+            }
             minute = configOfTimer.minuteOfWork;
 
             if (configOfTimer.seconds === -1) {
@@ -122,12 +123,12 @@ export default class Timer {
                 if (configOfTimer.minuteOfWork === -1) {
                     if (configOfTimer.countOfRest === 0) {
                         configOfTimer.hint = "bigRest";
-                        configOfTimer.seconds = 60;
+                        configOfTimer.seconds = 61;
                         return;
                     }
                     configOfTimer.countOfRest--;
                     configOfTimer.hint = "rest";
-                    configOfTimer.seconds = 60;
+                    configOfTimer.seconds = 61;//TODO
                     configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork ;
                     return;
                 }
@@ -137,6 +138,10 @@ export default class Timer {
         }
 
         if (configOfTimer.hint === "rest") {
+            if (configOfTimer.seconds == 60){
+                configOfTimer.seconds--;
+                configOfTimer.minuteOfRest--;
+            }
             minute = configOfTimer.minuteOfRest;
 
             if (configOfTimer.seconds === -1) {
@@ -144,7 +149,7 @@ export default class Timer {
                 configOfTimer.seconds = 59;
 
                 if (configOfTimer.minuteOfRest === -1) {
-                    configOfTimer.seconds = 60;
+                    configOfTimer.seconds = 61;
                     configOfTimer.minuteOfRest = configOfTimer.cloneConfig.minuteOfRest;
                     configOfTimer.hint = "work";
                     return;
@@ -153,6 +158,10 @@ export default class Timer {
         }
 
         if (configOfTimer.hint === "bigRest") {
+            if (configOfTimer.seconds == 60){
+                configOfTimer.seconds--;
+                configOfTimer.minuteOfBigRest--;
+            }
             minute = configOfTimer.minuteOfBigRest;
             if(configOfTimer.countOfRest === 0 ){
 
@@ -162,7 +171,7 @@ export default class Timer {
                 configOfTimer.minuteOfBigRest--;
                 configOfTimer.seconds = 59;
                 if(configOfTimer.minuteOfBigRest === -1){
-                    configOfTimer.seconds = 60;
+                    configOfTimer.seconds = 61;
                     configOfTimer.minuteOfBigRest = configOfTimer.cloneConfig.minuteOfBigRest;
                     configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
                     configOfTimer.hint = "work";
@@ -178,12 +187,9 @@ export default class Timer {
 
     timeRun() {
 
-
-
         this.workTimeConfig = this._getWorkTimeConfig();
 
         this.onTimer = true;
-
 
         let handlerSetInterval = function () {
 
@@ -211,36 +217,51 @@ export default class Timer {
     }
 
     _getWorkTimeConfig() {
-        let minuteOfWork =  Number(this.timerDOM
-            .querySelector(".currentSecondsAndMinute")
+        let minuteOfWork = Number(this.timerDOM
+            .querySelector(".timeHidden")
             .innerHTML
-            .slice(0,2));
-        let countOfRest = Number(this.timerDOM
+            .slice(0 , 2));
+        let valueRest = Number( this.timerDOM
             .querySelector(".currentCountOfWork")
-            .innerHTML
-            );
+            .innerHTML);
+        let countOfRest = isNaN(valueRest)? 1:valueRest ;
 
         let minuteOfRest = Number(this.timerDOM
             .querySelector(".restHidden")
-            .innerHTML
-        );
+            .innerHTML);
         let minuteOfBigRest = Number(this.timerDOM
             .querySelector(".bigRestHidden")
-            .innerHTML
-        );
+            .innerHTML);
         let seconds = Number(this.timerDOM
             .querySelector(".currentSecondsAndMinute")
             .innerHTML
-            .slice(3,5));
+            .slice(3 , 5));
+        let nameCurrentPeriodValue = this.timerDOM
+            .querySelector(".nameCurrentPeriod")
+            .innerHTML;
+        let hint;
+        switch (nameCurrentPeriodValue) {
+            case "Работа":
+                hint = "work";
+                break;
+            case "Перемена":
+                hint = "rest";
+                break;
+            case "Перерыв":
+                hint = "bigRest";
+                break;
+        }
+
         let config = {
-            hint: "work" ,
-            seconds,
-            minuteOfWork: minuteOfWork,
-            minuteOfRest: minuteOfRest,
-            minuteOfBigRest: minuteOfBigRest,
-            countOfRest
+            hint,
+            seconds ,
+            minuteOfWork: minuteOfWork ,
+            minuteOfRest: minuteOfRest ,
+            minuteOfBigRest: minuteOfBigRest ,
+            countOfRest ,
         };
-        config.cloneConfig = Object.assign({} , config);
+        config.cloneConfig = Object.assign({
+        } , config);
         //минимальное время работы, отдыха и большого перерыва 1 мин
         return config ;
 
@@ -269,8 +290,8 @@ export default class Timer {
                 this.innerHTML = "СТОП";
             }
         });
-        buttonReset.addEventListener("click", function () {
+        buttonReset.addEventListener("click" , function () {
             self.resetTimer();
-        })
+        });
     }
 }

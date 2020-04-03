@@ -193,7 +193,7 @@ function transformElementToCircleSlider(config) {
 }
 
 let configTime = {
-  selectorOutputElem: ".currentSecondsAndMinute",
+  selectorOutputElem: ".timeHidden",
   selectorTargetToPage: ".sliderMinute",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],

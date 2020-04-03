@@ -116,6 +116,11 @@ class Timer {
     configOfTimer.seconds--;
 
     if (configOfTimer.hint === "work") {
+      if (configOfTimer.seconds == 60) {
+        configOfTimer.seconds--;
+        configOfTimer.minuteOfWork--;
+      }
+
       minute = configOfTimer.minuteOfWork;
 
       if (configOfTimer.seconds === -1) {
@@ -125,20 +130,26 @@ class Timer {
         if (configOfTimer.minuteOfWork === -1) {
           if (configOfTimer.countOfRest === 0) {
             configOfTimer.hint = "bigRest";
-            configOfTimer.seconds = 60;
+            configOfTimer.seconds = 61;
             return;
           }
 
           configOfTimer.countOfRest--;
           configOfTimer.hint = "rest";
-          configOfTimer.seconds = 60;
-          configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork - 1;
+          configOfTimer.seconds = 61; //TODO
+
+          configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
           return;
         }
       }
     }
 
     if (configOfTimer.hint === "rest") {
+      if (configOfTimer.seconds == 60) {
+        configOfTimer.seconds--;
+        configOfTimer.minuteOfRest--;
+      }
+
       minute = configOfTimer.minuteOfRest;
 
       if (configOfTimer.seconds === -1) {
@@ -146,8 +157,8 @@ class Timer {
         configOfTimer.seconds = 59;
 
         if (configOfTimer.minuteOfRest === -1) {
-          configOfTimer.seconds = 60;
-          configOfTimer.minuteOfRest = configOfTimer.cloneConfig.minuteOfRest - 1;
+          configOfTimer.seconds = 61;
+          configOfTimer.minuteOfRest = configOfTimer.cloneConfig.minuteOfRest;
           configOfTimer.hint = "work";
           return;
         }
@@ -155,6 +166,11 @@ class Timer {
     }
 
     if (configOfTimer.hint === "bigRest") {
+      if (configOfTimer.seconds == 60) {
+        configOfTimer.seconds--;
+        configOfTimer.minuteOfBigRest--;
+      }
+
       minute = configOfTimer.minuteOfBigRest;
 
       if (configOfTimer.countOfRest === 0) {
@@ -166,9 +182,9 @@ class Timer {
         configOfTimer.seconds = 59;
 
         if (configOfTimer.minuteOfBigRest === -1) {
-          configOfTimer.seconds = 60;
-          configOfTimer.minuteOfBigRest = configOfTimer.cloneConfig.minuteOfBigRest - 1;
-          configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork - 1;
+          configOfTimer.seconds = 61;
+          configOfTimer.minuteOfBigRest = configOfTimer.cloneConfig.minuteOfBigRest;
+          configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
           configOfTimer.hint = "work";
           return;
         }
@@ -208,13 +224,31 @@ class Timer {
   }
 
   _getWorkTimeConfig() {
-    let minuteOfWork = Number(this.timerDOM.querySelector(".currentSecondsAndMinute").innerHTML.slice(0, 2));
-    let countOfRest = Number(this.timerDOM.querySelector(".currentCountOfWork").innerHTML);
+    let minuteOfWork = Number(this.timerDOM.querySelector(".timeHidden").innerHTML.slice(0, 2));
+    let valueRest = Number(this.timerDOM.querySelector(".currentCountOfWork").innerHTML);
+    let countOfRest = isNaN(valueRest) ? 1 : valueRest;
     let minuteOfRest = Number(this.timerDOM.querySelector(".restHidden").innerHTML);
     let minuteOfBigRest = Number(this.timerDOM.querySelector(".bigRestHidden").innerHTML);
     let seconds = Number(this.timerDOM.querySelector(".currentSecondsAndMinute").innerHTML.slice(3, 5));
+    let nameCurrentPeriodValue = this.timerDOM.querySelector(".nameCurrentPeriod").innerHTML;
+    let hint;
+
+    switch (nameCurrentPeriodValue) {
+      case "Работа":
+        hint = "work";
+        break;
+
+      case "Перемена":
+        hint = "rest";
+        break;
+
+      case "Перерыв":
+        hint = "bigRest";
+        break;
+    }
+
     let config = {
-      hint: "work",
+      hint,
       seconds,
       minuteOfWork: minuteOfWork,
       minuteOfRest: minuteOfRest,

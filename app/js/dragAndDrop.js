@@ -45,7 +45,9 @@ function transformElementToCircleSlider(config) {
 
         document.addEventListener("mouseup" , function (e) {
             document.removeEventListener("mousemove" , handlerMousemoveBind);
-        } , {once: true , });
+        } , {
+            once: true , 
+        });
 
     });
 
@@ -201,59 +203,59 @@ function transformElementToCircleSlider(config) {
 }
 
 let configTime = {
-    selectorOutputElem: ".currentSecondsAndMinute" ,
+    selectorOutputElem: ".timeHidden" ,
     selectorTargetToPage: ".sliderMinute" ,
     objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" , ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" , ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" , ] ,
+        arrClassNamesBall : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
+        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
     } ,
     maxRange: 100 ,
     hint:"time" ,
     limiter: false ,
-    startPosition : 25
+    startPosition : 25 ,
 };
 
 let configBigRest = {
     selectorOutputElem: ".bigRestHidden" ,
     selectorTargetToPage: ".sliderBigRest" ,
     objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" , ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" , ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" , ] ,
+        arrClassNamesBall : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
+        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
     } ,
     maxRange: 30 ,
     hint:"rest" ,
     limiter: true ,
-    startPosition : 15
+    startPosition : 15 ,
 };
 
 let configRest = {
     selectorOutputElem: ".restHidden" ,
     selectorTargetToPage: ".sliderRest" ,
     objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" , ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" , ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" , ] ,
+        arrClassNamesBall : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
+        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
     } ,
     maxRange: 10 ,
     hint:"rest" ,
     limiter: true ,
-    startPosition : 5
+    startPosition : 5 ,
 };
 
 let configVolume = {
     selectorOutputElem: ".currentVolume" ,
     selectorTargetToPage: ".sliderVolume" ,
     objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballVolume" , ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigVolume" , ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallVolume" , ] ,
+        arrClassNamesBall : [ "ball" , "ballVolume" ] ,
+        arrClassNamesCircleBig: [ "circleBig" , "circleBigVolume" ] ,
+        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallVolume" ] ,
     } ,
     maxRange: 100 ,
     hint:"sound" ,
     limiter: false ,
-    startPosition : 99
+    startPosition : 99 ,
 };
 
 transformElementToCircleSlider(configTime);
