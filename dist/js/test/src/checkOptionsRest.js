@@ -9,16 +9,26 @@ function _default() {
   function handlerChangeOfRest(arr) {
     let triangle;
     let maxRange;
+    let outputElement = document.querySelector(".currentSecondsAndMinute");
+    let period = document.querySelector(".nameCurrentPeriod").innerHTML;
+    let value = Number(arr[0].target.innerText);
 
     if (arr[0].target.className === "bigRestHidden") {
       maxRange = 30;
       triangle = document.querySelector(".labelBigRest");
+
+      if (period === "Перерыв") {
+        outputElement.innerHTML = value + ":00";
+      }
     } else if (arr[0].target.className === "restHidden") {
       maxRange = 10;
       triangle = document.querySelector(".labelRest");
+
+      if (period === "Перемена") {
+        outputElement.innerHTML = value + ":00";
+      }
     }
 
-    let value = Number(arr[0].target.innerText);
     let parentHeight = document.querySelector(".displayOfRests").offsetHeight;
     let lengthRange = parentHeight - parentHeight * 6 / 100;
     let offset = parentHeight * 3 / 100;
@@ -32,6 +42,12 @@ function _default() {
   }
 
   function handlerMouseDownRest(e) {
+    let deactivate = document.querySelector(".deactivate");
+
+    if (!deactivate) {
+      return;
+    }
+
     let self = this;
     let display;
     let position;
@@ -92,7 +108,7 @@ function _default() {
   let labelRest = document.querySelector(".labelRest");
   controlMinuteOfBigRestBall.addEventListener("mousedown", handlerMouseDownRest);
   controlMinuteOfRestBall.addEventListener("mousedown", handlerMouseDownRest);
-  let circleBig = document.querySelector(".sliderBigRest ");
+  let circleBig = document.querySelector(".circleBigRest ");
   let ballHeight = controlMinuteOfBigRestBall.offsetHeight;
   let circleBigHeight = circleBig.offsetHeight;
   controlMinuteOfBigRestBall.style.top = circleBigHeight - ballHeight + "px";

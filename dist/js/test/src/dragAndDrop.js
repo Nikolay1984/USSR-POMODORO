@@ -169,6 +169,9 @@ function transformElementToCircleSlider(config) {
     let resultValue = Math.ceil(value * maxRange / 100);
 
     switch (hint) {
+      case "round":
+        break;
+
       case "time":
         if (resultValue < 10) {
           resultValue = "0" + resultValue;
@@ -202,15 +205,28 @@ let configTime = {
   },
   maxRange: 100,
   hint: "time",
-  limiter: false,
+  limiter: true,
   startPosition: 25
+};
+let configRound = {
+  selectorOutputElem: ".roundHidden",
+  selectorTargetToPage: ".sliderRound",
+  objNamesOfSlider: {
+    arrClassNamesBall: ["ball", "ballTime"],
+    arrClassNamesCircleBig: ["circleBig", "circleBigRound"],
+    arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
+  },
+  maxRange: 15,
+  hint: "round",
+  limiter: true,
+  startPosition: 3
 };
 let configBigRest = {
   selectorOutputElem: ".bigRestHidden",
   selectorTargetToPage: ".sliderBigRest",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],
-    arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
+    arrClassNamesCircleBig: ["circleBig", "circleBigBigRest"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
   maxRange: 30,
@@ -223,7 +239,7 @@ let configRest = {
   selectorTargetToPage: ".sliderRest",
   objNamesOfSlider: {
     arrClassNamesBall: ["ball", "ballTime"],
-    arrClassNamesCircleBig: ["circleBig", "circleBigTime"],
+    arrClassNamesCircleBig: ["circleBig", "circleBigRest"],
     arrClassNamesCircleSmall: ["circleSmall", "circleSmallTime"]
   },
   maxRange: 10,
@@ -248,3 +264,4 @@ transformElementToCircleSlider(configTime);
 transformElementToCircleSlider(configVolume);
 transformElementToCircleSlider(configBigRest);
 transformElementToCircleSlider(configRest);
+transformElementToCircleSlider(configRound);

@@ -14,7 +14,7 @@ export default class Button{
         this.state = this.state === false ? true :false;
     }
     addEventListenerToButton(configHandlerEvent){
-        if(arguments.length == 0){
+        if (arguments.length == 0){
             throw new Error("The arguments is not pass");
         }
         this.targetButton.addEventListener(configHandlerEvent.nameEvent , configHandlerEvent.handler);

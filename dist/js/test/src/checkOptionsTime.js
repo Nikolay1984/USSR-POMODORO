@@ -7,11 +7,24 @@ exports.default = _default;
 
 function _default() {
   function handlerChangeOfTime(arr) {
-    let value = Number(arr[0].target.innerText.slice(0, 2));
-    square.style.left = value + "%";
+    let outputElement = document.querySelector(".currentSecondsAndMinute");
+    let period = document.querySelector(".nameCurrentPeriod").innerHTML;
+    let value = arr[0].target.innerText;
+    let valueFormatting = Number(value.slice(0, 2));
+    square.style.left = valueFormatting + "%";
+
+    if (period === "Работа") {
+      outputElement.innerHTML = value;
+    }
   }
 
   function handlerMouseDownTime() {
+    let deactivate = document.querySelector(".deactivate");
+
+    if (!deactivate) {
+      return;
+    }
+
     let self = this;
     let position = {
       top: square.offsetTop - 20 + "px",

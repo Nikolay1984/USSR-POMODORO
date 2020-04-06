@@ -17,13 +17,13 @@ function transformElementToCircleSlider(config) {
 
     for (let nameOfArrNamesElem in objNamesOfSlider){
         let arrNames = objNamesOfSlider[ nameOfArrNamesElem ];
-        if(nameOfArrNamesElem === "arrClassNamesBall"){
+        if (nameOfArrNamesElem === "arrClassNamesBall"){
             addClassNameToElemFromArr(arrNames , ball);
         }
-        else if(nameOfArrNamesElem === "arrClassNamesCircleBig"){
+        else if (nameOfArrNamesElem === "arrClassNamesCircleBig"){
             addClassNameToElemFromArr(arrNames , circleBig);
         }
-        else if(nameOfArrNamesElem === "arrClassNamesCircleSmall"){
+        else if (nameOfArrNamesElem === "arrClassNamesCircleSmall"){
             addClassNameToElemFromArr(arrNames , circleSmall);
         }
 
@@ -34,6 +34,7 @@ function transformElementToCircleSlider(config) {
 
 
     //Imitation of drag and drop
+
     ball.addEventListener("dragstart" , function (e) {
         e.preventDefault();
     });
@@ -52,23 +53,24 @@ function transformElementToCircleSlider(config) {
     });
 
     //Use function
+
     function addClassNameToElemFromArr(arrNames , elem) {
-        for(let i = 0; i < arrNames.length; i++ ){
+        for (let i = 0; i < arrNames.length; i++ ){
             elem.classList.add(arrNames[ i ]);
         }
     }
     function handlerMousemove(e) {
         let ball = this;
         let ballCords = {
-            offsetLeft: ball.offsetLeft ,
-            offsetTop: ball.offsetTop ,
-            viewX: ball.getBoundingClientRect().x ,
-            viewY: ball.getBoundingClientRect().y ,
-            radius: ball.offsetWidth/2 ,
+            offsetLeft : ball.offsetLeft ,
+            offsetTop  : ball.offsetTop ,
+            viewX      : ball.getBoundingClientRect().x ,
+            viewY      : ball.getBoundingClientRect().y ,
+            radius     : ball.offsetWidth/2 ,
         };
         let mouseCords ={
-            x: e.clientX ,
-            y: e.clientY ,
+            x : e.clientX ,
+            y : e.clientY ,
         };
 
         let parent = this.offsetParent;
@@ -76,8 +78,8 @@ function transformElementToCircleSlider(config) {
         let innerRadius = parentRadius - ballCords.radius;
 
         let mouseCordsDecard = {
-            x: (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
-            y: (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius ,
+            x : (mouseCords.x - ballCords.viewX + ballCords.offsetLeft) - parentRadius ,
+            y : (mouseCords.y - ballCords.viewY + ballCords.offsetTop) - parentRadius ,
         };
         let mouseCordsPolar = {
             angle: Math.atan(mouseCordsDecard.y / mouseCordsDecard.x) ,
@@ -88,12 +90,12 @@ function transformElementToCircleSlider(config) {
 
 
         let targetCordsDecard = {
-            x: innerRadius * Math.cos(mouseCordsPolar.angle) ,
-            y: innerRadius * Math.sin(mouseCordsPolar.angle) ,
+            x : innerRadius * Math.cos(mouseCordsPolar.angle) ,
+            y : innerRadius * Math.sin(mouseCordsPolar.angle) ,
         };
         let targetCordsOffset = {
-            x: parentRadius + targetCordsDecard.x - ballCords.radius ,
-            y: parentRadius + targetCordsDecard.y - ballCords.radius ,
+            x : parentRadius + targetCordsDecard.x - ballCords.radius ,
+            y : parentRadius + targetCordsDecard.y - ballCords.radius ,
         };
         let currentArc = calculateValuePosition(mouseCordsPolar.angle , innerRadius );
 
@@ -175,6 +177,7 @@ function transformElementToCircleSlider(config) {
     // 	}
     //
     // }
+
     function calculateValuePosition(angle , radius , maxRange = 100 , hint){
         let lengthCircle = radius * 2 * Math.PI;
         let correctAngle = (angle+ Math.PI/2 ) * 57;
@@ -183,8 +186,10 @@ function transformElementToCircleSlider(config) {
         let resultValue = Math.ceil((value * maxRange) / 100);
 
         switch (hint) {
+            case "round":
+                break;
             case "time":
-                if(resultValue < 10){
+                if (resultValue < 10){
                     resultValue = "0" + resultValue;
                 }
                 resultValue = resultValue	+ ":00";
@@ -192,7 +197,7 @@ function transformElementToCircleSlider(config) {
             case "rest":
                 break;
             case "sound":
-                if(resultValue < 10){
+                if (resultValue < 10){
                     resultValue = "0" + resultValue;
                 }
                 break;
@@ -203,58 +208,72 @@ function transformElementToCircleSlider(config) {
 }
 
 let configTime = {
-    selectorOutputElem: ".timeHidden" ,
-    selectorTargetToPage: ".sliderMinute" ,
-    objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
+    selectorOutputElem   : ".timeHidden" ,
+    selectorTargetToPage : ".sliderMinute" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigTime" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
     } ,
-    maxRange: 100 ,
-    hint:"time" ,
-    limiter: false ,
+    maxRange      : 100 ,
+    hint          : "time" ,
+    limiter       : true ,
     startPosition : 25 ,
 };
 
-let configBigRest = {
-    selectorOutputElem: ".bigRestHidden" ,
-    selectorTargetToPage: ".sliderBigRest" ,
-    objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
+let configRound = {
+    selectorOutputElem   : ".roundHidden" ,
+    selectorTargetToPage : ".sliderRound" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigRound" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
     } ,
-    maxRange: 30 ,
-    hint:"rest" ,
-    limiter: true ,
+    maxRange      : 15 ,
+    hint          : "round" ,
+    limiter       : true ,
+    startPosition : 3 ,
+};
+
+let configBigRest = {
+    selectorOutputElem   : ".bigRestHidden" ,
+    selectorTargetToPage : ".sliderBigRest" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigBigRest" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
+    } ,
+    maxRange      : 30 ,
+    hint          : "rest" ,
+    limiter       : true ,
     startPosition : 15 ,
 };
 
 let configRest = {
-    selectorOutputElem: ".restHidden" ,
-    selectorTargetToPage: ".sliderRest" ,
-    objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballTime" ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigTime" ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallTime" ] ,
+    selectorOutputElem   : ".restHidden" ,
+    selectorTargetToPage : ".sliderRest" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigRest" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
     } ,
-    maxRange: 10 ,
-    hint:"rest" ,
-    limiter: true ,
+    maxRange      : 10 ,
+    hint          : "rest" ,
+    limiter       : true ,
     startPosition : 5 ,
 };
 
 let configVolume = {
-    selectorOutputElem: ".currentVolume" ,
-    selectorTargetToPage: ".sliderVolume" ,
-    objNamesOfSlider:{
-        arrClassNamesBall : [ "ball" , "ballVolume" ] ,
-        arrClassNamesCircleBig: [ "circleBig" , "circleBigVolume" ] ,
-        arrClassNamesCircleSmall: [ "circleSmall" , "circleSmallVolume" ] ,
+    selectorOutputElem   : ".currentVolume" ,
+    selectorTargetToPage : ".sliderVolume" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballVolume" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigVolume" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallVolume" ] ,
     } ,
-    maxRange: 100 ,
-    hint:"sound" ,
-    limiter: false ,
+    maxRange      : 100 ,
+    hint          : "sound" ,
+    limiter       : false ,
     startPosition : 99 ,
 };
 
@@ -262,3 +281,4 @@ transformElementToCircleSlider(configTime);
 transformElementToCircleSlider(configVolume);
 transformElementToCircleSlider(configBigRest);
 transformElementToCircleSlider(configRest);
+transformElementToCircleSlider(configRound);

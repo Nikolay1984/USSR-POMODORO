@@ -16,41 +16,7 @@ class Timer {
     this._timeController = this._timeController.bind(this); // this._buildTimer(config);
 
     this._configurationButtons();
-  } // _buildTimer({stringCaptionTimer , stringCaptionCountOfWork}){
-  // 	let target = this.timerDOM;
-  // 	let wrapperDisplayTimer = document.createElement("div");
-  // 	let nameDisplayTimer = document.createElement("span");
-  // 	let displayTimer = document.createElement("div");
-  // 	let displaySecondsAndMinute = document.createElement("div");
-  // 	let currentSecondsAndMinute = document.createElement("span");
-  // 	let wrapperDisplayCountOfWork = document.createElement("div");
-  // 	let nameDisplayCountOfWork = document.createElement("span");
-  // 	let displayCountOfWork = document.createElement("div");
-  // 	let currentCountOfWork = document.createElement("span");
-  //
-  // 	wrapperDisplayTimer.classList.add("wrapperDisplayTimer");
-  // 	nameDisplayTimer.classList.add("nameDisplayTimer");
-  // 	displayTimer.classList.add("displayTimer");
-  // 	displaySecondsAndMinute.classList.add("displaySecondsAndMinute");
-  // 	currentSecondsAndMinute.classList.add("currentSecondsAndMinute");
-  // 	wrapperDisplayCountOfWork.classList.add("wrapperDisplayCountOfWork");
-  // 	nameDisplayCountOfWork.classList.add("nameDisplayCountOfWork");
-  // 	displayCountOfWork.classList.add("displayCountOfWork");
-  // 	currentCountOfWork.classList.add("currentCountOfWork");
-  //
-  // 	nameDisplayTimer.innerHTML = stringCaptionTimer;
-  // 	nameDisplayCountOfWork.innerHTML = stringCaptionCountOfWork;
-  // 	currentSecondsAndMinute.innerHTML = "25:00";
-  // 	currentCountOfWork.innerHTML = "3";
-  //
-  // 	wrapperDisplayTimer.prepend(nameDisplayTimer , displayTimer);
-  // 	displayTimer.prepend(displaySecondsAndMinute , wrapperDisplayCountOfWork);
-  // 	displaySecondsAndMinute.prepend(currentSecondsAndMinute);
-  // 	wrapperDisplayCountOfWork.prepend(nameDisplayCountOfWork , displayCountOfWork);
-  // 	displayCountOfWork.prepend(currentCountOfWork);
-  // 	target.prepend(wrapperDisplayTimer);
-  // }
-
+  }
 
   _drawDisplayTimer(stringSecondAndMinute) {
     let timerDOM = this.timerDOM;
@@ -197,6 +163,10 @@ class Timer {
   }
 
   timeRun() {
+    let blockTimer = document.querySelector(".blockTimer");
+    blockTimer.classList.add("deactivate");
+    let buttonStartStop = this.timerDOM.querySelector(".start");
+    buttonStartStop.innerHTML = "СТОП";
     this.workTimeConfig = this._getWorkTimeConfig();
     this.onTimer = true;
 
@@ -209,8 +179,12 @@ class Timer {
   }
 
   stopTimeRun() {
+    let blockTimer = document.querySelector(".blockTimer");
+    blockTimer.classList.remove("deactivate");
+    let buttonStartStop = this.timerDOM.querySelector(".start");
     this.onTimer = false;
     clearInterval(this.timerId);
+    buttonStartStop.innerHTML = "СТАРТ";
   }
 
   resetTimer() {
@@ -225,11 +199,13 @@ class Timer {
 
   _getWorkTimeConfig() {
     let minuteOfWork = Number(this.timerDOM.querySelector(".timeHidden").innerHTML.slice(0, 2));
-    let valueRest = Number(this.timerDOM.querySelector(".currentCountOfWork").innerHTML);
-    let countOfRest = isNaN(valueRest) ? 1 : valueRest;
+    let valueRest = Number(this.timerDOM.querySelector(".roundHidden").innerHTML);
     let minuteOfRest = Number(this.timerDOM.querySelector(".restHidden").innerHTML);
-    let minuteOfBigRest = Number(this.timerDOM.querySelector(".bigRestHidden").innerHTML);
-    let seconds = Number(this.timerDOM.querySelector(".currentSecondsAndMinute").innerHTML.slice(3, 5));
+    let minuteOfBigRest = Number(this.timerDOM.querySelector(".bigRestHidden").innerHTML); // let seconds = Number(this.timerDOM
+    //     .querySelector(".currentSecondsAndMinute")
+    //     .innerHTML
+    //     .slice(3 , 5));
+
     let nameCurrentPeriodValue = this.timerDOM.querySelector(".nameCurrentPeriod").innerHTML;
     let hint;
 
@@ -249,14 +225,13 @@ class Timer {
 
     let config = {
       hint,
-      seconds,
+      seconds: 0,
       minuteOfWork: minuteOfWork,
       minuteOfRest: minuteOfRest,
       minuteOfBigRest: minuteOfBigRest,
-      countOfRest
+      valueRest
     };
-    config.cloneConfig = Object.assign({}, config); //минимальное время работы, отдыха и большого перерыва 1 мин
-
+    config.cloneConfig = Object.assign({}, config);
     return config;
   }
 
@@ -275,13 +250,12 @@ class Timer {
     buttonStartStop.addEventListener("click", function (event) {
       if (self.onTimer) {
         self.stopTimeRun();
-        this.innerHTML = "СТАРТ";
       } else {
         self.timeRun();
-        this.innerHTML = "СТОП";
       }
     });
     buttonReset.addEventListener("click", function () {
+      self.stopTimeRun();
       self.resetTimer();
     });
   }

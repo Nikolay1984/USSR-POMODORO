@@ -8,10 +8,10 @@ export default function () {
     function handlerClick (e){
         let target = e.target;
 
-		 if(target.className.indexOf("checkSoundInput") === -1){
+		 if (target.className.indexOf("checkSoundInput") === -1){
 		 	return;
 		 }
-        if(target.className.indexOf("checkSoundInputActive") >= 0){
+        if (target.className.indexOf("checkSoundInputActive") >= 0){
             return;
         }
 
@@ -20,6 +20,7 @@ export default function () {
 
         activeElem.classList.remove("checkSoundInputActive");
         // console.dir(activeElem);
+
 		 target.classList.add("checkSoundInputActive");
 
     }

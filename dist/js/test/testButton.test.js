@@ -3,6 +3,7 @@ var expect = require("chai").expect;
 var Button = require("./src/Button.js");
 require("jsdom-global")();
 // подключаем DOM в node
+
 require("geteventlisteners")();
 
 // добавляет DOM элементу метод getEventListeners, который позвражает объект с обрабочиками на данном элементе
@@ -20,8 +21,8 @@ describe("class Button" , function() {
             startButton = document.createElement("button");
             startButton.classList.add("start");
             configButton = {
-                type:"start" ,
-                targetButton: startButton ,
+                type         : "start" ,
+                targetButton : startButton ,
             };
             instanceButton = new Button(configButton);
 
@@ -55,8 +56,8 @@ describe("class Button" , function() {
             startButton = document.createElement("button");
             startButton.classList.add("start");
             configButton = {
-                type:"start" ,
-                targetButton: startButton ,
+                type         : "start" ,
+                targetButton : startButton ,
             };
             instanceButton = new Button(configButton);
 
@@ -80,12 +81,12 @@ describe("class Button" , function() {
             startButton = document.createElement("button");
             startButton.classList.add("start");
             configButton = {
-                type:"start" ,
-                targetButton: startButton ,
+                type         : "start" ,
+                targetButton : startButton ,
             };
             configHandlerEvent = {
-                nameEvent: "click" ,
-                handler: function (event) {
+                nameEvent : "click" ,
+                handler   : function (event) {
 
                 } ,
             };
@@ -107,7 +108,7 @@ describe("class Button" , function() {
             let arrEvents = objectOfEvents[ configHandlerEvent.nameEvent ];
 
             arrEvents.forEach(function (item) {
-                if(item.listener === configHandlerEvent.handler){
+                if (item.listener === configHandlerEvent.handler){
                     result = true;
                 }
             });

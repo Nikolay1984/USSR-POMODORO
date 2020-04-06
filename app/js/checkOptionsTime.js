@@ -1,14 +1,31 @@
 export default function () {
     function handlerChangeOfTime(arr){
+        let outputElement = document.querySelector(".currentSecondsAndMinute");
+        let period = document.querySelector(".nameCurrentPeriod").innerHTML;
+        let value = arr[ 0 ].target.innerText;
+        let valueFormatting = Number(value.slice(0 , 2));
 
-        let value = Number(arr[ 0 ].target.innerText.slice(0,2));
-        square.style.left = value + "%";
+        square.style.left = valueFormatting + "%";
+
+        if(period === "Работа"){
+            outputElement.innerHTML = value;
+        }
+
+
     }
     function handlerMouseDownTime(){
+        let deactivate = document.querySelector(".deactivate");
+
+        if(!deactivate){
+            return
+        }
+
+
+
         let self = this;
         let position = {
-            top: square.offsetTop - 20 + "px" ,
-            left: square.offsetLeft + 5 + "px" ,
+            top  : square.offsetTop - 20 + "px" ,
+            left : square.offsetLeft + 5 + "px" ,
         };
 
         timeHidden.style.display = "block";
@@ -28,7 +45,7 @@ export default function () {
         document.addEventListener("mouseup" , function () {
             document.removeEventListener("mousemove" , handlerMove);
             timeHidden.style.display = "none";
-                   } , {
+        } , {
             once: true ,
         });
     }
@@ -36,8 +53,8 @@ export default function () {
 
     let timeHidden = document.querySelector(".timeHidden ");
     let configMutationObserver = {
-        childList:true ,
-        characterData:true ,
+        childList     : true ,
+        characterData : true ,
     };
 
     let observeOfTimeHidden = new MutationObserver(handlerChangeOfTime);

@@ -52,14 +52,13 @@
 {
     position: relative;
     width: 145px  ;
-    height: 90px ;
+    height: 57px ;
     border: var(--border-style);
     border-radius: 15px;
 }
 .currentCountOfWork
 {
-    width: 145px  ;
-    height: 60px ;
+
     font-size: 50px;
 
     text-align: center;
@@ -73,15 +72,7 @@
 .styleRest{
     opacity: .4;
 }
-.buttonOfWork
-{
-    font-size: 30px;
-    line-height: 50%;
 
-    width: 45%;
-
-    border-radius: 15px;
-}
 .wrapperChangeTime{
     margin: var(--margin-bottom-firstBlockOfTimerAndSound) 0;
 }
@@ -113,6 +104,28 @@
     height: 20px;
     background: blue;
 }
+.roundHidden{
+    position: absolute;
+    display: none;
+    width: 40px;
+    height: 20px;
+    border: 1px solid black;
+    background: blue;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+}
+.labelRound{
+    position: absolute;
+    top: 5px;
+    left:23%;
+    width: 5px;
+    height: 20px;
+    background: blueviolet;
+}
+
+
+
 .wrapperControlTimer
 {
     display: flex;
@@ -154,7 +167,9 @@
 {
     margin-bottom: 15px;
 }
-
+.titelControlRound{
+    font-size: 20px;
+}
 .controlRest{
     flex-basis: 180px;
     text-align: center;

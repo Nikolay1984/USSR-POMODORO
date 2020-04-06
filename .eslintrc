@@ -22,7 +22,6 @@
      "ObjectExpression":"first"
     }
     ],
-    "linebreak-style": [2, "windows"],
     "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],
     "semi": [2, "always",{"omitLastInOneLineBlock": false}],
     "comma-spacing":[ 2,{ "before": true, "after": true }],
@@ -118,6 +117,28 @@
      "implicit-arrow-linebreak": [2, "beside"], // выстраивает стрелочную функцию без {} в одну линию
      "object-property-newline":[2], // выстраивает свойства в объекте с новой строки
      "object-curly-newline": [2, "always"], // переносит первое и последнее свойство объекта на новую строчку, отделяя его от скобочки
-     "jsx-quotes": [2, "prefer-double"] // определяет какие ковычки использвать в атрибутах jsx
+     "jsx-quotes": [2, "prefer-double"], // определяет какие ковычки использвать в атрибутах jsx
+     "key-spacing": [2, {
+      "align": {
+       "beforeColon": true,
+       "afterColon": true,
+       "on": "colon"
+      }
+     }], // определяет пробелы до и после двоеточия в объектных литералах и выравнивание
+     "keyword-spacing": [2, { "after": true,
+                              "before": true
+     }], // добавляет или удаляет пробелы вокруг ключевых слов(if, else, as .....)
+     "line-comment-position": [2, { "position": "beside" }], // одиночные коментарии над кодом или возле
+     "linebreak-style": [2, "windows"], // задает управляющий символ переноса строки
+     "lines-around-comment": ["error", {
+      "afterBlockComment": true,
+      "afterLineComment": true,
+      "allowBlockStart": true,
+      "allowObjectStart": true,
+      "allowArrayStart": true,
+      "allowClassStart": true
+     }], // правило расположения комментариев
+     "lines-between-class-members": [2, "always"] // делает пренос строки между членами класса
+
     }
 }

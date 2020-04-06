@@ -9,42 +9,9 @@ export default class Timer {
         this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
         this._timeController = this._timeController.bind(this);
         // this._buildTimer(config);
+
         this._configurationButtons();
     }
-    // _buildTimer({stringCaptionTimer , stringCaptionCountOfWork}){
-    // 	let target = this.timerDOM;
-    // 	let wrapperDisplayTimer = document.createElement("div");
-    // 	let nameDisplayTimer = document.createElement("span");
-    // 	let displayTimer = document.createElement("div");
-    // 	let displaySecondsAndMinute = document.createElement("div");
-    // 	let currentSecondsAndMinute = document.createElement("span");
-    // 	let wrapperDisplayCountOfWork = document.createElement("div");
-    // 	let nameDisplayCountOfWork = document.createElement("span");
-    // 	let displayCountOfWork = document.createElement("div");
-    // 	let currentCountOfWork = document.createElement("span");
-    //
-    // 	wrapperDisplayTimer.classList.add("wrapperDisplayTimer");
-    // 	nameDisplayTimer.classList.add("nameDisplayTimer");
-    // 	displayTimer.classList.add("displayTimer");
-    // 	displaySecondsAndMinute.classList.add("displaySecondsAndMinute");
-    // 	currentSecondsAndMinute.classList.add("currentSecondsAndMinute");
-    // 	wrapperDisplayCountOfWork.classList.add("wrapperDisplayCountOfWork");
-    // 	nameDisplayCountOfWork.classList.add("nameDisplayCountOfWork");
-    // 	displayCountOfWork.classList.add("displayCountOfWork");
-    // 	currentCountOfWork.classList.add("currentCountOfWork");
-    //
-    // 	nameDisplayTimer.innerHTML = stringCaptionTimer;
-    // 	nameDisplayCountOfWork.innerHTML = stringCaptionCountOfWork;
-    // 	currentSecondsAndMinute.innerHTML = "25:00";
-    // 	currentCountOfWork.innerHTML = "3";
-    //
-    // 	wrapperDisplayTimer.prepend(nameDisplayTimer , displayTimer);
-    // 	displayTimer.prepend(displaySecondsAndMinute , wrapperDisplayCountOfWork);
-    // 	displaySecondsAndMinute.prepend(currentSecondsAndMinute);
-    // 	wrapperDisplayCountOfWork.prepend(nameDisplayCountOfWork , displayCountOfWork);
-    // 	displayCountOfWork.prepend(currentCountOfWork);
-    // 	target.prepend(wrapperDisplayTimer);
-    // }
 
     _drawDisplayTimer(stringSecondAndMinute) {
         let timerDOM = this.timerDOM;
@@ -54,7 +21,7 @@ export default class Timer {
         let period;
         let numberOfWork;
         let numberOfRest = this.workTimeConfig.countOfRest;
-        if(numberOfRest === 0){
+        if (numberOfRest === 0){
             numberOfWork = "Последний" ;
             displayCountOfWorkDiv.classList.add("lastWork");
         }
@@ -87,17 +54,17 @@ export default class Timer {
     _createStringForDisplayTimer(minute) {
         let minuteString = "";
         let secondsString = "";
-        if(minute < 10){
+        if (minute < 10){
             minuteString = "0" + minute;
         }
-        else{
+        else {
             minuteString = String(minute);
         }
 
-        if(this.workTimeConfig.seconds < 10){
+        if (this.workTimeConfig.seconds < 10){
             secondsString = "0" + this.workTimeConfig.seconds;
         }
-        else{
+        else {
             secondsString = String(this.workTimeConfig.seconds);
         }
 
@@ -163,14 +130,14 @@ export default class Timer {
                 configOfTimer.minuteOfBigRest--;
             }
             minute = configOfTimer.minuteOfBigRest;
-            if(configOfTimer.countOfRest === 0 ){
+            if (configOfTimer.countOfRest === 0 ){
 
                 configOfTimer.countOfRest = configOfTimer.cloneConfig.countOfRest;
             }
             if (configOfTimer.seconds === -1){
                 configOfTimer.minuteOfBigRest--;
                 configOfTimer.seconds = 59;
-                if(configOfTimer.minuteOfBigRest === -1){
+                if (configOfTimer.minuteOfBigRest === -1){
                     configOfTimer.seconds = 61;
                     configOfTimer.minuteOfBigRest = configOfTimer.cloneConfig.minuteOfBigRest;
                     configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
@@ -186,6 +153,12 @@ export default class Timer {
     }
 
     timeRun() {
+        let blockTimer = document.querySelector(".blockTimer");
+        blockTimer.classList.add("deactivate");
+
+
+        let buttonStartStop = this.timerDOM.querySelector(".start");
+        buttonStartStop.innerHTML = "СТОП";
 
         this.workTimeConfig = this._getWorkTimeConfig();
 
@@ -202,11 +175,17 @@ export default class Timer {
     }
 
     stopTimeRun() {
+        let blockTimer = document.querySelector(".blockTimer");
+        blockTimer.classList.remove("deactivate");
+
+        let buttonStartStop = this.timerDOM.querySelector(".start");
         this.onTimer = false;
         clearInterval(this.timerId);
+        buttonStartStop.innerHTML = "СТАРТ";
     }
 
     resetTimer() {
+
         this.onTimer = false;
         clearInterval(this.timerId);
         this.workTimeConfig = this._getWorkTimeConfig();
@@ -222,9 +201,9 @@ export default class Timer {
             .innerHTML
             .slice(0 , 2));
         let valueRest = Number( this.timerDOM
-            .querySelector(".currentCountOfWork")
+            .querySelector(".roundHidden")
             .innerHTML);
-        let countOfRest = isNaN(valueRest)? 1:valueRest ;
+
 
         let minuteOfRest = Number(this.timerDOM
             .querySelector(".restHidden")
@@ -232,10 +211,10 @@ export default class Timer {
         let minuteOfBigRest = Number(this.timerDOM
             .querySelector(".bigRestHidden")
             .innerHTML);
-        let seconds = Number(this.timerDOM
-            .querySelector(".currentSecondsAndMinute")
-            .innerHTML
-            .slice(3 , 5));
+        // let seconds = Number(this.timerDOM
+        //     .querySelector(".currentSecondsAndMinute")
+        //     .innerHTML
+        //     .slice(3 , 5));
         let nameCurrentPeriodValue = this.timerDOM
             .querySelector(".nameCurrentPeriod")
             .innerHTML;
@@ -253,25 +232,26 @@ export default class Timer {
         }
 
         let config = {
-            hint,
-            seconds ,
-            minuteOfWork: minuteOfWork ,
-            minuteOfRest: minuteOfRest ,
-            minuteOfBigRest: minuteOfBigRest ,
-            countOfRest ,
+            hint ,
+            seconds : 0 ,
+            minuteOfWork    : minuteOfWork ,
+            minuteOfRest    : minuteOfRest ,
+            minuteOfBigRest : minuteOfBigRest ,
+            valueRest ,
         };
         config.cloneConfig = Object.assign({
         } , config);
-        //минимальное время работы, отдыха и большого перерыва 1 мин
+
+
         return config ;
 
     }
 
     _getSoundConfig() {
         return {
-            volume: 2 ,
-            flip: false ,
-            soundOfSignal: "beep" ,
+            volume        : 2 ,
+            flip          : false ,
+            soundOfSignal : "beep" ,
         };
     }
 
@@ -281,16 +261,16 @@ export default class Timer {
         let buttonReset = this.timerDOM.querySelector(".reset");
 
         buttonStartStop.addEventListener("click" , function (event) {
-            if(self.onTimer) {
+            if (self.onTimer) {
                 self.stopTimeRun();
-                this.innerHTML = "СТАРТ";
             }
             else {
                 self.timeRun();
-                this.innerHTML = "СТОП";
+
             }
         });
         buttonReset.addEventListener("click" , function () {
+            self.stopTimeRun();
             self.resetTimer();
         });
     }

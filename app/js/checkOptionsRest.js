@@ -2,44 +2,59 @@ export default function () {
     function handlerChangeOfRest(arr){
         let triangle;
         let maxRange;
-
-        if(arr[ 0 ].target.className === "bigRestHidden" ){
+        let outputElement = document.querySelector(".currentSecondsAndMinute");
+        let period = document.querySelector(".nameCurrentPeriod").innerHTML;
+        let value = Number(arr[ 0 ].target.innerText);
+        if (arr[ 0 ].target.className === "bigRestHidden" ){
             maxRange = 30;
             triangle = document.querySelector(".labelBigRest");
-
+            if(period === "Перерыв"){
+                outputElement.innerHTML = value + ":00";
+            }
         }
-        else if(arr[ 0 ].target.className === "restHidden"){
+        else if (arr[ 0 ].target.className === "restHidden"){
             maxRange = 10;
             triangle = document.querySelector(".labelRest");
+            if(period === "Перемена"){
+                outputElement.innerHTML = value + ":00";
+            }
         }
 
-        let value = Number(arr[ 0 ].target.innerText);
+
         let parentHeight = document.querySelector(".displayOfRests").offsetHeight;
         let lengthRange = parentHeight - ((parentHeight * 6) / 100);
         let offset = ((parentHeight * 3) / 100);
         let pos = (value * lengthRange / maxRange) - offset;
-        if(pos <= 1){
+        if (pos <= 1){
             pos = offset; 
         }
 
         triangle.style.top = pos + "px";
+
+
     }
     function handlerMouseDownRest(e) {
+        let deactivate = document.querySelector(".deactivate");
+
+        if(!deactivate){
+            return
+        }
+
         let self = this;
         let display;
         let position;
-        if(this.closest(".controlMinuteOfBigRest")){
+        if (this.closest(".controlMinuteOfBigRest")){
             display = bigRestHidden;
             position = {
-                top: labelBigRest.offsetTop - 20 + "px" ,
-                left: labelBigRest.offsetLeft + "px" ,
+                top  : labelBigRest.offsetTop - 20 + "px" ,
+                left : labelBigRest.offsetLeft + "px" ,
             };
         }
         else if (this.closest(".controlMinuteOfRest")){
             display = restHidden;
             position = {
-                top: labelRest.offsetTop - 20 + "px" ,
-                left: labelRest.offsetLeft - 20 + "px" ,
+                top  : labelRest.offsetTop - 20 + "px" ,
+                left : labelRest.offsetLeft - 20 + "px" ,
             };
         }
         display.style.display = "block";
@@ -47,7 +62,7 @@ export default function () {
         display.style.left = position.left;
 
         function handlerMove(e) {
-            if(self.closest(".controlMinuteOfBigRest")){
+            if (self.closest(".controlMinuteOfBigRest")){
                 bigRestHidden.style.top = labelBigRest.offsetTop - 20 + "px";
                 bigRestHidden.style.left = labelBigRest.offsetLeft + "px";
             }
@@ -71,8 +86,8 @@ export default function () {
     let bigRestHidden = document.querySelector(".bigRestHidden");
     let restHidden = document.querySelector(".restHidden");
     let configMutationObserver = {
-        childList:true ,
-        characterData:true ,
+        childList     : true ,
+        characterData : true ,
     };
 
     let observeOfBigRestHidden = new MutationObserver(handlerChangeOfRest);
@@ -94,7 +109,7 @@ export default function () {
     controlMinuteOfRestBall.addEventListener("mousedown" , handlerMouseDownRest);
 
 
-    let circleBig = document.querySelector(".sliderBigRest ");
+    let circleBig = document.querySelector(".circleBigRest ");
     let ballHeight = controlMinuteOfBigRestBall.offsetHeight;
     let circleBigHeight = circleBig.offsetHeight;
     controlMinuteOfBigRestBall.style.top = circleBigHeight - ballHeight + "px";
