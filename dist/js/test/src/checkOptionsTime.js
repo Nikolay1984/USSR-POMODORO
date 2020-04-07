@@ -19,12 +19,6 @@ function _default() {
   }
 
   function handlerMouseDownTime() {
-    let deactivate = document.querySelector(".deactivate");
-
-    if (!deactivate) {
-      return;
-    }
-
     let self = this;
     let position = {
       top: square.offsetTop - 20 + "px",

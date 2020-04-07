@@ -30,10 +30,7 @@ function transformElementToCircleSlider(config) {
   circleBig.prepend(ball, circleSmall);
   target.prepend(circleBig); //Imitation of drag and drop
 
-  ball.addEventListener("dragstart", function (e) {
-    e.preventDefault();
-  });
-  ball.addEventListener("mousedown", function (e) {
+  function handlerMouseDown(e) {
     let handlerMousemoveBind = handlerMousemove.bind(this);
     document.addEventListener("mousemove", handlerMousemoveBind);
     document.addEventListener("mouseup", function (e) {
@@ -41,7 +38,12 @@ function transformElementToCircleSlider(config) {
     }, {
       once: true
     });
-  }); //Use function
+  }
+
+  ball.addEventListener("dragstart", function (e) {
+    e.preventDefault();
+  });
+  ball.addEventListener("mousedown", handlerMouseDown); //Use function
 
   function addClassNameToElemFromArr(arrNames, elem) {
     for (let i = 0; i < arrNames.length; i++) {
@@ -193,6 +195,13 @@ function transformElementToCircleSlider(config) {
 
     return resultValue;
   }
+
+  return {
+    ball,
+    circleBig,
+    hint,
+    handlerMouseDown
+  };
 }
 
 let configTime = {
@@ -260,8 +269,10 @@ let configVolume = {
   limiter: false,
   startPosition: 99
 };
-transformElementToCircleSlider(configTime);
-transformElementToCircleSlider(configVolume);
-transformElementToCircleSlider(configBigRest);
-transformElementToCircleSlider(configRest);
-transformElementToCircleSlider(configRound);
+let configBehavior = {
+  time: transformElementToCircleSlider(configTime),
+  round: transformElementToCircleSlider(configRound),
+  bigRest: transformElementToCircleSlider(configBigRest),
+  rest: transformElementToCircleSlider(configRest),
+  volume: transformElementToCircleSlider(configVolume)
+};

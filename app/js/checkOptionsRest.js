@@ -34,11 +34,6 @@ export default function () {
 
     }
     function handlerMouseDownRest(e) {
-        let deactivate = document.querySelector(".deactivate");
-
-        if(!deactivate){
-            return
-        }
 
         let self = this;
         let display;

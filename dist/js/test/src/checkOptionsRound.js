@@ -21,12 +21,6 @@ function _default() {
   }
 
   function handlerMouseDownTime() {
-    let deactivate = document.querySelector(".deactivate");
-
-    if (deactivate) {
-      return;
-    }
-
     let self = this;
     let position = {
       top: square.offsetTop - 20 + "px",
@@ -37,12 +31,6 @@ function _default() {
     roundHidden.style.left = position.left;
 
     function handlerMove(e) {
-      let deactivate = document.querySelector(".deactivate");
-
-      if (deactivate) {
-        return;
-      }
-
       roundHidden.style.top = square.offsetTop - 20 + "px";
       roundHidden.style.left = square.offsetLeft + 5 + "px";
     }

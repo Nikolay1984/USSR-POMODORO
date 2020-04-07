@@ -5,8 +5,6 @@ export default function () {
         let parentHeight = document.querySelector(".displayOfTime").offsetWidth;
         let pos = ((value * parentHeight) / 15) - 8 ;
 
-
-
         if (pos <= 1){
             pos = 0;
         }
@@ -14,20 +12,8 @@ export default function () {
         square.style.left =  pos + "px";
         outputElement.innerHTML = value;
 
-        
-        
-        
-        
-        
-        
     }
     function handlerMouseDownTime(){
-        let deactivate = document.querySelector(".deactivate");
-
-        if(deactivate){
-            return
-        }
-
 
         let self = this;
         let position = {
@@ -40,11 +26,6 @@ export default function () {
         roundHidden.style.left = position.left;
 
         function handlerMove(e) {
-            let deactivate = document.querySelector(".deactivate");
-
-            if(deactivate){
-                return
-            }
 
             roundHidden.style.top = square.offsetTop - 20 + "px";
             roundHidden.style.left = square.offsetLeft + 5 + "px";

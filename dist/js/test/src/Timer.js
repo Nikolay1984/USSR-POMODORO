@@ -9,8 +9,9 @@ class Timer {
   constructor(className) {
     this.timerDOM = document.querySelector("." + className);
     this.onTimer = false;
-    this.workTimeConfig = this._getWorkTimeConfig();
+    this.workTimeConfig;
     this.soundConfig = this._getSoundConfig();
+    this.flagChangeSetting = false;
     this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
     this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
     this._timeController = this._timeController.bind(this); // this._buildTimer(config);
@@ -163,15 +164,51 @@ class Timer {
   }
 
   timeRun() {
-    let blockTimer = document.querySelector(".blockTimer");
-    blockTimer.classList.add("deactivate");
+    for (let key in configBehavior) {
+      if (configBehavior[key].hint === "sound") {
+        continue;
+      }
+
+      ;
+      configBehavior[key].ball.removeEventListener("mousedown", configBehavior[key].handlerMouseDown);
+      configBehavior[key].circleBig.classList.add("deactivate");
+    }
+
     let buttonStartStop = this.timerDOM.querySelector(".start");
     buttonStartStop.innerHTML = "СТОП";
-    this.workTimeConfig = this._getWorkTimeConfig();
+    let config;
+
+    if (!this.flagChangeSetting) {
+      config = this._getWorkTimeConfig();
+      this.workTimeConfig = config;
+    } else {
+      let currentConfig = this._getWorkTimeConfig();
+
+      let cloneConfig = this.workTimeConfig.cloneConfig;
+
+      for (let key in currentConfig) {
+        if (currentConfig[key] == cloneConfig[key]) {
+          delete currentConfig[key];
+        }
+      }
+
+      for (let key in this.workTimeConfig) {
+        if (currentConfig[key]) {
+          this.workTimeConfig[key] = currentConfig[key];
+
+          if (key == "minuteOfWork" || key == "minuteOfRest" || key == "minuteOfBigRest") {
+            this.workTimeConfig.seconds = 0;
+          }
+        }
+      }
+
+      config = this.workTimeConfig;
+    }
+
     this.onTimer = true;
 
     let handlerSetInterval = function () {
-      this._timeController(this.workTimeConfig);
+      this._timeController(config);
     };
 
     handlerSetInterval = handlerSetInterval.bind(this);
@@ -179,8 +216,18 @@ class Timer {
   }
 
   stopTimeRun() {
-    let blockTimer = document.querySelector(".blockTimer");
-    blockTimer.classList.remove("deactivate");
+    this.flagChangeSetting = true;
+
+    for (let key in configBehavior) {
+      if (configBehavior[key].hint === "sound") {
+        continue;
+      }
+
+      ;
+      configBehavior[key].ball.addEventListener("mousedown", configBehavior[key].handlerMouseDown);
+      configBehavior[key].circleBig.classList.remove("deactivate");
+    }
+
     let buttonStartStop = this.timerDOM.querySelector(".start");
     this.onTimer = false;
     clearInterval(this.timerId);
@@ -188,6 +235,9 @@ class Timer {
   }
 
   resetTimer() {
+    let nameCurrentPeriod = document.querySelector(".nameCurrentPeriod");
+    nameCurrentPeriod.innerHTML = "Работа";
+    this.flagChangeSetting = false;
     this.onTimer = false;
     clearInterval(this.timerId);
     this.workTimeConfig = this._getWorkTimeConfig();
@@ -229,7 +279,7 @@ class Timer {
       minuteOfWork: minuteOfWork,
       minuteOfRest: minuteOfRest,
       minuteOfBigRest: minuteOfBigRest,
-      valueRest
+      countOfRest: valueRest
     };
     config.cloneConfig = Object.assign({}, config);
     return config;

@@ -1,10 +1,18 @@
 "use strict";
 
-function foo() {
-  // what a great and wonderful day
-  var day = "great";
-  /*var day = "great";
-  */
+// var fs = require("fs");
+// // console.log(process.env.NODE_DEBUG);
+// function  bla() {
+//     fs.readFile("./dist/js/Button.js",(err, data) => {
+//         if (err) throw err;
+//         console.log(data);
+//     });
+// }
+// bla();
+var server = require("http").Server();
 
-  return day;
-}
+server.listen(8008, "127.0.0.1");
+server.on("request", function (req, resp) {
+  console.log("123");
+  resp.end("5");
+});

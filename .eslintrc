@@ -138,7 +138,12 @@
       "allowArrayStart": true,
       "allowClassStart": true
      }], // правило расположения комментариев
-     "lines-between-class-members": [2, "always"] // делает пренос строки между членами класса
-
+     "lines-between-class-members": [2, "always"], // делает пренос строки между членами класса
+     "multiline-comment-style": [2, "separate-lines"], // задает коментарии  с помощью "//"
+     "multiline-ternary": [2, "always"], // в тернарных выражениях второй операд переносит на новую линию
+     "new-cap": [2, { "newIsCap": true }], // требует функцию с большой буквы перед new
+     "new-parens":[2],// ставит () в вызове через new
+     "newline-per-chained-call": [2, { "ignoreChainWithDepth": 2 }], // перенос строки при чейнинге
+     
     }
 }

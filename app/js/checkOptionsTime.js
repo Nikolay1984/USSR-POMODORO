@@ -14,13 +14,6 @@ export default function () {
 
     }
     function handlerMouseDownTime(){
-        let deactivate = document.querySelector(".deactivate");
-
-        if(!deactivate){
-            return
-        }
-
-
 
         let self = this;
         let position = {
