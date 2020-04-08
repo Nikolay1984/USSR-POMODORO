@@ -18,14 +18,26 @@ function _default() {
       triangle = document.querySelector(".labelBigRest");
 
       if (period === "Перерыв") {
-        outputElement.innerHTML = value + ":00";
+        let out = value;
+
+        if (value < 10) {
+          out = "0" + value;
+        }
+
+        outputElement.innerHTML = out + ":00";
       }
     } else if (arr[0].target.className === "restHidden") {
       maxRange = 10;
       triangle = document.querySelector(".labelRest");
 
       if (period === "Перемена") {
-        outputElement.innerHTML = value + ":00";
+        let out = value;
+
+        if (value < 10) {
+          out = "0" + value;
+        }
+
+        outputElement.innerHTML = out + ":00";
       }
     }
 

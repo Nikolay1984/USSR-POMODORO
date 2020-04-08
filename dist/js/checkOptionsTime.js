@@ -7,7 +7,7 @@ export default function () {
 
         square.style.left = valueFormatting + "%";
 
-        if(period === "Работа"){
+        if (period === "Работа"){
             outputElement.innerHTML = value;
         }
 
@@ -63,14 +63,6 @@ export default function () {
     ballTime.style.top = (circleBigHeight - ballHeight)/2 + "px";
     ballTime.style.left = circleBigHeight - ballHeight+ "px";
     timeHidden.innerHTML = "25:00";
-
-
-
-
-
-
-
-
 
 
 }

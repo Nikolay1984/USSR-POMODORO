@@ -130,7 +130,7 @@
      }], // добавляет или удаляет пробелы вокруг ключевых слов(if, else, as .....)
      "line-comment-position": [2, { "position": "beside" }], // одиночные коментарии над кодом или возле
      "linebreak-style": [2, "windows"], // задает управляющий символ переноса строки
-     "lines-around-comment": ["error", {
+     "lines-around-comment": [2, {
       "afterBlockComment": true,
       "afterLineComment": true,
       "allowBlockStart": true,
@@ -144,6 +144,8 @@
      "new-cap": [2, { "newIsCap": true }], // требует функцию с большой буквы перед new
      "new-parens":[2],// ставит () в вызове через new
      "newline-per-chained-call": [2, { "ignoreChainWithDepth": 2 }], // перенос строки при чейнинге
-     
+     "no-lonely-if": [2], //убирает одинокие if  в нутри else
+     "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 1, "maxBOF": 1 }], //задает колличество переносов строки между кодом
+
     }
 }

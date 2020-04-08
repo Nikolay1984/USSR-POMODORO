@@ -1,6 +1,6 @@
 export default function () {
     function handlerChangeOfRound(arr){
-        let outputElement = document.querySelector(".currentCountOfWork")
+        let outputElement = document.querySelector(".currentCountOfWork");
         let value = Number(arr[ 0 ].target.innerText);
         let parentHeight = document.querySelector(".displayOfTime").offsetWidth;
         let pos = ((value * parentHeight) / 15) - 8 ;
@@ -9,11 +9,11 @@ export default function () {
             pos = 0;
         }
 
-        square.style.left =  pos + "px";
+        square.style.left = pos + "px";
         outputElement.innerHTML = value;
 
     }
-    function handlerMouseDownTime(){
+    function handlerMouseDownRound(){
 
         let self = this;
         let position = {
@@ -51,12 +51,12 @@ export default function () {
     };
 
     let observeOfRoundHidden = new MutationObserver(handlerChangeOfRound);
-    observeOfRoundHidden.observe (roundHidden , configMutationObserver);
+    observeOfRoundHidden.observe(roundHidden , configMutationObserver);
 
     let circleBig = document.querySelector(".circleBigRound ");
     let ballTime = circleBig.querySelector(".ballTime");
 
-    ballTime.addEventListener("mousedown" , handlerMouseDownTime);
+    ballTime.addEventListener("mousedown" , handlerMouseDownRound);
 
     let ballHeight = ballTime.offsetHeight;
     let circleBigHeight = circleBig.offsetHeight;

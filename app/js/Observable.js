@@ -4,6 +4,7 @@ export default class Observable {
         this.listeners = {
         };
     }
+
     on(e , callback) {
         if (this.listeners[ e ] == undefined) {
             this.listeners[ e ] = {

@@ -1,5 +1,5 @@
 export default class Timer {
-    constructor(className) {
+    constructor(className, configBehavior) {
         this.timerDOM = document.querySelector("." + className);
         this.onTimer = false;
         this.workTimeConfig;
@@ -8,6 +8,7 @@ export default class Timer {
         this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
         this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
         this._timeController = this._timeController.bind(this);
+        this.configBehavior = configBehavior;
         // this._buildTimer(config);
 
         this._configurationButtons();
@@ -153,34 +154,37 @@ export default class Timer {
     }
 
     timeRun() {
-        for (let key in configBehavior){
-            if(configBehavior[key].hint === "sound"){continue};
-            configBehavior[key].ball.removeEventListener("mousedown",configBehavior[key].handlerMouseDown);
-            configBehavior[key].circleBig.classList.add("deactivate");
+        for (let key in this.configBehavior){
+            if (this.configBehavior[ key ].hint === "sound"){
+                continue; 
+            }
+            this.configBehavior[ key ].ball.removeEventListener("mousedown" , this.configBehavior[ key ].handlerMouseDown);
+            this.configBehavior[ key ].circleBig.classList.add("deactivate");
         }
 
         let buttonStartStop = this.timerDOM.querySelector(".start");
         buttonStartStop.innerHTML = "СТОП";
 
         let config;
-        if(!this.flagChangeSetting){
+        if (!this.flagChangeSetting){
             config = this._getWorkTimeConfig();
             this.workTimeConfig = config;
 
-        }else{
+        }
+        else {
             let currentConfig = this._getWorkTimeConfig();
             let cloneConfig = this.workTimeConfig.cloneConfig;
 
-            for(let key in currentConfig){
-                if (currentConfig[key] == cloneConfig[key]){
-                    delete currentConfig[key] ;
+            for (let key in currentConfig){
+                if (currentConfig[ key ] == cloneConfig[ key ]){
+                    delete currentConfig[ key ] ;
                 }
             }
 
-            for(let key in this.workTimeConfig){
-                if (currentConfig[key]){
-                    this.workTimeConfig[key] = currentConfig[key];
-                    if(key == "minuteOfWork" || key == "minuteOfRest" || key == "minuteOfBigRest" ){
+            for (let key in this.workTimeConfig){
+                if (currentConfig[ key ]){
+                    this.workTimeConfig[ key ] = currentConfig[ key ];
+                    if (key == "minuteOfWork" || key == "minuteOfRest" || key == "minuteOfBigRest" ){
                         this.workTimeConfig.seconds = 0;
                     }
                 }
@@ -203,10 +207,12 @@ export default class Timer {
 
     stopTimeRun() {
         this.flagChangeSetting = true;
-        for (let key in configBehavior){
-            if(configBehavior[key].hint === "sound"){continue};
-            configBehavior[key].ball.addEventListener("mousedown",configBehavior[key].handlerMouseDown);
-            configBehavior[key].circleBig.classList.remove("deactivate");
+        for (let key in this.configBehavior){
+            if (this.configBehavior[ key ].hint === "sound"){
+                continue; 
+            }
+            this.configBehavior[ key ].ball.addEventListener("mousedown" , this.configBehavior[ key ].handlerMouseDown);
+            this.configBehavior[ key ].circleBig.classList.remove("deactivate");
         }
 
         let buttonStartStop = this.timerDOM.querySelector(".start");
@@ -248,6 +254,7 @@ export default class Timer {
         //     .querySelector(".currentSecondsAndMinute")
         //     .innerHTML
         //     .slice(3 , 5));
+
         let nameCurrentPeriodValue = this.timerDOM
             .querySelector(".nameCurrentPeriod")
             .innerHTML;
@@ -266,11 +273,11 @@ export default class Timer {
 
         let config = {
             hint ,
-            seconds : 0 ,
+            seconds         : 0 ,
             minuteOfWork    : minuteOfWork ,
             minuteOfRest    : minuteOfRest ,
             minuteOfBigRest : minuteOfBigRest ,
-            countOfRest: valueRest
+            countOfRest     : valueRest ,
         };
         config.cloneConfig = Object.assign({
         } , config);

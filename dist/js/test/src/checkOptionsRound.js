@@ -20,7 +20,7 @@ function _default() {
     outputElement.innerHTML = value;
   }
 
-  function handlerMouseDownTime() {
+  function handlerMouseDownRound() {
     let self = this;
     let position = {
       top: square.offsetTop - 20 + "px",
@@ -54,7 +54,7 @@ function _default() {
   observeOfRoundHidden.observe(roundHidden, configMutationObserver);
   let circleBig = document.querySelector(".circleBigRound ");
   let ballTime = circleBig.querySelector(".ballTime");
-  ballTime.addEventListener("mousedown", handlerMouseDownTime);
+  ballTime.addEventListener("mousedown", handlerMouseDownRound);
   let ballHeight = ballTime.offsetHeight;
   let circleBigHeight = circleBig.offsetHeight;
   ballTime.style.top = (circleBigHeight - ballHeight) / 2 + "px";

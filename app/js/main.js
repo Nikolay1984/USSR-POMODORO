@@ -1,89 +1,94 @@
+import transformElementToCircleSlider from "./dragAndDrop.js";
 import checkOptionsSound from "./checkOptionsSound.js";
 import checkOptionsRest from "./checkOptionsRest.js";
 import checkOptionsRound from "./checkOptionsRound.js";
 import checkOptionsTime from "./checkOptionsTime.js";
 import Timer from "./Timer.js";
 
+let configTime = {
+    selectorOutputElem   : ".timeHidden" ,
+    selectorTargetToPage : ".sliderMinute" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigTime" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
+    } ,
+    maxRange      : 100 ,
+    hint          : "time" ,
+    limiter       : true ,
+    minPosition : 1 ,
+};
+
+let configRound = {
+    selectorOutputElem   : ".roundHidden" ,
+    selectorTargetToPage : ".sliderRound" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigRound" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
+    } ,
+    maxRange      : 15 ,
+    hint          : "round" ,
+    limiter       : true ,
+    minPosition : 1 ,
+};
+
+let configBigRest = {
+    selectorOutputElem   : ".bigRestHidden" ,
+    selectorTargetToPage : ".sliderBigRest" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigBigRest" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
+    } ,
+    maxRange      : 30 ,
+    hint          : "rest" ,
+    limiter       : true ,
+    minPosition : 1 ,
+};
+
+let configRest = {
+    selectorOutputElem   : ".restHidden" ,
+    selectorTargetToPage : ".sliderRest" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballTime" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigRest" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallTime" ] ,
+    } ,
+    maxRange      : 10 ,
+    hint          : "rest" ,
+    limiter       : true ,
+    minPosition : 1 ,
+};
+
+let configVolume = {
+    selectorOutputElem   : ".currentVolume" ,
+    selectorTargetToPage : ".sliderVolume" ,
+    objNamesOfSlider     : {
+        arrClassNamesBall        : [ "ball" , "ballVolume" ] ,
+        arrClassNamesCircleBig   : [ "circleBig" , "circleBigVolume" ] ,
+        arrClassNamesCircleSmall : [ "circleSmall" , "circleSmallVolume" ] ,
+    } ,
+    maxRange      : 100 ,
+    hint          : "sound" ,
+    limiter       : false ,
+    minPosition : 0 ,
+};
+
+let configBehavior = {
+    time    : transformElementToCircleSlider(configTime) ,
+    round   : transformElementToCircleSlider(configRound) ,
+    bigRest : transformElementToCircleSlider(configBigRest) ,
+    rest    : transformElementToCircleSlider(configRest) ,
+    volume  : transformElementToCircleSlider(configVolume) ,
+};
+
+
+
 checkOptionsTime();
 checkOptionsSound();
 checkOptionsRest();
 checkOptionsRound();
 
-let timer = new Timer("timerPomodoro");
-
-
-
-// import Button from "./Button.js";
-// // import {Driver} from "./Driver.js";
-// // import {Observable} from "./Observable.js";
-//
-
-// let buttonStartConfig = {
-// 	type: "start" ,
-// 	targetButton: document.querySelector(".start")
-// };
-//
-// let buttonStart = new Button(buttonStartConfig);
-// let configHandlerEventForButtonStart = {
-// 	nameEvent: "click" ,
-// 	handler: function (event) {
-// 		if(timer.onTimer) {
-// 			timer.stopTimeRun();
-// 			this.innerHTML = "start";
-// 		}else {
-// 			timer.timeRun();
-// 			this.innerHTML = "stop";
-// 		}
-// 	}
-// };
-//
-// buttonStart.addEventListenerToButton(configHandlerEventForButtonStart);
-//
-// let buttonResetConfig = {
-// 	type: "reset" ,
-// 	targetButton: document.querySelector(".reset")
-// };
-//
-// let buttonReset = new Button(buttonResetConfig);
-// let configHandlerEventForButtonReset = {
-// 	nameEvent: "click" ,
-// 	handler: function (event) {
-// 		timer.resetTimer();
-// 	}
-// };
-// buttonReset.addEventListenerToButton(configHandlerEventForButtonReset);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
+let timer = new Timer("timerPomodoro", configBehavior);
 

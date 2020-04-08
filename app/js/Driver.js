@@ -6,6 +6,7 @@ export default class Driver{
     }
 
     reportingOfChange(data){}
+
     drivingOfTimer(data){}
 }
 
