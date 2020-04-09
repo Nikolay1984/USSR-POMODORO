@@ -36,7 +36,7 @@ export default function () {
         let offset = ((parentHeight * 3) / 100);
         let pos = (value * lengthRange / maxRange) - offset;
         if (pos <= 1){
-            pos = offset; 
+            pos = offset;
         }
 
         triangle.style.top = pos + "px";
@@ -85,7 +85,7 @@ export default function () {
             bigRestHidden.style.display = "none";
             restHidden.style.display = "none";
         } , {
-            once: true , 
+            once: true ,
         });
     }
     let bigRestHidden = document.querySelector(".bigRestHidden");

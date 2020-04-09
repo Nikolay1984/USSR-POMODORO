@@ -1,5 +1,5 @@
 export default class Timer {
-    constructor(className, configBehavior) {
+    constructor(className , configBehavior) {
         this.timerDOM = document.querySelector("." + className);
         this.onTimer = false;
         this.workTimeConfig;
@@ -156,7 +156,7 @@ export default class Timer {
     timeRun() {
         for (let key in this.configBehavior){
             if (this.configBehavior[ key ].hint === "sound"){
-                continue; 
+                continue;
             }
             this.configBehavior[ key ].ball.removeEventListener("mousedown" , this.configBehavior[ key ].handlerMouseDown);
             this.configBehavior[ key ].circleBig.classList.add("deactivate");
@@ -209,7 +209,7 @@ export default class Timer {
         this.flagChangeSetting = true;
         for (let key in this.configBehavior){
             if (this.configBehavior[ key ].hint === "sound"){
-                continue; 
+                continue;
             }
             this.configBehavior[ key ].ball.addEventListener("mousedown" , this.configBehavior[ key ].handlerMouseDown);
             this.configBehavior[ key ].circleBig.classList.remove("deactivate");

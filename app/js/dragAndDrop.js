@@ -54,6 +54,7 @@ export default function transformElementToCircleSlider(config) {
     ball.addEventListener("mousedown" , handlerMouseDown);
 
     //Use function
+
     function handlerMousemove(e) {
         let ball = this;
         let ballCords = {
@@ -118,13 +119,13 @@ export default function transformElementToCircleSlider(config) {
             elem.classList.add(arrNames[ i ]);
         }
     }
-    function calculateValuePosition(angle , radius , maxRange = 100 , hint ,minPosition){
+    function calculateValuePosition(angle , radius , maxRange = 100 , hint , minPosition){
         let lengthCircle = radius * 2 * Math.PI;
         let correctAngle = (angle+ Math.PI/2 ) * 57;
         let lengthArc = (correctAngle * Math.PI * radius)/180;
         let value = Math.round(lengthArc/(lengthCircle/100)) ;
         let resultValue = Math.ceil((value * maxRange) / 100);
-        if(resultValue < minPosition){
+        if (resultValue < minPosition){
             resultValue = minPosition;
         }
         switch (hint) {

@@ -14,6 +14,7 @@ var _Timer = _interopRequireDefault(require("./Timer.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import checkOptions from "./checkOptions.js";
 let configTime = {
   selectorOutputElem: ".timeHidden",
   selectorTargetToPage: ".sliderMinute",
@@ -85,6 +86,15 @@ let configBehavior = {
   bigRest: (0, _dragAndDrop.default)(configBigRest),
   rest: (0, _dragAndDrop.default)(configRest),
   volume: (0, _dragAndDrop.default)(configVolume)
+};
+let configTimeForCheckOptions = {
+  classLabel: "labelTime",
+  classHidden: "timeHidden",
+  classCircleBig: "circleBigTime",
+  classBall: "ballTime",
+  startPosition: "25:00",
+  classOutputElement: "currentSecondsAndMinute",
+  maxRange: 100
 };
 (0, _checkOptionsTime.default)();
 (0, _checkOptionsSound.default)();
