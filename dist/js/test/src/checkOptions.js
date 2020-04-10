@@ -29,9 +29,13 @@ function _default({
       switch (classCircleBig) {
         case "circleBigTime":
           if (period === "Работа") {
-            outputElement.innerHTML = valueFormatting;
-          }
+            outputElement.innerHTML = value;
+          } // parentHeight = labelElement.offsetParent.offsetWidth;
+          // pos = (valueFormatting * parentHeight) - 8 ;
 
+
+          labelElement.style.left = valueFormatting + "%";
+          ;
           break;
 
         case "circleBigRound":
@@ -115,7 +119,7 @@ function _default({
     if (classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound") {
       positionHidden = {
         top: labelElement.offsetTop - 20 + "px",
-        left: labelElement.offsetLeft - 20 + "px"
+        left: labelElement.offsetLeft + 5 + "px"
       };
     } else if (classCircleBig === "circleBigBigRest") {
       positionHidden = {
@@ -125,7 +129,7 @@ function _default({
     } else {
       positionHidden = {
         top: labelElement.offsetTop - 20 + "px",
-        left: labelElement.offsetLeft + 5 + "px"
+        left: labelElement.offsetLeft - 20 + "px"
       };
     }
 
@@ -136,15 +140,14 @@ function _default({
     function handlerMove(e) {
       let top;
       let left;
-      let classSlider = e.target.offsetParent.parentNode.className;
 
-      switch (classSlider) {
-        case "sliderBigRest":
+      switch (classCircleBig) {
+        case "circleBigBigRest":
           top = labelElement.offsetTop - 20 + "px";
           left = labelElement.offsetLeft + "px";
           break;
 
-        case "sliderRest":
+        case "circleBigRest":
           top = labelElement.offsetTop - 20 + "px";
           left = labelElement.offsetLeft - 20 + "px";
           break;

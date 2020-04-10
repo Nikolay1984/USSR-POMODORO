@@ -1,9 +1,12 @@
-export default function ({classLabel , classHidden , classCircleBig , classBall , startPosition , classOutputElement , maxRange}){
+export default function ({
+    classLabel , classHidden , classCircleBig , classBall , startPosition , classOutputElement , maxRange ,
+}){
     function reactionLabelAndOutputElementOnChangeOfHidden(arr){
 
         let outputElement = document.querySelector("." + classOutputElement);
         let value = arr[ 0 ].target.innerText;
-        let valueFormatting = Number(value.slice(0 , 2)) ;
+        let valueFormatting = Number(value.slice(0 , 2));
+
         let period = document.querySelector(".nameCurrentPeriod").innerHTML;
 
         function calcPositionAndChangePos(){
@@ -14,8 +17,11 @@ export default function ({classLabel , classHidden , classCircleBig , classBall 
             switch (classCircleBig) {
                 case "circleBigTime":
                     if (period === "Работа"){
-                        outputElement.innerHTML = valueFormatting;
+                        outputElement.innerHTML = value;
                     }
+                    // parentHeight = labelElement.offsetParent.offsetWidth;
+                    // pos = (valueFormatting * parentHeight) - 8 ;
+                    labelElement.style.left = valueFormatting + "%";;
                     break;
                 case "circleBigRound":
                     parentHeight = labelElement.offsetParent.offsetWidth;
@@ -78,7 +84,8 @@ export default function ({classLabel , classHidden , classCircleBig , classBall 
             ball.style.top = (circleBigHeight - ballHeight)/2 + "px";
             ball.style.left = circleBigHeight - ballHeight+ "px";
 
-        } else if (classCircleBig === "circleBigBigRest" || classCircleBig === "circleBigRest"){
+        }
+        else if (classCircleBig === "circleBigBigRest" || classCircleBig === "circleBigRest"){
             ball.style.top = circleBigHeight - ballHeight + "px";
         }
     }
@@ -89,19 +96,21 @@ export default function ({classLabel , classHidden , classCircleBig , classBall 
         if (classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound"){
             positionHidden = {
                 top  : labelElement.offsetTop - 20 + "px" ,
+                left : labelElement.offsetLeft + 5 + "px" ,
+            };
+        }
+        else if (classCircleBig === "circleBigBigRest"){
+            positionHidden = {
+                top  : labelElement.offsetTop - 20 + "px" ,
+                left : labelElement.offsetLeft + "px" ,
+            };
+        }
+        else {
+            positionHidden = {
+                top  : labelElement.offsetTop - 20 + "px" ,
                 left : labelElement.offsetLeft - 20 + "px" ,
             };
-        }else if (classCircleBig === "circleBigBigRest"){
-                positionHidden = {
-                    top  : labelElement.offsetTop - 20 + "px" ,
-                    left : labelElement.offsetLeft + "px" ,
-                };
-            } else {
-                positionHidden = {
-                    top  : labelElement.offsetTop - 20 + "px" ,
-                    left : labelElement.offsetLeft + 5 + "px" ,
-                };
-            }
+        }
 
 
         elemHidden.style.display = "block";
@@ -111,13 +120,12 @@ export default function ({classLabel , classHidden , classCircleBig , classBall 
         function handlerMove(e) {
             let top;
             let left;
-            let classSlider = e.target.offsetParent.parentNode.className;
-            switch (classSlider) {
-                case "sliderBigRest":
+            switch (classCircleBig) {
+                case "circleBigBigRest":
                     top = labelElement.offsetTop - 20 + "px";
                     left = labelElement.offsetLeft + "px";
                     break;
-                case "sliderRest":
+                case "circleBigRest":
                     top = labelElement.offsetTop - 20 + "px";
                     left = labelElement.offsetLeft - 20 + "px";
                     break;
@@ -126,6 +134,7 @@ export default function ({classLabel , classHidden , classCircleBig , classBall 
                     left = labelElement.offsetLeft + 5 + "px";
                     break;
             }
+
 
             elemHidden.style.top = top;
             elemHidden.style.left = left;

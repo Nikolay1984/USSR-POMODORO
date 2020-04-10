@@ -1,4 +1,4 @@
-export default function transformElementToCircleSlider(config) {
+export default function (config) {
     //Get target objects from page and create new slider elements
 
     let target = document.querySelector(config.selectorTargetToPage);

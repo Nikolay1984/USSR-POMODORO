@@ -148,6 +148,10 @@
      "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 1, "maxBOF": 1 }], //задает колличество переносов строки между кодом
      "no-trailing-spaces":[2],// убирает лишние пробелы в конце строки
      "no-whitespace-before-property":[2],// убирает лишние пробелы после свойств объекта
-     "nonblock-statement-body-position": [2, "beside"]// в утверждениях if, else, while, do-while, and for  ставит в одну строку однострочное тело утверждения
+     "nonblock-statement-body-position": [2, "beside"],// в утверждениях if, else, while, do-while, and for  ставит в одну строку однострочное тело утверждения
+     "object-curly-spacing": [2, "always"], // раставляет пробелы внутри фигурных скобок
+     "padded-blocks": [2, "always"], // ставит перенос строки в начале и конце блока - {}
+     "prefer-exponentiation-operator": [2] // заменяет Math.pow на **
+
     }
 }

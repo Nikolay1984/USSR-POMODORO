@@ -55,6 +55,7 @@
     height: 57px ;
     border: var(--border-style);
     border-radius: 15px;
+    margin: auto;
 }
 .currentCountOfWork
 {

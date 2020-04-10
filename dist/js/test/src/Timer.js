@@ -15,7 +15,8 @@ class Timer {
     this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
     this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
     this._timeController = this._timeController.bind(this);
-    this.configBehavior = configBehavior; // this._buildTimer(config);
+    this.configBehavior = configBehavior;
+    this.buttonStartStop = this.timerDOM.querySelector(".start");
 
     this._configurationButtons();
   }
@@ -165,6 +166,7 @@ class Timer {
   }
 
   timeRun() {
+    //делаем неактивными крутилки как только нажали на старт
     for (let key in this.configBehavior) {
       if (this.configBehavior[key].hint === "sound") {
         continue;
@@ -172,19 +174,22 @@ class Timer {
 
       this.configBehavior[key].ball.removeEventListener("mousedown", this.configBehavior[key].handlerMouseDown);
       this.configBehavior[key].circleBig.classList.add("deactivate");
-    }
+    } //--------------------------------------------
+    // настройка таймера
 
-    let buttonStartStop = this.timerDOM.querySelector(".start");
-    buttonStartStop.innerHTML = "СТОП";
-    let config;
+
+    let config; // flagChangeSetting - смотри за тем когда мы нажали сбросить и собирает настройки с крутилок, в стопе ставиться в тру и сюда тогда не попадает
 
     if (!this.flagChangeSetting) {
       config = this._getWorkTimeConfig();
       this.workTimeConfig = config;
     } else {
-      let currentConfig = this._getWorkTimeConfig();
+      let currentConfig = this._getWorkTimeConfig(); // текущие значения с крутилок
 
-      let cloneConfig = this.workTimeConfig.cloneConfig;
+
+      let cloneConfig = this.workTimeConfig.cloneConfig; // старые значения клона
+      //удаляем те настройки которые не поменялись, кроме клона - он всегда не будет равен и попадет в currentConfig
+      //______________________________________________________
 
       for (let key in currentConfig) {
         if (currentConfig[key] == cloneConfig[key]) {
@@ -196,16 +201,16 @@ class Timer {
         if (currentConfig[key]) {
           this.workTimeConfig[key] = currentConfig[key];
 
-          if (key == "minuteOfWork" || key == "minuteOfRest" || key == "minuteOfBigRest") {
+          if (key == "minuteOfWork" || key == "minuteOfRest" && this.workTimeConfig.hint == "rest" || key == "minuteOfBigRest" && this.workTimeConfig.hint == "bigRest") {
             this.workTimeConfig.seconds = 0;
           }
         }
       }
 
       config = this.workTimeConfig;
-    }
+      console.dir(config.hint);
+    } //запуск настроенного таймера
 
-    this.onTimer = true;
 
     let handlerSetInterval = function () {
       this._timeController(config);
@@ -213,6 +218,8 @@ class Timer {
 
     handlerSetInterval = handlerSetInterval.bind(this);
     this.timerId = setInterval(handlerSetInterval, 100);
+    this.buttonStartStop.innerHTML = "СТОП";
+    this.onTimer = true;
   }
 
   stopTimeRun() {
@@ -227,10 +234,9 @@ class Timer {
       this.configBehavior[key].circleBig.classList.remove("deactivate");
     }
 
-    let buttonStartStop = this.timerDOM.querySelector(".start");
     this.onTimer = false;
     clearInterval(this.timerId);
-    buttonStartStop.innerHTML = "СТАРТ";
+    this.buttonStartStop.innerHTML = "СТАРТ";
   }
 
   resetTimer() {
@@ -294,9 +300,8 @@ class Timer {
 
   _configurationButtons() {
     let self = this;
-    let buttonStartStop = this.timerDOM.querySelector(".start");
     let buttonReset = this.timerDOM.querySelector(".reset");
-    buttonStartStop.addEventListener("click", function (event) {
+    this.buttonStartStop.addEventListener("click", function (event) {
       if (self.onTimer) {
         self.stopTimeRun();
       } else {

@@ -3,9 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = transformElementToCircleSlider;
+exports.default = _default;
 
-function transformElementToCircleSlider(config) {
+function _default(config) {
   //Get target objects from page and create new slider elements
   let target = document.querySelector(config.selectorTargetToPage);
   let outputElem = document.querySelector(config.selectorOutputElem);
