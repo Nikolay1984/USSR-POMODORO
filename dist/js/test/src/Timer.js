@@ -201,7 +201,7 @@ class Timer {
         if (currentConfig[key]) {
           this.workTimeConfig[key] = currentConfig[key];
 
-          if (key == "minuteOfWork" || key == "minuteOfRest" && this.workTimeConfig.hint == "rest" || key == "minuteOfBigRest" && this.workTimeConfig.hint == "bigRest") {
+          if (key == "minuteOfWork" && this.workTimeConfig.hint == "work" || key == "minuteOfRest" && this.workTimeConfig.hint == "rest" || key == "minuteOfBigRest" && this.workTimeConfig.hint == "bigRest") {
             this.workTimeConfig.seconds = 0;
           }
         }
@@ -256,11 +256,7 @@ class Timer {
     let minuteOfWork = Number(this.timerDOM.querySelector(".timeHidden").innerHTML.slice(0, 2));
     let valueRest = Number(this.timerDOM.querySelector(".roundHidden").innerHTML);
     let minuteOfRest = Number(this.timerDOM.querySelector(".restHidden").innerHTML);
-    let minuteOfBigRest = Number(this.timerDOM.querySelector(".bigRestHidden").innerHTML); // let seconds = Number(this.timerDOM
-    //     .querySelector(".currentSecondsAndMinute")
-    //     .innerHTML
-    //     .slice(3 , 5));
-
+    let minuteOfBigRest = Number(this.timerDOM.querySelector(".bigRestHidden").innerHTML);
     let nameCurrentPeriodValue = this.timerDOM.querySelector(".nameCurrentPeriod").innerHTML;
     let hint;
 

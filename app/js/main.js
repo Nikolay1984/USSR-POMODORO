@@ -1,10 +1,7 @@
 import checkOptions from "./checkOptions.js";
 import transformElementToCircleSlider from "./dragAndDrop.js";
-// import checkOptionsSound from "./checkOptionsSound.js";
-// import checkOptionsRest from "./checkOptionsRest.js";
+import checkOptionsSound from "./checkOptionsSound.js";
 
-// import checkOptionsRound from "./checkOptionsRound.js";
-// import checkOptionsTime from "./checkOptionsTime.js";
 
 import Timer from "./Timer.js";
 
@@ -130,12 +127,9 @@ checkOptions(configRoundForCheckOptions);
 checkOptions(configRestForCheckOptions);
 checkOptions(configTimeForCheckOptions);
 checkOptions(configBigRestForCheckOptions);
-// checkOptionsTime();
 
-// checkOptionsSound();
-// checkOptionsRest();
+checkOptionsSound();
 
-// checkOptionsRound();
 
 let timer = new Timer("timerPomodoro" , configBehavior);
 

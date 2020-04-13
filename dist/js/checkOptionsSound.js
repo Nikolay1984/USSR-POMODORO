@@ -1,6 +1,15 @@
 export default function () {
     let checkBeep = document.querySelector(".checkBeep");
     let checkAlarm = document.querySelector(".checkAlarm");
+    let ballVolume = document.querySelector(".ballVolume");
+    let circleBigVolume = document.querySelector(".circleBigVolume");
+
+    let circleBigHeight = circleBigVolume.offsetHeight;
+    let ballHeight = ballVolume.offsetHeight;
+
+    ballVolume.style.top = 0;
+    ballVolume.style.left = (circleBigHeight/2) - (ballHeight/2) + "px";
+
 
     checkBeep.addEventListener("click" , handlerClick);
     checkAlarm.addEventListener("click" , handlerClick);
@@ -16,12 +25,16 @@ export default function () {
         }
 
         let currentTarget = e.currentTarget;
+
+       let targetAudioElem = target.children[0];
         let activeElem = currentTarget.querySelector(".checkSoundInputActive");
 
         activeElem.classList.remove("checkSoundInputActive");
         // console.dir(activeElem);
 
 		 target.classList.add("checkSoundInputActive");
+        targetAudioElem.play();
 
     }
+
 }

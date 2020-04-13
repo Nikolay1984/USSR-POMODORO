@@ -4,14 +4,12 @@ var _checkOptions = _interopRequireDefault(require("./checkOptions.js"));
 
 var _dragAndDrop = _interopRequireDefault(require("./dragAndDrop.js"));
 
+var _checkOptionsSound = _interopRequireDefault(require("./checkOptionsSound.js"));
+
 var _Timer = _interopRequireDefault(require("./Timer.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import checkOptionsSound from "./checkOptionsSound.js";
-// import checkOptionsRest from "./checkOptionsRest.js";
-// import checkOptionsRound from "./checkOptionsRound.js";
-// import checkOptionsTime from "./checkOptionsTime.js";
 let configTime = {
   selectorOutputElem: ".timeHidden",
   selectorTargetToPage: ".sliderMinute",
@@ -123,9 +121,6 @@ let configRoundForCheckOptions = {
 (0, _checkOptions.default)(configRoundForCheckOptions);
 (0, _checkOptions.default)(configRestForCheckOptions);
 (0, _checkOptions.default)(configTimeForCheckOptions);
-(0, _checkOptions.default)(configBigRestForCheckOptions); // checkOptionsTime();
-// checkOptionsSound();
-// checkOptionsRest();
-// checkOptionsRound();
-
+(0, _checkOptions.default)(configBigRestForCheckOptions);
+(0, _checkOptionsSound.default)();
 let timer = new _Timer.default("timerPomodoro", configBehavior);

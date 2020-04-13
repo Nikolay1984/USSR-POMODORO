@@ -22,7 +22,6 @@
      "ObjectExpression":"first"
     }
     ],
-    "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],
     "semi": [2, "always",{"omitLastInOneLineBlock": false}],
     "comma-spacing":[ 2,{ "before": true, "after": true }],
     "strict": [2, "global"],
@@ -151,7 +150,24 @@
      "nonblock-statement-body-position": [2, "beside"],// в утверждениях if, else, while, do-while, and for  ставит в одну строку однострочное тело утверждения
      "object-curly-spacing": [2, "always"], // раставляет пробелы внутри фигурных скобок
      "padded-blocks": [2, "always"], // ставит перенос строки в начале и конце блока - {}
-     "prefer-exponentiation-operator": [2] // заменяет Math.pow на **
+     "prefer-exponentiation-operator": [2], // заменяет Math.pow на **
+     "padding-line-between-statements": [
+      2,
+      { "blankLine": "always" , "prev": "block", "next": "*" },
+      { "blankLine": "always" , "prev": "block-like", "next": "*" },
+      { "blankLine": "always" , "prev": "class", "next": "*" },
+      { "blankLine": "any" , "prev": "class", "next": "*" },
+      { "blankLine": "any" , "prev": "class", "next": "function" },
+      { "blankLine": "any" , "prev": "const", "next": "*" },
+      { "blankLine": "always" , "prev": "directive", "next": "*" },
+      { "blankLine": "always" , "prev": "for", "next": "*" },
+      { "blankLine": "any" , "prev": "function", "next": "*" },
+      { "blankLine": "any" , "prev": "import", "next": "*" },
+      { "blankLine": "any" , "prev": "let", "next": "*" },
+      { "blankLine": "always" , "prev": "throw", "next": "*" },
+      { "blankLine": "any" , "prev": "var", "next": "*" }
+     ], // раставляет пустые строки между разными statements и expresions
+     "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],//все ковычки заменяет на двойные за исключением `
 
     }
 }
