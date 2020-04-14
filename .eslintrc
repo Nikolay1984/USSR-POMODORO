@@ -22,7 +22,6 @@
      "ObjectExpression":"first"
     }
     ],
-    "semi": [2, "always",{"omitLastInOneLineBlock": false}],
     "comma-spacing":[ 2,{ "before": true, "after": true }],
     "strict": [2, "global"],
     "for-direction": [2], //смотрет что бы мы не свалились в вечный цикл в fore
@@ -168,6 +167,12 @@
       { "blankLine": "any" , "prev": "var", "next": "*" }
      ], // раставляет пустые строки между разными statements и expresions
      "quotes": [2, "double", { "avoidEscape": true,"allowTemplateLiterals": true }],//все ковычки заменяет на двойные за исключением `
+     "semi": [2, "always"], //ставит точку с запятой после всех утрверждений
+     "semi-spacing": [2, { "before": false, "after": true }], // устанваливает пробелы после точки запятой
+     "semi-style": [2, "last"], // ставит точку с запятой в начале строки
+     "space-before-blocks": [2], // статвит пробелы между {} и всеми конструкциями кроме keywords
+     "space-in-parens": [2, "always"], // добавляет пробелы внутри круглых скобочек
+     "space-infix-ops": [2] // устанавливает пробелы вокруг операторов
 
     }
 }

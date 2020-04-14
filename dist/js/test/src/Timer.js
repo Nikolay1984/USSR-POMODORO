@@ -19,6 +19,8 @@ class Timer {
     this.buttonStartStop = this.timerDOM.querySelector(".start");
 
     this._configurationButtons();
+
+    this.beepElementParent = document.querySelector(".checkBeep");
   }
 
   _drawDisplayTimer(stringSecondAndMinute) {
@@ -167,6 +169,10 @@ class Timer {
 
   timeRun() {
     //делаем неактивными крутилки как только нажали на старт
+    let activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
+    activeSoundElement.children[0].loop = true;
+    activeSoundElement.children[0].play();
+
     for (let key in this.configBehavior) {
       if (this.configBehavior[key].hint === "sound") {
         continue;
@@ -219,10 +225,15 @@ class Timer {
     handlerSetInterval = handlerSetInterval.bind(this);
     this.timerId = setInterval(handlerSetInterval, 100);
     this.buttonStartStop.innerHTML = "СТОП";
+    this.buttonStartStop.classList.add(".timerRun");
     this.onTimer = true;
   }
 
   stopTimeRun() {
+    let activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
+    activeSoundElement.children[0].loop = false;
+    activeSoundElement.children[0].pause();
+    activeSoundElement.children[0].currentTime = 0;
     this.flagChangeSetting = true;
 
     for (let key in this.configBehavior) {
@@ -237,6 +248,7 @@ class Timer {
     this.onTimer = false;
     clearInterval(this.timerId);
     this.buttonStartStop.innerHTML = "СТАРТ";
+    this.buttonStartStop.classList.remove(".timerRun");
   }
 
   resetTimer() {

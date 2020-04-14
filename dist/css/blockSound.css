@@ -20,8 +20,7 @@
     border: 1px solid black;
     margin-right: 15px;
 }
-
-.currentVolume{
+.currentVolume, .currentVolumeDb{
     font-size: 50px;
 }
 .controlVolume{
@@ -69,6 +68,7 @@
     justify-content: space-around;
 }
 .onOffSound {
+    width: 100%;
     font-size: 25px;
     border-radius: 10px;
     background-color: red;

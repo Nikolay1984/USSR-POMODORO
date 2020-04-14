@@ -77,11 +77,11 @@ let configVolume = {
 };
 
 let configBehavior = {
-    time    : transformElementToCircleSlider(configTime) ,
-    round   : transformElementToCircleSlider(configRound) ,
-    bigRest : transformElementToCircleSlider(configBigRest) ,
-    rest    : transformElementToCircleSlider(configRest) ,
-    volume  : transformElementToCircleSlider(configVolume) ,
+    time    : transformElementToCircleSlider( configTime ) ,
+    round   : transformElementToCircleSlider( configRound ) ,
+    bigRest : transformElementToCircleSlider( configBigRest ) ,
+    rest    : transformElementToCircleSlider( configRest ) ,
+    volume  : transformElementToCircleSlider( configVolume ) ,
 };
 
 let configTimeForCheckOptions = {
@@ -123,13 +123,13 @@ let configRoundForCheckOptions = {
     classOutputElement : "currentCountOfWork" ,
     maxRange           : 15 ,
 };
-checkOptions(configRoundForCheckOptions);
-checkOptions(configRestForCheckOptions);
-checkOptions(configTimeForCheckOptions);
-checkOptions(configBigRestForCheckOptions);
+checkOptions( configRoundForCheckOptions );
+checkOptions( configRestForCheckOptions );
+checkOptions( configTimeForCheckOptions );
+checkOptions( configBigRestForCheckOptions );
 
-checkOptionsSound();
+checkOptionsSound(configBehavior.volume);
 
 
-let timer = new Timer("timerPomodoro" , configBehavior);
+let timer = new Timer( "timerPomodoro" , configBehavior );
 

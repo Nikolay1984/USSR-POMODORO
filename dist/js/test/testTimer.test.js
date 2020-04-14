@@ -1,35 +1,41 @@
-let assert = require("chai").assert;
-let expect = require("chai").expect;
-let Timer = require("./src/Timer.js");
-require("jsdom-global")();
-require("geteventlisteners")();
+let assert = require( "chai" ).assert;
+let expect = require( "chai" ).expect;
+let Timer = require( "./src/Timer.js" );
+require( "jsdom-global" )();
+require( "geteventlisteners" )();
 
 
-describe("class Timer" , function() {
+describe( "class Timer" , function() {
+
     let instTimer ,
-        timerDomElement ;
+        timerDomElement;
 
-    describe("testing of constructor Timer" , function(){
-        beforeEach(function () {
-            timerDomElement = document.createElement("button");
-            timerDomElement.classList.add("displayTimer");
-            document.body.append(timerDomElement);
+    describe( "testing of constructor Timer" , function() {
+
+        beforeEach( function () {
+
+            timerDomElement = document.createElement( "button" );
+            timerDomElement.classList.add( "displayTimer" );
+            document.body.append( timerDomElement );
             instTimer = new Timer();
-        });
-        afterEach(function () {
+
+        } );
+        afterEach( function () {
+
             instTimer = null;
-            timerDomElement.parentNode.removeChild(timerDomElement);
+            timerDomElement.parentNode.removeChild( timerDomElement );
             timerDomElement = null;
-        });
 
-        it("create work instance" , function(){
+        } );
 
-            assert.typeOf(instTimer , "object");
+        it( "create work instance" , function() {
 
-        });
+            assert.typeOf( instTimer , "object" );
 
-
-    });
+        } );
 
 
-});
+    } );
+
+
+} );

@@ -35,7 +35,6 @@ function _default({
 
 
           labelElement.style.left = valueFormatting + "%";
-          ;
           break;
 
         case "circleBigRound":

@@ -1,175 +1,220 @@
-export default function ({
-	classLabel , classHidden , classCircleBig , classBall , startPosition , classOutputElement , maxRange
-}) {
-	function reactionLabelAndOutputElementOnChangeOfHidden(arr) {
+export default function ( {
+    classLabel , classHidden , classCircleBig , classBall , startPosition , classOutputElement , maxRange ,
+} ) {
 
-		let outputElement = document.querySelector("." + classOutputElement);
+    function reactionLabelAndOutputElementOnChangeOfHidden( arr ) {
 
-		let value = arr[0].target.innerText;
-		let valueFormatting = Number(value.slice(0 , 2));
+        let outputElement = document.querySelector( "." + classOutputElement );
 
-		let period = document.querySelector(".nameCurrentPeriod").innerHTML;
+        let value = arr[ 0 ].target.innerText;
+        let valueFormatting = Number( value.slice( 0 , 2 ) );
 
-		function calcPositionAndChangePos() {
-			let pos;
-			let lengthRange;
-			let offset;
-			let parentHeight;
-			switch (classCircleBig) {
-			case "circleBigTime":
-				if (period === "Работа") {
-					outputElement.innerHTML = value;
-				}
-				// parentHeight = labelElement.offsetParent.offsetWidth;
-				// pos = (valueFormatting * parentHeight) - 8 ;
-				labelElement.style.left = valueFormatting + "%";
-				;
-				break;
-			case "circleBigRound":
-				parentHeight = labelElement.offsetParent.offsetWidth;
-				pos = ((valueFormatting * parentHeight) / 15) - 8;
+        let period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
 
-				if (pos <= 1) {
-					pos = 0;
-				}
+        function calcPositionAndChangePos() {
 
-				labelElement.style.left = pos + "px";
-				outputElement.innerHTML = valueFormatting;
-				break;
-			case "circleBigBigRest":
-				parentHeight = labelElement.offsetParent.offsetHeight;
-				if (period === "Перерыв") {
-					let out = valueFormatting;
-					if (valueFormatting < 10) {
+            let pos;
+            let lengthRange;
+            let offset;
+            let parentHeight;
+            switch ( classCircleBig ) {
 
-						out = "0" + valueFormatting;
-					}
-					outputElement.innerHTML = out + ":00";
-				}
-				lengthRange = parentHeight - ((parentHeight * 6) / 100);
-				offset = ((parentHeight * 3) / 100);
-				pos = (valueFormatting * lengthRange / maxRange) - offset;
-				if (pos <= 1) {
-					pos = offset;
-				}
+                case "circleBigTime":
+                    if ( period === "Работа" ) {
 
-				labelElement.style.top = pos + "px";
-				break;
-			case "circleBigRest":
-				parentHeight = labelElement.offsetParent.offsetHeight;
-				if (period === "Перемена") {
-					let out = valueFormatting;
-					if (valueFormatting < 10) {
+                        outputElement.innerHTML = value;
 
-						out = "0" + valueFormatting;
-					}
-					outputElement.innerHTML = out + ":00";
-				}
-				lengthRange = parentHeight - ((parentHeight * 6) / 100);
-				offset = ((parentHeight * 3) / 100);
-				pos = (valueFormatting * lengthRange / maxRange) - offset;
-				if (pos <= 1) {
-					pos = offset;
-				}
+                    }
 
-				labelElement.style.top = pos + "px";
-				break;
-			}
+                    // parentHeight = labelElement.offsetParent.offsetWidth;
+                    // pos = (valueFormatting * parentHeight) - 8 ;
 
-		}
+                    labelElement.style.left = valueFormatting + "%";
 
-		calcPositionAndChangePos();
+                    break;
+                case "circleBigRound":
+                    parentHeight = labelElement.offsetParent.offsetWidth;
+                    pos = ( ( valueFormatting * parentHeight ) / 15 ) - 8;
 
+                    if ( pos <= 1 ) {
 
-	}
+                        pos = 0;
 
-	function positioningBall() {
-		if (classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound") {
-			ball.style.top = (circleBigHeight - ballHeight) / 2 + "px";
-			ball.style.left = circleBigHeight - ballHeight + "px";
+                    }
 
-		} else if (classCircleBig === "circleBigBigRest" || classCircleBig === "circleBigRest") {
-			ball.style.top = circleBigHeight - ballHeight + "px";
-		}
-	}
+                    labelElement.style.left = pos + "px";
+                    outputElement.innerHTML = valueFormatting;
+                    break;
+                case "circleBigBigRest":
+                    parentHeight = labelElement.offsetParent.offsetHeight;
+                    if ( period === "Перерыв" ) {
 
-	function handlerMouseDown() {
-		let positionHidden;
-		let self = this;
-		if (classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound") {
-			positionHidden = {
-				top: labelElement.offsetTop - 20 + "px" ,
-				left: labelElement.offsetLeft + 5 + "px" ,
-			};
-		} else if (classCircleBig === "circleBigBigRest") {
-			positionHidden = {
-				top: labelElement.offsetTop - 20 + "px" ,
-				left: labelElement.offsetLeft + "px" ,
-			};
-		} else {
-			positionHidden = {
-				top: labelElement.offsetTop - 20 + "px" ,
-				left: labelElement.offsetLeft - 20 + "px" ,
-			};
-		}
+                        let out = valueFormatting;
+                        if ( valueFormatting < 10 ) {
+
+                            out = "0" + valueFormatting;
+
+                        }
+
+                        outputElement.innerHTML = out + ":00";
+
+                    }
+
+                    lengthRange = parentHeight - ( ( parentHeight * 6 ) / 100 );
+                    offset = ( ( parentHeight * 3 ) / 100 );
+                    pos = ( valueFormatting * lengthRange / maxRange ) - offset;
+                    if ( pos <= 1 ) {
+
+                        pos = offset;
+
+                    }
+
+                    labelElement.style.top = pos + "px";
+                    break;
+                case "circleBigRest":
+                    parentHeight = labelElement.offsetParent.offsetHeight;
+                    if ( period === "Перемена" ) {
+
+                        let out = valueFormatting;
+                        if ( valueFormatting < 10 ) {
+
+                            out = "0" + valueFormatting;
+
+                        }
+
+                        outputElement.innerHTML = out + ":00";
+
+                    }
+
+                    lengthRange = parentHeight - ( ( parentHeight * 6 ) / 100 );
+                    offset = ( ( parentHeight * 3 ) / 100 );
+                    pos = ( valueFormatting * lengthRange / maxRange ) - offset;
+                    if ( pos <= 1 ) {
+
+                        pos = offset;
+
+                    }
+
+                    labelElement.style.top = pos + "px";
+                    break;
+
+            }
+
+        }
+
+        calcPositionAndChangePos();
 
 
-		elemHidden.style.display = "block";
-		elemHidden.style.top = positionHidden.top;
-		elemHidden.style.left = positionHidden.left;
+    }
 
-		function handlerMove(e) {
-			let top;
-			let left;
-			switch (classCircleBig) {
-			case "circleBigBigRest":
-				top = labelElement.offsetTop - 20 + "px";
-				left = labelElement.offsetLeft + "px";
-				break;
-			case "circleBigRest":
-				top = labelElement.offsetTop - 20 + "px";
-				left = labelElement.offsetLeft - 20 + "px";
-				break;
-			default:
-				top = labelElement.offsetTop - 20 + "px";
-				left = labelElement.offsetLeft + 5 + "px";
-				break;
-			}
+    function positioningBall() {
+
+        if ( classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound" ) {
+
+            ball.style.top = ( circleBigHeight - ballHeight ) / 2 + "px";
+            ball.style.left = circleBigHeight - ballHeight + "px";
+
+        }
+        else if ( classCircleBig === "circleBigBigRest" || classCircleBig === "circleBigRest" ) {
+
+            ball.style.top = circleBigHeight - ballHeight + "px";
+
+        }
+
+    }
+
+    function handlerMouseDown() {
+
+        let positionHidden;
+        let self = this;
+        if ( classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound" ) {
+
+            positionHidden = {
+                top  : labelElement.offsetTop - 20 + "px" ,
+                left : labelElement.offsetLeft + 5 + "px" ,
+            };
+
+        }
+        else if ( classCircleBig === "circleBigBigRest" ) {
+
+            positionHidden = {
+                top  : labelElement.offsetTop - 20 + "px" ,
+                left : labelElement.offsetLeft + "px" ,
+            };
+
+        }
+        else {
+
+            positionHidden = {
+                top  : labelElement.offsetTop - 20 + "px" ,
+                left : labelElement.offsetLeft - 20 + "px" ,
+            };
+
+        }
 
 
-			elemHidden.style.top = top;
-			elemHidden.style.left = left;
+        elemHidden.style.display = "block";
+        elemHidden.style.top = positionHidden.top;
+        elemHidden.style.left = positionHidden.left;
 
-		}
+        function handlerMove( e ) {
 
-		document.addEventListener("mousemove" , handlerMove);
+            let top;
+            let left;
+            switch ( classCircleBig ) {
 
-		document.addEventListener("mouseup" , function () {
-			document.removeEventListener("mousemove" , handlerMove);
-			elemHidden.style.display = "none";
-		} , {
-			once: true ,
-		});
-	}
+                case "circleBigBigRest":
+                    top = labelElement.offsetTop - 20 + "px";
+                    left = labelElement.offsetLeft + "px";
+                    break;
+                case "circleBigRest":
+                    top = labelElement.offsetTop - 20 + "px";
+                    left = labelElement.offsetLeft - 20 + "px";
+                    break;
+                default:
+                    top = labelElement.offsetTop - 20 + "px";
+                    left = labelElement.offsetLeft + 5 + "px";
+                    break;
+
+            }
 
 
-	let labelElement = document.querySelector("." + classLabel);
-	let elemHidden = document.querySelector("." + classHidden);
-	let circleBig = document.querySelector("." + classCircleBig);
-	let ball = document.querySelector("." + classBall);
-	let ballHeight = ball.offsetHeight;
-	let circleBigHeight = circleBig.offsetHeight;
-	let observeOfHidden = new MutationObserver(reactionLabelAndOutputElementOnChangeOfHidden);
-	let configMutationObserver = {
-		childList: true ,
-		characterData: true ,
-	};
+            elemHidden.style.top = top;
+            elemHidden.style.left = left;
 
-	observeOfHidden.observe(elemHidden , configMutationObserver);
-	positioningBall();
-	ball.addEventListener("mousedown" , handlerMouseDown);
+        }
 
-	elemHidden.innerHTML = startPosition;
+        document.addEventListener( "mousemove" , handlerMove );
+
+        document.addEventListener( "mouseup" , function () {
+
+            document.removeEventListener( "mousemove" , handlerMove );
+            elemHidden.style.display = "none";
+
+        } , {
+            once: true ,
+        } );
+
+    }
+
+
+    let labelElement = document.querySelector( "." + classLabel );
+    let elemHidden = document.querySelector( "." + classHidden );
+    let circleBig = document.querySelector( "." + classCircleBig );
+    let ball = document.querySelector( "." + classBall );
+    let ballHeight = ball.offsetHeight;
+    let circleBigHeight = circleBig.offsetHeight;
+    let observeOfHidden = new MutationObserver( reactionLabelAndOutputElementOnChangeOfHidden );
+    let configMutationObserver = {
+        childList     : true ,
+        characterData : true ,
+    };
+
+    observeOfHidden.observe( elemHidden , configMutationObserver );
+    positioningBall();
+    ball.addEventListener( "mousedown" , handlerMouseDown );
+
+    elemHidden.innerHTML = startPosition;
 
 
 }

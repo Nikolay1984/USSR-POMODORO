@@ -106,7 +106,7 @@
 
             <div class="wrapperDisplayVolume">
 
-                <div class="displayVolume"><span class="currentVolume">99</span><span class="currentVolume">:dB</span></div>
+                <div class="displayVolume"><span class="currentVolume">99</span><span class="currentVolumeDb">:dB</span></div>
 
                 <div class="controlVolume">
                     <div class="sliderVolume"></div>
@@ -145,15 +145,31 @@
 
                 <div class="wrapperCheckAlarm">
                     <div class="checkAlarm">
-                        <div class="checkSoundInput checkSoundInputActive"></div>
-                        <div class="checkSoundInput"></div>
-                        <div class="checkSoundInput"></div>
-                        <div class="checkSoundInput"></div>
+                        <div class="checkSoundInput checkSoundInputActive">
+                            <audio class="alarm1">
+                                <source src="./src/sound/alarm1.mp3" type="audio/mp3">
+                            </audio>
+                        </div>
+                        <div class="checkSoundInput">
+                            <audio class="alarm2">
+                                <source src="./src/sound/alarm2.mp3" type="audio/mp3">
+                            </audio>
+                        </div>
+                        <div class="checkSoundInput">
+                            <audio class="alarm3">
+                                <source src="./src/sound/alarm3.mp3" type="audio/mp3">
+                            </audio>
+                        </div>
+                        <div class="checkSoundInput">
+                            <audio class="alarm4">
+                                <source src="./src/sound/alarm4.mp3" type="audio/mp3">
+                            </audio>
+                        </div>
                     </div>
                     <span class="nameCheckAlarm">выбор сигнала будильника</span>
                 </div>
 
-                <button class="onOffSound">ВКЛ/ВЫКЛ ЗВУК</button>
+                <button class="onOffSound">ВЫКЛ ЗВУК</button>
 
             </div>
 

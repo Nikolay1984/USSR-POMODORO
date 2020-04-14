@@ -1,4 +1,3 @@
-"use strict";
 
 // var fs = require("fs");
 // // console.log(process.env);
@@ -10,10 +9,13 @@
 // }
 // bla();
 //
-var server = require("http").Server();
 
-server.listen(8008, "127.0.0.1");
-server.on("request", function (req, resp) {
-  console.log("123");
-  resp.end("5");
-});
+var server = require( "http" ).Server();
+
+server.listen( 8008 , "127.0.0.1" );
+server.on( "request" , function ( req , resp ) {
+
+    console.log( "123" );
+    resp.end( "5" );
+
+} );

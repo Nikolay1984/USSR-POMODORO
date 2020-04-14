@@ -122,5 +122,5 @@ let configRoundForCheckOptions = {
 (0, _checkOptions.default)(configRestForCheckOptions);
 (0, _checkOptions.default)(configTimeForCheckOptions);
 (0, _checkOptions.default)(configBigRestForCheckOptions);
-(0, _checkOptionsSound.default)();
+(0, _checkOptionsSound.default)(configBehavior.volume);
 let timer = new _Timer.default("timerPomodoro", configBehavior);
