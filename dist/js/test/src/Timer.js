@@ -21,45 +21,46 @@ class Timer {
     this._configurationButtons();
 
     this.beepElementParent = document.querySelector(".checkBeep");
+    this.alarmElementParent = document.querySelector(".checkAlarm");
+    this.displaySecondsAndMinuteDiv = this.timerDOM.querySelector(".currentSecondsAndMinute");
+    this.displayCountOfWorkDiv = this.timerDOM.querySelector(".currentCountOfWork");
+    this.nameCurrentPeriod = this.timerDOM.querySelector(".nameCurrentPeriod");
   }
 
   _drawDisplayTimer(stringSecondAndMinute) {
-    let timerDOM = this.timerDOM;
-    let displaySecondsAndMinuteDiv = timerDOM.querySelector(".currentSecondsAndMinute");
-    let displayCountOfWorkDiv = timerDOM.querySelector(".currentCountOfWork");
-    let nameCurrentPeriod = timerDOM.querySelector(".nameCurrentPeriod");
-    let period;
+    let currentValuePeriod = this.nameCurrentPeriod.innerHTML === "Работа" ? "work" : this.nameCurrentPeriod.innerHTML === "Перемена" ? "rest" : "bigRest";
     let numberOfWork;
     let numberOfRest = this.workTimeConfig.countOfRest;
 
     if (numberOfRest === 0) {
       numberOfWork = "Последний";
-      displayCountOfWorkDiv.classList.add("lastWork");
+      this.displayCountOfWorkDiv.classList.add("lastWork");
     } else {
       numberOfWork = this.workTimeConfig.countOfRest;
-      displayCountOfWorkDiv.classList.remove("lastWork");
+      this.displayCountOfWorkDiv.classList.remove("lastWork");
     }
 
-    switch (this.workTimeConfig.hint) {
-      case "work":
-        displayCountOfWorkDiv.classList.remove("styleRest");
-        period = "Работа";
-        break;
+    if (this.workTimeConfig.hint !== currentValuePeriod) {
+      switch (this.workTimeConfig.hint) {
+        case "work":
+          this.displayCountOfWorkDiv.classList.remove("styleRest");
+          this.nameCurrentPeriod.innerHTML = "Работа";
+          break;
 
-      case "rest":
-        displayCountOfWorkDiv.classList.add("styleRest");
-        period = "Перемена";
-        break;
+        case "rest":
+          this.displayCountOfWorkDiv.classList.add("styleRest");
+          this.nameCurrentPeriod.innerHTML = "Перемена";
+          break;
 
-      case "bigRest":
-        displayCountOfWorkDiv.classList.add("styleRest");
-        period = "Перерыв";
-        break;
+        case "bigRest":
+          this.displayCountOfWorkDiv.classList.add("styleRest");
+          this.nameCurrentPeriod.innerHTML = "Перерыв";
+          break;
+      }
     }
 
-    displaySecondsAndMinuteDiv.innerHTML = stringSecondAndMinute;
-    nameCurrentPeriod.innerHTML = period;
-    displayCountOfWorkDiv.innerHTML = numberOfWork;
+    this.displaySecondsAndMinuteDiv.innerHTML = stringSecondAndMinute;
+    this.displayCountOfWorkDiv.innerHTML = numberOfWork;
   }
 
   _createStringForDisplayTimer(minute) {
@@ -107,8 +108,7 @@ class Timer {
 
           configOfTimer.countOfRest--;
           configOfTimer.hint = "rest";
-          configOfTimer.seconds = 61; //TODO
-
+          configOfTimer.seconds = 61;
           configOfTimer.minuteOfWork = configOfTimer.cloneConfig.minuteOfWork;
           return;
         }
@@ -168,10 +168,10 @@ class Timer {
   }
 
   timeRun() {
-    //делаем неактивными крутилки как только нажали на старт
+    //запускаем бип при старте
     let activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
     activeSoundElement.children[0].loop = true;
-    activeSoundElement.children[0].play();
+    activeSoundElement.children[0].play(); //делаем неактивными крутилки как только нажали на старт
 
     for (let key in this.configBehavior) {
       if (this.configBehavior[key].hint === "sound") {
@@ -214,7 +214,6 @@ class Timer {
       }
 
       config = this.workTimeConfig;
-      console.dir(config.hint);
     } //запуск настроенного таймера
 
 
@@ -230,10 +229,13 @@ class Timer {
   }
 
   stopTimeRun() {
-    let activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
-    activeSoundElement.children[0].loop = false;
-    activeSoundElement.children[0].pause();
-    activeSoundElement.children[0].currentTime = 0;
+    let activeBeep = this.beepElementParent.querySelector(".checkSoundInputActive").children[0];
+    let activeAlarm = this.alarmElementParent.querySelector(".checkSoundInputActive").children[0];
+    activeBeep.loop = false;
+    activeBeep.pause();
+    activeBeep.currentTime = 0;
+    activeAlarm.pause();
+    activeAlarm.currentTime = 0;
     this.flagChangeSetting = true;
 
     for (let key in this.configBehavior) {
@@ -252,8 +254,7 @@ class Timer {
   }
 
   resetTimer() {
-    let nameCurrentPeriod = document.querySelector(".nameCurrentPeriod");
-    nameCurrentPeriod.innerHTML = "Работа";
+    this.nameCurrentPeriod.innerHTML = "Работа";
     this.flagChangeSetting = false;
     this.onTimer = false;
     clearInterval(this.timerId);
@@ -262,6 +263,8 @@ class Timer {
     let timeString = this._createStringForDisplayTimer(this.workTimeConfig.minuteOfWork);
 
     this._drawDisplayTimer(timeString);
+
+    this.buttonStartStop.classList.remove(".timerRun");
   }
 
   _getWorkTimeConfig() {

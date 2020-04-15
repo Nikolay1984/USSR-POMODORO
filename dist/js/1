@@ -1,1 +1,0 @@
-export default function ({ classLabel , classHidden , classCircleBig , classBall , startPosition , classOutputElement , maxRange }){
