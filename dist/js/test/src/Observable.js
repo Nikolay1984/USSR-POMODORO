@@ -38,7 +38,7 @@ class Observable {
         }
 
         let itObj = this;
-        this.listeners[ e ].data.forEach( listener => {
+        this.listeners[ e ].data.forEach( ( listener ) => {
 
             listener( data );
 

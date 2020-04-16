@@ -1,10 +1,10 @@
 "use strict";
 
-var _checkOptions = _interopRequireDefault(require("./checkOptions.js"));
+var _setOptionsTimer = _interopRequireDefault(require("./setOptionsTimer.js"));
 
-var _dragAndDrop = _interopRequireDefault(require("./dragAndDrop.js"));
+var _circleSliderDragAndDrop = _interopRequireDefault(require("./circleSliderDragAndDrop.js"));
 
-var _checkOptionsSound = _interopRequireDefault(require("./checkOptionsSound.js"));
+var _setOptionsSound = _interopRequireDefault(require("./setOptionsSound.js"));
 
 var _Timer = _interopRequireDefault(require("./Timer.js"));
 
@@ -76,11 +76,11 @@ let configVolume = {
   minPosition: 0
 };
 let configBehavior = {
-  time: (0, _dragAndDrop.default)(configTime),
-  round: (0, _dragAndDrop.default)(configRound),
-  bigRest: (0, _dragAndDrop.default)(configBigRest),
-  rest: (0, _dragAndDrop.default)(configRest),
-  volume: (0, _dragAndDrop.default)(configVolume)
+  time: (0, _circleSliderDragAndDrop.default)(configTime),
+  round: (0, _circleSliderDragAndDrop.default)(configRound),
+  bigRest: (0, _circleSliderDragAndDrop.default)(configBigRest),
+  rest: (0, _circleSliderDragAndDrop.default)(configRest),
+  volume: (0, _circleSliderDragAndDrop.default)(configVolume)
 };
 let configTimeForCheckOptions = {
   classLabel: "labelTime",
@@ -118,9 +118,9 @@ let configRoundForCheckOptions = {
   classOutputElement: "currentCountOfWork",
   maxRange: 15
 };
-(0, _checkOptions.default)(configRoundForCheckOptions);
-(0, _checkOptions.default)(configRestForCheckOptions);
-(0, _checkOptions.default)(configTimeForCheckOptions);
-(0, _checkOptions.default)(configBigRestForCheckOptions);
-(0, _checkOptionsSound.default)(configBehavior.volume);
+(0, _setOptionsTimer.default)(configRoundForCheckOptions);
+(0, _setOptionsTimer.default)(configRestForCheckOptions);
+(0, _setOptionsTimer.default)(configTimeForCheckOptions);
+(0, _setOptionsTimer.default)(configBigRestForCheckOptions);
+(0, _setOptionsSound.default)(configBehavior.volume);
 let timer = new _Timer.default("timerPomodoro", configBehavior);

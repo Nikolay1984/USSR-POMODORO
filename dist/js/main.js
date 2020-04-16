@@ -1,10 +1,8 @@
-import checkOptions from "./checkOptions.js";
-import transformElementToCircleSlider from "./dragAndDrop.js";
-import checkOptionsSound from "./checkOptionsSound.js";
-
+import checkOptions from "./setOptionsTimer.js";
+import transformElementToCircleSlider from "./circleSliderDragAndDrop.js";
+import checkOptionsSound from "./setOptionsSound.js";
 
 import Timer from "./Timer.js";
-
 
 let configTime = {
     selectorOutputElem   : ".timeHidden" ,
@@ -128,8 +126,10 @@ checkOptions( configRestForCheckOptions );
 checkOptions( configTimeForCheckOptions );
 checkOptions( configBigRestForCheckOptions );
 
-checkOptionsSound(configBehavior.volume);
-
+checkOptionsSound( configBehavior.volume );
 
 let timer = new Timer( "timerPomodoro" , configBehavior );
+
+
+
 

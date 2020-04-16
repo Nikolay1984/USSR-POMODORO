@@ -1,6 +1,6 @@
 export default function ( config ) {
 
-    //Get target objects from page and create new slider elements
+    // Get target objects from page and create new slider elements
 
     let target = document.querySelector( config.selectorTargetToPage );
     let outputElem = document.querySelector( config.selectorOutputElem );
@@ -14,7 +14,7 @@ export default function ( config ) {
     let objNamesOfSlider = config.objNamesOfSlider;
     const maxLengthCirclePercent = 99;
     let saveLengthCirclePercent = 0;
-    //Configure slider  elements and add to page
+    // Configure slider  elements and add to page
 
     for ( let nameOfArrNamesElem in objNamesOfSlider ) {
 
@@ -40,8 +40,7 @@ export default function ( config ) {
     circleBig.prepend( ball , circleSmall );
     target.prepend( circleBig );
 
-
-    //Imitation of drag and drop
+    // Imitation of drag and drop
 
     function handlerMouseDown ( e ) {
 
@@ -65,7 +64,7 @@ export default function ( config ) {
     } );
     ball.addEventListener( "mousedown" , handlerMouseDown );
 
-    //Use function
+    // Use function
 
     function handlerMousemove( e ) {
 
@@ -98,7 +97,6 @@ export default function ( config ) {
             mouseCordsPolar.angle = mouseCordsPolar.angle + Math.PI;
 
         }
-
 
         let targetCordsDecard = {
             x : innerRadius * Math.cos( mouseCordsPolar.angle ) ,
@@ -133,7 +131,6 @@ export default function ( config ) {
 
         outputElem.innerHTML = calculateValuePosition( mouseCordsPolar.angle , innerRadius , maxRange , hint , minPosition );
 
-
     }
     function addClassNameToElemFromArr( arrNames , elem ) {
 
@@ -159,9 +156,9 @@ export default function ( config ) {
 
         switch ( hint ) {
 
-            case "round":
+            case "round" :
                 break;
-            case "time":
+            case "time" :
                 if ( resultValue < 10 ) {
 
                     resultValue = "0" + resultValue;
@@ -170,10 +167,10 @@ export default function ( config ) {
 
                 resultValue = resultValue	+ ":00";
                 break;
-            case "rest":
+            case "rest" :
 
                 break;
-            case "sound":
+            case "sound" :
                 if ( resultValue < 10 ) {
 
                     resultValue = "0" + resultValue;

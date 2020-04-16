@@ -143,7 +143,7 @@
      "new-parens":[2],// ставит () в вызове через new
      "newline-per-chained-call": [2, { "ignoreChainWithDepth": 2 }], // перенос строки при чейнинге
      "no-lonely-if": [2], //убирает одинокие if  в нутри else
-     "no-multiple-empty-lines": [2, { "max": 2, "maxEOF": 1, "maxBOF": 1 }], //задает колличество переносов строки между кодом
+     "no-multiple-empty-lines": [2, { "max": 1, "maxEOF": 1, "maxBOF": 1 }], //задает колличество переносов строки между кодом
      "no-trailing-spaces":[2],// убирает лишние пробелы в конце строки
      "no-whitespace-before-property":[2],// убирает лишние пробелы после свойств объекта
      "nonblock-statement-body-position": [2, "beside"],// в утверждениях if, else, while, do-while, and for  ставит в одну строку однострочное тело утверждения
@@ -179,6 +179,11 @@
      "arrow-parens": [2, "always"], // ставит круглые скобки вокруг аргументов стрелочной функции
      "arrow-spacing": [2, { "before": true, "after": true }], //ставит пробелы вокруг срелки в стрелочной функции
      "constructor-super":[2],// требует super в конструкторах производных классов
-     "generator-star-spacing": ["error", {"before": true, "after": true}] // раставляет пробелы вокруг * в функциях генераторов
+     "generator-star-spacing": [2, {"before": true, "after": true}], // раставляет пробелы вокруг * в функциях генераторов
+     "no-confusing-arrow": [2, {"allowParens": true}], //в двояких ситуациях связанных с стрелочной функцией и оператором сравнения ставит скобки
+     "no-const-assign": [2], // выбрасывает предупреждение если переписываешь значение константы
+     "no-dupe-class-members": [2], // выбрасывает предупреждение если переобъявляешь членны класса
+     "no-new-symbol": [2], // выбрасывает предупреждение если вызываешь Symbol через new
+     "no-useless-computed-key": [2, { "enforceForClassMembers": true }]//исправляет ненужные вычислянеия свойств в объектах и классах
     }
 }

@@ -10,7 +10,6 @@ class Timer {
     this.timerDOM = document.querySelector("." + className);
     this.onTimer = false;
     this.workTimeConfig;
-    this.soundConfig = this._getSoundConfig();
     this.flagChangeSetting = false;
     this._drawDisplayTimer = this._drawDisplayTimer.bind(this);
     this._createStringForDisplayTimer = this._createStringForDisplayTimer.bind(this);
@@ -168,10 +167,10 @@ class Timer {
   }
 
   timeRun() {
-    //запускаем бип при старте
+    // запускаем бип при старте
     let activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
     activeSoundElement.children[0].loop = true;
-    activeSoundElement.children[0].play(); //делаем неактивными крутилки как только нажали на старт
+    activeSoundElement.children[0].play(); // делаем неактивными крутилки как только нажали на старт
 
     for (let key in this.configBehavior) {
       if (this.configBehavior[key].hint === "sound") {
@@ -180,7 +179,7 @@ class Timer {
 
       this.configBehavior[key].ball.removeEventListener("mousedown", this.configBehavior[key].handlerMouseDown);
       this.configBehavior[key].circleBig.classList.add("deactivate");
-    } //--------------------------------------------
+    } // --------------------------------------------
     // настройка таймера
 
 
@@ -194,8 +193,8 @@ class Timer {
 
 
       let cloneConfig = this.workTimeConfig.cloneConfig; // старые значения клона
-      //удаляем те настройки которые не поменялись, кроме клона - он всегда не будет равен и попадет в currentConfig
-      //______________________________________________________
+      // удаляем те настройки которые не поменялись, кроме клона - он всегда не будет равен и попадет в currentConfig
+      // ______________________________________________________
 
       for (let key in currentConfig) {
         if (currentConfig[key] == cloneConfig[key]) {
@@ -214,7 +213,7 @@ class Timer {
       }
 
       config = this.workTimeConfig;
-    } //запуск настроенного таймера
+    } // запуск настроенного таймера
 
 
     let handlerSetInterval = function () {
@@ -224,7 +223,7 @@ class Timer {
     handlerSetInterval = handlerSetInterval.bind(this);
     this.timerId = setInterval(handlerSetInterval, 100);
     this.buttonStartStop.innerHTML = "СТОП";
-    this.buttonStartStop.classList.add(".timerRun");
+    this.buttonStartStop.classList.add("timerRun");
     this.onTimer = true;
   }
 
@@ -250,7 +249,7 @@ class Timer {
     this.onTimer = false;
     clearInterval(this.timerId);
     this.buttonStartStop.innerHTML = "СТАРТ";
-    this.buttonStartStop.classList.remove(".timerRun");
+    this.buttonStartStop.classList.remove("timerRun");
   }
 
   resetTimer() {
@@ -264,7 +263,7 @@ class Timer {
 
     this._drawDisplayTimer(timeString);
 
-    this.buttonStartStop.classList.remove(".timerRun");
+    this.buttonStartStop.classList.remove("timerRun");
   }
 
   _getWorkTimeConfig() {
@@ -299,14 +298,6 @@ class Timer {
     };
     config.cloneConfig = Object.assign({}, config);
     return config;
-  }
-
-  _getSoundConfig() {
-    return {
-      volume: 2,
-      flip: false,
-      soundOfSignal: "beep"
-    };
   }
 
   _configurationButtons() {

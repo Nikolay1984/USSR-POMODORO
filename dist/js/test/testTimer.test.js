@@ -4,7 +4,6 @@ let Timer = require( "./src/Timer.js" );
 require( "jsdom-global" )();
 require( "geteventlisteners" )();
 
-
 describe( "class Timer" , function() {
 
     let instTimer ,
@@ -34,8 +33,6 @@ describe( "class Timer" , function() {
 
         } );
 
-
     } );
-
 
 } );

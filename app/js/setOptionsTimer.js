@@ -19,7 +19,7 @@ export default function ( {
             let parentHeight;
             switch ( classCircleBig ) {
 
-                case "circleBigTime":
+                case "circleBigTime" :
                     if ( period === "Работа" ) {
 
                         outputElement.innerHTML = value;
@@ -32,7 +32,7 @@ export default function ( {
                     labelElement.style.left = valueFormatting + "%";
 
                     break;
-                case "circleBigRound":
+                case "circleBigRound" :
                     parentHeight = labelElement.offsetParent.offsetWidth;
                     pos = ( ( valueFormatting * parentHeight ) / 15 ) - 8;
 
@@ -45,7 +45,7 @@ export default function ( {
                     labelElement.style.left = pos + "px";
                     outputElement.innerHTML = valueFormatting;
                     break;
-                case "circleBigBigRest":
+                case "circleBigBigRest" :
                     parentHeight = labelElement.offsetParent.offsetHeight;
                     if ( period === "Перерыв" ) {
 
@@ -71,7 +71,7 @@ export default function ( {
 
                     labelElement.style.top = pos + "px";
                     break;
-                case "circleBigRest":
+                case "circleBigRest" :
                     parentHeight = labelElement.offsetParent.offsetHeight;
                     if ( period === "Перемена" ) {
 
@@ -103,7 +103,6 @@ export default function ( {
         }
 
         calcPositionAndChangePos();
-
 
     }
 
@@ -152,7 +151,6 @@ export default function ( {
 
         }
 
-
         elemHidden.style.display = "block";
         elemHidden.style.top = positionHidden.top;
         elemHidden.style.left = positionHidden.left;
@@ -163,21 +161,20 @@ export default function ( {
             let left;
             switch ( classCircleBig ) {
 
-                case "circleBigBigRest":
+                case "circleBigBigRest" :
                     top = labelElement.offsetTop - 20 + "px";
                     left = labelElement.offsetLeft + "px";
                     break;
-                case "circleBigRest":
+                case "circleBigRest" :
                     top = labelElement.offsetTop - 20 + "px";
                     left = labelElement.offsetLeft - 20 + "px";
                     break;
-                default:
+                default :
                     top = labelElement.offsetTop - 20 + "px";
                     left = labelElement.offsetLeft + 5 + "px";
                     break;
 
             }
-
 
             elemHidden.style.top = top;
             elemHidden.style.left = left;
@@ -197,7 +194,6 @@ export default function ( {
 
     }
 
-
     let labelElement = document.querySelector( "." + classLabel );
     let elemHidden = document.querySelector( "." + classHidden );
     let circleBig = document.querySelector( "." + classCircleBig );
@@ -215,7 +211,5 @@ export default function ( {
     ball.addEventListener( "mousedown" , handlerMouseDown );
 
     elemHidden.innerHTML = startPosition;
-
-
 
 }

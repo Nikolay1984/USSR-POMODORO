@@ -8,11 +8,9 @@ require( "geteventlisteners" )();
 
 // добавляет DOM элементу метод getEventListeners, который позвражает объект с обрабочиками на данном элементе
 
-
 describe( "class Button" , function() {
 
     let startButton , configButton , instanceButton , configHandlerEvent;
-
 
     describe( "create work instance" , function () {
 
@@ -148,7 +146,6 @@ describe( "class Button" , function() {
         } );
 
     } );
-
 
 } );
 

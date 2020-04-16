@@ -1,10 +1,4 @@
-
-Object.defineProperty( exports , "__esModule" , {
-    value: true ,
-} );
-exports.default = _default;
-
-function _default( config ) {
+export default function ( config ) {
 
     function handlerMouseDown( e ) {
 
@@ -13,6 +7,7 @@ function _default( config ) {
             // когда крутим крутилку тут меняем звук на всех элементах
 
             let volume = takeVolumeSound();
+
             checkSoundInputAll.forEach( function ( elem ) {
 
                 elem.children[ 0 ].volume = volume;
@@ -22,6 +17,7 @@ function _default( config ) {
         }
 
         document.addEventListener( "mousemove" , handlerMouseMove );
+
         document.addEventListener( "mouseup" , function () {
 
             document.removeEventListener( "mousemove" , handlerMouseMove );
@@ -31,10 +27,9 @@ function _default( config ) {
         } );
 
     }
+    function handlerClickChangeBeepAndAlarm ( e ) {
 
-    function handlerClickChangeBeepAndAlarm( e ) {
-
-        let timerIsRun = document.querySelector( ".start " ).classList.contains( ".timerRun" );
+        let timerIsRun = document.querySelector( ".start " ).classList.contains( "timerRun" );
 
         function handlerClickSound() {
 
@@ -45,7 +40,7 @@ function _default( config ) {
 
             }
 
-            if ( timerIsRun && parentTarget.classList.contains( "checkAlarm" ) ) {
+            if ( timerIsRun && ( parentTarget.classList.contains( "checkAlarm" ) ) ) {
 
                 return;
 
@@ -69,9 +64,7 @@ function _default( config ) {
             targetAudioElem.play();
 
         }
-
         let target = e.target;
-
         if ( target.className.indexOf( "checkSoundInput" ) === -1 ) {
 
             return;
@@ -83,12 +76,13 @@ function _default( config ) {
         let parentTarget = target.parentElement;
         let targetAudioElem = target.children[ 0 ];
         let activeElem = parentTarget.querySelector( ".checkSoundInputActive" );
+
         activeElem.classList.remove( "checkSoundInputActive" );
         target.classList.add( "checkSoundInputActive" );
+
         handlerClickSound();
 
     }
-
     function defaultLoading() {
 
         // задаем звук при загрузке страницы
@@ -98,13 +92,14 @@ function _default( config ) {
 
             elem.children[ 0 ].volume = volume;
 
-        } ); // позиционирование начальное крутилки на странице
+        } );
+
+        // позиционирование начальное крутилки на странице
 
         ballVolume.style.top = 0;
-        ballVolume.style.left = circleBigHeight / 2 - ballHeight / 2 + "px";
+        ballVolume.style.left = ( circleBigHeight / 2 ) - ( ballHeight / 2 ) + "px";
 
     }
-
     function handlerClickButtonOnOffSound( e ) {
 
         let soundIsOn = buttonOnOffSound.classList.contains( "soundOn" );
@@ -131,12 +126,12 @@ function _default( config ) {
         buttonOnOffSound.innerHTML = "ВЫКЛ ЗВУК";
 
     }
-
     function handlerChangePeriodOfSound() {
 
         let timerIsRun = buttonStartStop.classList.contains( "timerRun" );
         let activeAlarm = alarmElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
         let activeBeep = beepElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
+
         activeAlarm.addEventListener( "ended" , function () {
 
             console.log( "timerIsRun" );
@@ -151,11 +146,12 @@ function _default( config ) {
         } , {
             once: true ,
         } );
+
         activeBeep.pause();
+
         activeAlarm.play();
 
     }
-
     function takeVolumeSound() {
 
         let value = Number( currentVolume.innerHTML ) / 100;
@@ -180,12 +176,13 @@ function _default( config ) {
         childList     : true ,
         characterData : true ,
     };
+
     observeNameCurrentPeriod.observe( nameCurrentPeriod , configMutationObserver );
     wrapperControlSound.addEventListener( "click" , handlerClickChangeBeepAndAlarm );
     ballVolume.addEventListener( "mousedown" , handlerMouseDown );
     buttonOnOffSound.addEventListener( "click" , handlerClickButtonOnOffSound );
+
     defaultLoading();
 
-}
 
-module.exports = exports.default;
+}
