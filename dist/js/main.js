@@ -4,7 +4,7 @@ import checkOptionsSound from "./setOptionsSound.js";
 
 import Timer from "./Timer.js";
 
-let configTime = {
+const configTime = {
     selectorOutputElem   : ".timeHidden" ,
     selectorTargetToPage : ".sliderMinute" ,
     objNamesOfSlider     : {
@@ -18,7 +18,7 @@ let configTime = {
     minPosition : 1 ,
 };
 
-let configRound = {
+const configRound = {
     selectorOutputElem   : ".roundHidden" ,
     selectorTargetToPage : ".sliderRound" ,
     objNamesOfSlider     : {
@@ -32,7 +32,7 @@ let configRound = {
     minPosition : 1 ,
 };
 
-let configBigRest = {
+const configBigRest = {
     selectorOutputElem   : ".bigRestHidden" ,
     selectorTargetToPage : ".sliderBigRest" ,
     objNamesOfSlider     : {
@@ -46,7 +46,7 @@ let configBigRest = {
     minPosition : 1 ,
 };
 
-let configRest = {
+const configRest = {
     selectorOutputElem   : ".restHidden" ,
     selectorTargetToPage : ".sliderRest" ,
     objNamesOfSlider     : {
@@ -60,7 +60,7 @@ let configRest = {
     minPosition : 1 ,
 };
 
-let configVolume = {
+const configVolume = {
     selectorOutputElem   : ".currentVolume" ,
     selectorTargetToPage : ".sliderVolume" ,
     objNamesOfSlider     : {
@@ -74,7 +74,7 @@ let configVolume = {
     minPosition : 0 ,
 };
 
-let configBehavior = {
+const configBehavior = {
     time    : transformElementToCircleSlider( configTime ) ,
     round   : transformElementToCircleSlider( configRound ) ,
     bigRest : transformElementToCircleSlider( configBigRest ) ,
@@ -82,7 +82,7 @@ let configBehavior = {
     volume  : transformElementToCircleSlider( configVolume ) ,
 };
 
-let configTimeForCheckOptions = {
+const configTimeForCheckOptions = {
     classLabel         : "labelTime" ,
     classHidden        : "timeHidden" ,
     classCircleBig     : "circleBigTime" ,
@@ -92,7 +92,7 @@ let configTimeForCheckOptions = {
     maxRange           : 100 ,
 };
 
-let configBigRestForCheckOptions = {
+const configBigRestForCheckOptions = {
     classLabel         : "labelBigRest" ,
     classHidden        : "bigRestHidden" ,
     classCircleBig     : "circleBigBigRest" ,
@@ -102,7 +102,7 @@ let configBigRestForCheckOptions = {
     maxRange           : 30 ,
 };
 
-let configRestForCheckOptions = {
+const configRestForCheckOptions = {
     classLabel         : "labelRest" ,
     classHidden        : "restHidden" ,
     classCircleBig     : "circleBigRest" ,
@@ -112,7 +112,7 @@ let configRestForCheckOptions = {
     maxRange           : 10 ,
 };
 
-let configRoundForCheckOptions = {
+const configRoundForCheckOptions = {
     classLabel         : "labelRound" ,
     classHidden        : "roundHidden" ,
     classCircleBig     : "circleBigRound" ,
@@ -128,8 +128,5 @@ checkOptions( configBigRestForCheckOptions );
 
 checkOptionsSound( configBehavior.volume );
 
-let timer = new Timer( "timerPomodoro" , configBehavior );
-
-
-
+const timer = new Timer( "timerPomodoro" , configBehavior );
 

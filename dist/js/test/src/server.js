@@ -10,7 +10,7 @@
 // bla();
 //
 
-var server = require( "http" ).Server();
+const server = require( "http" ).Server();
 
 server.listen( 8008 , "127.0.0.1" );
 server.on( "request" , function ( req , resp ) {

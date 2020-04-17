@@ -8,10 +8,10 @@ function _default() {
 
     function handlerChangeOfTime( arr ) {
 
-        let outputElement = document.querySelector( ".currentSecondsAndMinute" );
-        let period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
-        let value = arr[ 0 ].target.innerText;
-        let valueFormatting = Number( value.slice( 0 , 2 ) );
+        const outputElement = document.querySelector( ".currentSecondsAndMinute" );
+        const period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
+        const value = arr[ 0 ].target.innerText;
+        const valueFormatting = Number( value.slice( 0 , 2 ) );
         square.style.left = valueFormatting + "%";
 
         if ( period === "Работа" ) {
@@ -24,8 +24,8 @@ function _default() {
 
     function handlerMouseDownTime() {
 
-        let self = this;
-        let position = {
+        const self = this;
+        const position = {
             top  : square.offsetTop - 20 + "px" ,
             left : square.offsetLeft + 5 + "px" ,
         };
@@ -52,19 +52,19 @@ function _default() {
 
     }
 
-    let square = document.querySelector( ".labelTime " );
-    let timeHidden = document.querySelector( ".timeHidden " );
-    let configMutationObserver = {
+    const square = document.querySelector( ".labelTime " );
+    const timeHidden = document.querySelector( ".timeHidden " );
+    const configMutationObserver = {
         childList     : true ,
         characterData : true ,
     };
-    let observeOfTimeHidden = new MutationObserver( handlerChangeOfTime );
+    const observeOfTimeHidden = new MutationObserver( handlerChangeOfTime );
     observeOfTimeHidden.observe( timeHidden , configMutationObserver );
-    let circleBig = document.querySelector( ".circleBigTime " );
-    let ballTime = circleBig.querySelector( ".ballTime" );
+    const circleBig = document.querySelector( ".circleBigTime " );
+    const ballTime = circleBig.querySelector( ".ballTime" );
     ballTime.addEventListener( "mousedown" , handlerMouseDownTime );
-    let ballHeight = ballTime.offsetHeight;
-    let circleBigHeight = circleBig.offsetHeight;
+    const ballHeight = ballTime.offsetHeight;
+    const circleBigHeight = circleBig.offsetHeight;
     ballTime.style.top = ( circleBigHeight - ballHeight ) / 2 + "px";
     ballTime.style.left = circleBigHeight - ballHeight + "px";
     timeHidden.innerHTML = "25:00";

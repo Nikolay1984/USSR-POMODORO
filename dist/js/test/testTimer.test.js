@@ -1,6 +1,10 @@
-let assert = require( "chai" ).assert;
-let expect = require( "chai" ).expect;
-let Timer = require( "./src/Timer.js" );
+const {
+    assert ,
+} = require( "chai" );
+const {
+    expect ,
+} = require( "chai" );
+const Timer = require( "./src/Timer.js" );
 require( "jsdom-global" )();
 require( "geteventlisteners" )();
 

@@ -4,12 +4,12 @@ export default function ( {
 
     function reactionLabelAndOutputElementOnChangeOfHidden( arr ) {
 
-        let outputElement = document.querySelector( "." + classOutputElement );
+        const outputElement = document.querySelector( "." + classOutputElement );
 
-        let value = arr[ 0 ].target.innerText;
-        let valueFormatting = Number( value.slice( 0 , 2 ) );
+        const value = arr[ 0 ].target.innerText;
+        const valueFormatting = Number( value.slice( 0 , 2 ) );
 
-        let period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
+        const period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
 
         function calcPositionAndChangePos() {
 
@@ -125,7 +125,7 @@ export default function ( {
     function handlerMouseDown() {
 
         let positionHidden;
-        let self = this;
+        const self = this;
         if ( classCircleBig === "circleBigTime" || classCircleBig === "circleBigRound" ) {
 
             positionHidden = {
@@ -194,14 +194,14 @@ export default function ( {
 
     }
 
-    let labelElement = document.querySelector( "." + classLabel );
-    let elemHidden = document.querySelector( "." + classHidden );
-    let circleBig = document.querySelector( "." + classCircleBig );
-    let ball = document.querySelector( "." + classBall );
-    let ballHeight = ball.offsetHeight;
-    let circleBigHeight = circleBig.offsetHeight;
-    let observeOfHidden = new MutationObserver( reactionLabelAndOutputElementOnChangeOfHidden );
-    let configMutationObserver = {
+    const labelElement = document.querySelector( "." + classLabel );
+    const elemHidden = document.querySelector( "." + classHidden );
+    const circleBig = document.querySelector( "." + classCircleBig );
+    const ball = document.querySelector( "." + classBall );
+    const ballHeight = ball.offsetHeight;
+    const circleBigHeight = circleBig.offsetHeight;
+    const observeOfHidden = new MutationObserver( reactionLabelAndOutputElementOnChangeOfHidden );
+    const configMutationObserver = {
         childList     : true ,
         characterData : true ,
     };

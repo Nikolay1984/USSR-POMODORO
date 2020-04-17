@@ -1,6 +1,10 @@
-var assert = require( "chai" ).assert;
-var expect = require( "chai" ).expect;
-var Button = require( "./src/Button.js" );
+const {
+    assert ,
+} = require( "chai" );
+const {
+    expect ,
+} = require( "chai" );
+const Button = require( "./src/Button.js" );
 require( "jsdom-global" )();
 // подключаем DOM в node
 
@@ -35,25 +39,25 @@ describe( "class Button" , function() {
 
         it( "instance should has state " , function() {
 
-            let currentState = instanceButton.state;
+            const currentState = instanceButton.state;
             assert.isFalse( currentState );
 
         } );
         it( "instance should has configHandlerEvent " , function() {
 
-            let currentConfigHandlerEvent = instanceButton.configHandlerEvent;
+            const currentConfigHandlerEvent = instanceButton.configHandlerEvent;
             assert.isNull( currentConfigHandlerEvent );
 
         } );
         it( "instance should has type " , function() {
 
-            let currentType = instanceButton.type;
+            const currentType = instanceButton.type;
             assert.typeOf( currentType , "string" );
 
         } );
         it( "instance should has targetButton " , function() {
 
-            let currentTargetButton = instanceButton.targetButton;
+            const currentTargetButton = instanceButton.targetButton;
             assert.equal( currentTargetButton.tagName , "BUTTON" );
 
         } );
@@ -101,8 +105,8 @@ describe( "class Button" , function() {
                 targetButton : startButton ,
             };
             configHandlerEvent = {
-                nameEvent : "click" ,
-                handler   : function ( event ) {
+                nameEvent: "click" ,
+                handler ( event ) {
 
                 } ,
             };
@@ -123,8 +127,8 @@ describe( "class Button" , function() {
         it( "should add  EventListener To Button" , function() {
 
             let result = false;
-            let objectOfEvents = instanceButton.targetButton.getEventListeners();
-            let arrEvents = objectOfEvents[ configHandlerEvent.nameEvent ];
+            const objectOfEvents = instanceButton.targetButton.getEventListeners();
+            const arrEvents = objectOfEvents[ configHandlerEvent.nameEvent ];
 
             arrEvents.forEach( function ( item ) {
 

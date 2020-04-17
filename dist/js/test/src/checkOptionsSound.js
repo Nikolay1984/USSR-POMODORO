@@ -12,7 +12,7 @@ function _default( config ) {
 
             // когда крутим крутилку тут меняем звук на всех элементах
 
-            let volume = takeVolumeSound();
+            const volume = takeVolumeSound();
             checkSoundInputAll.forEach( function ( elem ) {
 
                 elem.children[ 0 ].volume = volume;
@@ -34,7 +34,7 @@ function _default( config ) {
 
     function handlerClickChangeBeepAndAlarm( e ) {
 
-        let timerIsRun = document.querySelector( ".start " ).classList.contains( ".timerRun" );
+        const timerIsRun = document.querySelector( ".start " ).classList.contains( ".timerRun" );
 
         function handlerClickSound() {
 
@@ -53,7 +53,7 @@ function _default( config ) {
 
             activeAudioElements.forEach( function ( elem ) {
 
-                let activeAudioElem = elem.children[ 0 ];
+                const activeAudioElem = elem.children[ 0 ];
                 activeAudioElem.pause();
                 activeAudioElem.currentTime = 0;
                 targetAudioElem.loop = false;
@@ -70,7 +70,9 @@ function _default( config ) {
 
         }
 
-        let target = e.target;
+        const {
+            target ,
+        } = e;
 
         if ( target.className.indexOf( "checkSoundInput" ) === -1 ) {
 
@@ -78,11 +80,13 @@ function _default( config ) {
 
         }
 
-        let currentTarget = e.currentTarget;
-        let activeAudioElements = currentTarget.querySelectorAll( ".checkSoundInputActive" );
-        let parentTarget = target.parentElement;
-        let targetAudioElem = target.children[ 0 ];
-        let activeElem = parentTarget.querySelector( ".checkSoundInputActive" );
+        const {
+            currentTarget ,
+        } = e;
+        const activeAudioElements = currentTarget.querySelectorAll( ".checkSoundInputActive" );
+        const parentTarget = target.parentElement;
+        const targetAudioElem = target.children[ 0 ];
+        const activeElem = parentTarget.querySelector( ".checkSoundInputActive" );
         activeElem.classList.remove( "checkSoundInputActive" );
         target.classList.add( "checkSoundInputActive" );
         handlerClickSound();
@@ -93,7 +97,7 @@ function _default( config ) {
 
         // задаем звук при загрузке страницы
 
-        let volume = takeVolumeSound();
+        const volume = takeVolumeSound();
         checkSoundInputAll.forEach( function ( elem ) {
 
             elem.children[ 0 ].volume = volume;
@@ -107,7 +111,7 @@ function _default( config ) {
 
     function handlerClickButtonOnOffSound( e ) {
 
-        let soundIsOn = buttonOnOffSound.classList.contains( "soundOn" );
+        const soundIsOn = buttonOnOffSound.classList.contains( "soundOn" );
 
         if ( soundIsOn ) {
 
@@ -134,9 +138,9 @@ function _default( config ) {
 
     function handlerChangePeriodOfSound() {
 
-        let timerIsRun = buttonStartStop.classList.contains( "timerRun" );
-        let activeAlarm = alarmElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
-        let activeBeep = beepElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
+        const timerIsRun = buttonStartStop.classList.contains( "timerRun" );
+        const activeAlarm = alarmElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
+        const activeBeep = beepElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
         activeAlarm.addEventListener( "ended" , function () {
 
             console.log( "timerIsRun" );
@@ -158,25 +162,25 @@ function _default( config ) {
 
     function takeVolumeSound() {
 
-        let value = Number( currentVolume.innerHTML ) / 100;
+        const value = Number( currentVolume.innerHTML ) / 100;
         return value;
 
     }
 
-    let checkSoundInputAll = document.querySelectorAll( ".checkSoundInput" );
-    let wrapperControlSound = document.querySelector( ".wrapperControlSound" );
-    let ballVolume = document.querySelector( ".ballVolume" );
-    let circleBigVolume = document.querySelector( ".circleBigVolume" );
-    let buttonOnOffSound = document.querySelector( ".onOffSound" );
-    let nameCurrentPeriod = document.querySelector( ".nameCurrentPeriod" );
-    let buttonStartStop = document.querySelector( ".start" );
-    let beepElementParent = document.querySelector( ".checkBeep" );
-    let alarmElementParent = document.querySelector( ".checkAlarm" );
-    let currentVolume = document.querySelector( ".currentVolume" );
-    let circleBigHeight = circleBigVolume.offsetHeight;
-    let ballHeight = ballVolume.offsetHeight;
-    let observeNameCurrentPeriod = new MutationObserver( handlerChangePeriodOfSound );
-    let configMutationObserver = {
+    const checkSoundInputAll = document.querySelectorAll( ".checkSoundInput" );
+    const wrapperControlSound = document.querySelector( ".wrapperControlSound" );
+    const ballVolume = document.querySelector( ".ballVolume" );
+    const circleBigVolume = document.querySelector( ".circleBigVolume" );
+    const buttonOnOffSound = document.querySelector( ".onOffSound" );
+    const nameCurrentPeriod = document.querySelector( ".nameCurrentPeriod" );
+    const buttonStartStop = document.querySelector( ".start" );
+    const beepElementParent = document.querySelector( ".checkBeep" );
+    const alarmElementParent = document.querySelector( ".checkAlarm" );
+    const currentVolume = document.querySelector( ".currentVolume" );
+    const circleBigHeight = circleBigVolume.offsetHeight;
+    const ballHeight = ballVolume.offsetHeight;
+    const observeNameCurrentPeriod = new MutationObserver( handlerChangePeriodOfSound );
+    const configMutationObserver = {
         childList     : true ,
         characterData : true ,
     };

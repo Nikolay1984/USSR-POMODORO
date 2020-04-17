@@ -8,9 +8,9 @@ function _default() {
 
     function handlerChangeOfRound( arr ) {
 
-        let outputElement = document.querySelector( ".currentCountOfWork" );
-        let value = Number( arr[ 0 ].target.innerText );
-        let parentHeight = document.querySelector( ".displayOfTime" ).offsetWidth;
+        const outputElement = document.querySelector( ".currentCountOfWork" );
+        const value = Number( arr[ 0 ].target.innerText );
+        const parentHeight = document.querySelector( ".displayOfTime" ).offsetWidth;
         let pos = value * parentHeight / 15 - 8;
 
         if ( pos <= 1 ) {
@@ -26,8 +26,8 @@ function _default() {
 
     function handlerMouseDownRound() {
 
-        let self = this;
-        let position = {
+        const self = this;
+        const position = {
             top  : square.offsetTop - 20 + "px" ,
             left : square.offsetLeft + 5 + "px" ,
         };
@@ -54,19 +54,19 @@ function _default() {
 
     }
 
-    let square = document.querySelector( ".labelRound " );
-    let roundHidden = document.querySelector( ".roundHidden " );
-    let configMutationObserver = {
+    const square = document.querySelector( ".labelRound " );
+    const roundHidden = document.querySelector( ".roundHidden " );
+    const configMutationObserver = {
         childList     : true ,
         characterData : true ,
     };
-    let observeOfRoundHidden = new MutationObserver( handlerChangeOfRound );
+    const observeOfRoundHidden = new MutationObserver( handlerChangeOfRound );
     observeOfRoundHidden.observe( roundHidden , configMutationObserver );
-    let circleBig = document.querySelector( ".circleBigRound " );
-    let ballTime = circleBig.querySelector( ".ballTime" );
+    const circleBig = document.querySelector( ".circleBigRound " );
+    const ballTime = circleBig.querySelector( ".ballTime" );
     ballTime.addEventListener( "mousedown" , handlerMouseDownRound );
-    let ballHeight = ballTime.offsetHeight;
-    let circleBigHeight = circleBig.offsetHeight;
+    const ballHeight = ballTime.offsetHeight;
+    const circleBigHeight = circleBig.offsetHeight;
     ballTime.style.top = ( circleBigHeight - ballHeight ) / 2 + "px";
     ballTime.style.left = circleBigHeight - ballHeight + "px";
     roundHidden.innerHTML = "3";

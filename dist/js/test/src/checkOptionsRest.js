@@ -10,9 +10,9 @@ function _default() {
 
         let triangle;
         let maxRange;
-        let outputElement = document.querySelector( ".currentSecondsAndMinute" );
-        let period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
-        let value = Number( arr[ 0 ].target.innerText );
+        const outputElement = document.querySelector( ".currentSecondsAndMinute" );
+        const period = document.querySelector( ".nameCurrentPeriod" ).innerHTML;
+        const value = Number( arr[ 0 ].target.innerText );
 
         if ( arr[ 0 ].target.className === "bigRestHidden" ) {
 
@@ -55,9 +55,9 @@ function _default() {
 
         }
 
-        let parentHeight = document.querySelector( ".displayOfRests" ).offsetHeight;
-        let lengthRange = parentHeight - parentHeight * 6 / 100;
-        let offset = parentHeight * 3 / 100;
+        const parentHeight = document.querySelector( ".displayOfRests" ).offsetHeight;
+        const lengthRange = parentHeight - parentHeight * 6 / 100;
+        const offset = parentHeight * 3 / 100;
         let pos = value * lengthRange / maxRange - offset;
 
         if ( pos <= 1 ) {
@@ -72,7 +72,7 @@ function _default() {
 
     function handlerMouseDownRest( e ) {
 
-        let self = this;
+        const self = this;
         let display;
         let position;
 
@@ -129,27 +129,27 @@ function _default() {
 
     }
 
-    let bigRestHidden = document.querySelector( ".bigRestHidden" );
-    let restHidden = document.querySelector( ".restHidden" );
-    let configMutationObserver = {
+    const bigRestHidden = document.querySelector( ".bigRestHidden" );
+    const restHidden = document.querySelector( ".restHidden" );
+    const configMutationObserver = {
         childList     : true ,
         characterData : true ,
     };
-    let observeOfBigRestHidden = new MutationObserver( handlerChangeOfRest );
+    const observeOfBigRestHidden = new MutationObserver( handlerChangeOfRest );
     observeOfBigRestHidden.observe( bigRestHidden , configMutationObserver );
-    let observeOfRestHidden = new MutationObserver( handlerChangeOfRest );
+    const observeOfRestHidden = new MutationObserver( handlerChangeOfRest );
     observeOfRestHidden.observe( restHidden , configMutationObserver );
-    let controlMinuteOfBigRest = document.querySelector( ".controlMinuteOfBigRest" );
-    let controlMinuteOfRest = document.querySelector( ".controlMinuteOfRest" );
-    let controlMinuteOfBigRestBall = controlMinuteOfBigRest.querySelector( ".ball " );
-    let controlMinuteOfRestBall = controlMinuteOfRest.querySelector( ".ball " );
-    let labelBigRest = document.querySelector( ".labelBigRest" );
-    let labelRest = document.querySelector( ".labelRest" );
+    const controlMinuteOfBigRest = document.querySelector( ".controlMinuteOfBigRest" );
+    const controlMinuteOfRest = document.querySelector( ".controlMinuteOfRest" );
+    const controlMinuteOfBigRestBall = controlMinuteOfBigRest.querySelector( ".ball " );
+    const controlMinuteOfRestBall = controlMinuteOfRest.querySelector( ".ball " );
+    const labelBigRest = document.querySelector( ".labelBigRest" );
+    const labelRest = document.querySelector( ".labelRest" );
     controlMinuteOfBigRestBall.addEventListener( "mousedown" , handlerMouseDownRest );
     controlMinuteOfRestBall.addEventListener( "mousedown" , handlerMouseDownRest );
-    let circleBig = document.querySelector( ".circleBigRest " );
-    let ballHeight = controlMinuteOfBigRestBall.offsetHeight;
-    let circleBigHeight = circleBig.offsetHeight;
+    const circleBig = document.querySelector( ".circleBigRest " );
+    const ballHeight = controlMinuteOfBigRestBall.offsetHeight;
+    const circleBigHeight = circleBig.offsetHeight;
     controlMinuteOfBigRestBall.style.top = circleBigHeight - ballHeight + "px";
     controlMinuteOfRestBall.style.top = circleBigHeight - ballHeight + "px";
     bigRestHidden.innerHTML = 15;
