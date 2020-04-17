@@ -121,7 +121,7 @@ export default class Timer {
             minute = configOfTimer.minuteOfWork;
 
             if ( configOfTimer.seconds === -1 ) {
-
+                minute--;
                 configOfTimer.minuteOfWork--;
                 configOfTimer.seconds = 59;
                 if ( configOfTimer.minuteOfWork === -1 ) {
