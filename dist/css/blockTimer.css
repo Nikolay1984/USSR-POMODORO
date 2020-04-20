@@ -4,6 +4,8 @@
     padding: var(--padding-mainBlockTimer);
     border: var(--border-style);
     border-radius: var(--border-style-radius);
+    background-color: #455c40;
+    box-shadow: 0 0 10px rgba(0,0,1,1) inset;
 }
 
 .wrapperDisplayTimer

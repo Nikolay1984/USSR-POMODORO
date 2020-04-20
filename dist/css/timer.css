@@ -1,9 +1,19 @@
+body{
+    background: url("../src/img/concrete.jpg");
+
+}
+.bg{
+    display: inline-block;
+    text-align: center;
+
+}
 .timerPomodoro
 {
     min-width: 700px;
     max-width: 1900px;
     margin: 0 auto;
     /*border: 1px solid blue;*/
+    /*background-color: blue;*/
 }
 .wrapperTimer
 {
