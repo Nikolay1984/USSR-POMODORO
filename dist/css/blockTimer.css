@@ -10,7 +10,7 @@
 
 .wrapperDisplayTimer
 {
-    text-align: center;
+    text-align: left;
 }
 .nameDisplayTimer
 {
@@ -22,48 +22,59 @@
 
     padding: var(--padding-wrapperDisplayAndControl) ;
 
-    border: var(--border-style);
-    border-radius: var(--border-style-radius);
-
     justify-content: space-evenly;
 }
 .displaySecondsAndMinute
 {
     align-self: center;
+    background: url("../src/img/bgTime.png") no-repeat;
+    width: 224px;
+    height: 87px;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .currentSecondsAndMinute
 {
     font-size: 50px;
+    line-height: 87px;
 }
 .nameCurrentPeriod{
-    border: 1px solid black;
-    border-radius: 15px;
     width: 100%;
     font-size: 25px;
+    text-align: center;
+}
+.nameCurrentPeriod{
+    width: 215px;
+    height: 48px;
+    background: url("../src/img/bgPeriod.png") no-repeat;
+    line-height: 48px;
+    margin-top: 10px;
 }
 .wrapperDisplayCountOfWork{
-    /*position: relative;*/
-    /*width: 145px  ;*/
-    /*height: 60px ;*/
+    margin-right: 30px;
+
+
 }
-.nameDisplayCountOfWork
-{
-    font-size: 20px;
+.logoUssr{
+    width: 85px;
+    height: 110px;
 }
+
 .displayCountOfWork
 {
     position: relative;
-    width: 145px  ;
-    height: 57px ;
-    border: var(--border-style);
-    border-radius: 15px;
-    margin: auto;
+    width: 108px  ;
+    height: 87px ;
+    background: url("../src/img/bgRound.png") no-repeat;
+    margin-top: 10px;
 }
 .currentCountOfWork
 {
 
     font-size: 50px;
-
+    line-height: 87px;
     text-align: center;
 }
 .lastWork{
@@ -81,12 +92,12 @@
 }
 .displayOfTime{
     position: relative;
-    background: url(../src/img/rangeTime.png);
+    background: url(../src/img/timeScale.png);
     background-size: cover;
     background-repeat: no-repeat;
-    height: 30px;
-    border: 2px solid black;
-    border-radius: 10px;
+    height: 36px;
+    width: 386px;
+
 }
 .timeHidden{
     position: absolute;
@@ -94,18 +105,18 @@
     width: 40px;
     height: 20px;
     border: 1px solid black;
-    background: blue;
-    color: white;
+    background: #c48703;
+    color: black;
     text-align: center;
     z-index: 1000;
 }
 .labelTime{
     position: absolute;
-    top: 5px;
+    top: 26px;
     left:23%;
-    width: 5px;
-    height: 20px;
-    background: blue;
+    width: 8px;
+    height: 11px;
+    background: #c48703;
 }
 .roundHidden{
     position: absolute;
@@ -113,18 +124,18 @@
     width: 40px;
     height: 20px;
     border: 1px solid black;
-    background: blue;
-    color: white;
+    background: #3cc500;
+    color: black;
     text-align: center;
     z-index: 1000;
 }
 .labelRound{
     position: absolute;
-    top: 5px;
+    top: 26px;
     left:23%;
-    width: 5px;
-    height: 20px;
-    background: blueviolet;
+    width: 8px;
+    height: 11px;
+    background: #3cc500;
 }
 
 

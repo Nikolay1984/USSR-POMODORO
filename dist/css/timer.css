@@ -4,14 +4,15 @@ body{
 }
 .bg{
     display: inline-block;
-    text-align: center;
-
+    background: url("../src/img/wires.png") no-repeat;
+    background-position: center,center;
 }
 .timerPomodoro
 {
     min-width: 700px;
     max-width: 1900px;
     margin: 0 auto;
+    text-align: center;
     /*border: 1px solid blue;*/
     /*background-color: blue;*/
 }
@@ -24,5 +25,8 @@ body{
 }
 .deactivate{
     opacity: 0.5;
+}
+.colorDisplayText{
+    color: #2b8e00;
 }
 

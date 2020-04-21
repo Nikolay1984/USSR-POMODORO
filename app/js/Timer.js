@@ -26,12 +26,12 @@ export default class Timer {
 
     _drawDisplayTimer( stringSecondAndMinute ) {
 
-        let currentValuePeriod = this.nameCurrentPeriod.innerHTML === "Работа" ?
+        const currentValuePeriod = this.nameCurrentPeriod.innerHTML === "Работа" ?
             "work" :
             this.nameCurrentPeriod.innerHTML === "Перемена" ? "rest" : "bigRest";
 
         let numberOfWork;
-        let numberOfRest = this.workTimeConfig.countOfRest;
+        const numberOfRest = this.workTimeConfig.countOfRest;
         if ( numberOfRest === 0 ) {
 
             numberOfWork = "Последний";
@@ -99,7 +99,7 @@ export default class Timer {
 
         }
 
-        let currentTimeString = `${minuteString}:${secondsString}`;
+        const currentTimeString = `${minuteString}:${secondsString}`;
         return currentTimeString;
 
     }
@@ -121,6 +121,7 @@ export default class Timer {
             minute = configOfTimer.minuteOfWork;
 
             if ( configOfTimer.seconds === -1 ) {
+
                 minute--;
                 configOfTimer.minuteOfWork--;
                 configOfTimer.seconds = 59;
@@ -214,7 +215,7 @@ export default class Timer {
 
         }
 
-        let timeString = this._createStringForDisplayTimer( minute );
+        const timeString = this._createStringForDisplayTimer( minute );
         this._drawDisplayTimer( timeString );
 
     }
@@ -223,13 +224,13 @@ export default class Timer {
 
         // запускаем бип при старте
 
-        let activeSoundElement = this.beepElementParent.querySelector( ".checkSoundInputActive" );
+        const activeSoundElement = this.beepElementParent.querySelector( ".checkSoundInputActive" );
         activeSoundElement.children[ 0 ].loop = true;
         activeSoundElement.children[ 0 ].play();
 
         // делаем неактивными крутилки как только нажали на старт
 
-        for ( let key in this.configBehavior ) {
+        for ( const key in this.configBehavior ) {
 
             if ( this.configBehavior[ key ].hint === "sound" ) {
 
@@ -256,14 +257,16 @@ export default class Timer {
         }
         else {
 
-            let currentConfig = this._getWorkTimeConfig();// текущие значения с крутилок
-            let cloneConfig = this.workTimeConfig.cloneConfig;// старые значения клона
+            const currentConfig = this._getWorkTimeConfig();// текущие значения с крутилок
+            const {
+                cloneConfig ,
+            } = this.workTimeConfig;// старые значения клона
 
             // удаляем те настройки которые не поменялись, кроме клона - он всегда не будет равен и попадет в currentConfig
 
             // ______________________________________________________
 
-            for ( let key in currentConfig ) {
+            for ( const key in currentConfig ) {
 
                 if ( currentConfig[ key ] == cloneConfig[ key ] ) {
 
@@ -273,7 +276,7 @@ export default class Timer {
 
             }
 
-            for ( let key in this.workTimeConfig ) {
+            for ( const key in this.workTimeConfig ) {
 
                 if ( currentConfig[ key ] ) {
 
@@ -315,8 +318,8 @@ export default class Timer {
 
     stopTimeRun() {
 
-        let activeBeep = this.beepElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
-        let activeAlarm = this.alarmElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
+        const activeBeep = this.beepElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
+        const activeAlarm = this.alarmElementParent.querySelector( ".checkSoundInputActive" ).children[ 0 ];
 
         activeBeep.loop = false;
         activeBeep.pause();
@@ -326,7 +329,7 @@ export default class Timer {
         activeAlarm.currentTime = 0;
 
         this.flagChangeSetting = true;
-        for ( let key in this.configBehavior ) {
+        for ( const key in this.configBehavior ) {
 
             if ( this.configBehavior[ key ].hint === "sound" ) {
 
@@ -354,7 +357,7 @@ export default class Timer {
         clearInterval( this.timerId );
         this.workTimeConfig = this._getWorkTimeConfig();
 
-        let timeString = this._createStringForDisplayTimer( this.workTimeConfig.minuteOfWork );
+        const timeString = this._createStringForDisplayTimer( this.workTimeConfig.minuteOfWork );
         this._drawDisplayTimer( timeString );
         this.buttonStartStop.classList.remove( "timerRun" );
 
@@ -362,22 +365,22 @@ export default class Timer {
 
     _getWorkTimeConfig() {
 
-        let minuteOfWork = Number( this.timerDOM
+        const minuteOfWork = Number( this.timerDOM
             .querySelector( ".timeHidden" )
             .innerHTML
             .slice( 0 , 2 ) );
-        let valueRest = Number( this.timerDOM
+        const valueRest = Number( this.timerDOM
             .querySelector( ".roundHidden" )
             .innerHTML );
 
-        let minuteOfRest = Number( this.timerDOM
+        const minuteOfRest = Number( this.timerDOM
             .querySelector( ".restHidden" )
             .innerHTML );
-        let minuteOfBigRest = Number( this.timerDOM
+        const minuteOfBigRest = Number( this.timerDOM
             .querySelector( ".bigRestHidden" )
             .innerHTML );
 
-        let nameCurrentPeriodValue = this.timerDOM
+        const nameCurrentPeriodValue = this.timerDOM
             .querySelector( ".nameCurrentPeriod" )
             .innerHTML;
         let hint;
@@ -395,13 +398,13 @@ export default class Timer {
 
         }
 
-        let config = {
+        const config = {
             hint ,
-            seconds         : 0 ,
-            minuteOfWork    : minuteOfWork ,
-            minuteOfRest    : minuteOfRest ,
-            minuteOfBigRest : minuteOfBigRest ,
-            countOfRest     : valueRest ,
+            seconds     : 0 ,
+            minuteOfWork ,
+            minuteOfRest ,
+            minuteOfBigRest ,
+            countOfRest : valueRest ,
         };
         config.cloneConfig = Object.assign( {
         } , config );
@@ -412,9 +415,9 @@ export default class Timer {
 
     _configurationButtons() {
 
-        let self = this;
+        const self = this;
 
-        let buttonReset = this.timerDOM.querySelector( ".reset" );
+        const buttonReset = this.timerDOM.querySelector( ".reset" );
 
         this.buttonStartStop.addEventListener( "click" , function ( event ) {
 

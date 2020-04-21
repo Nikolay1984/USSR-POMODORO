@@ -16,6 +16,7 @@
 </head>
 <body>
 
+
 <div class="timerPomodoro">
 <div class="bg">
     <div class="wrapperTimer">
@@ -25,23 +26,28 @@
 
             <div class="wrapperDisplayTimer">
 
-                <span class="nameDisplayTimer">Основное табло таймера</span>
 
                 <div class="displayTimer">
-
+                    <div class="wrapperDisplaySecondsAndMinute">
+                        <span class="nameDisplayTime">ВРЕМЯ</span>
                     <div class="displaySecondsAndMinute">
-                        <span class="currentSecondsAndMinute">25:00</span>
-                        <div class="nameCurrentPeriod">Работа</div>
+                        <span class="currentSecondsAndMinute colorDisplayText">25:00</span>
+                    </div>
+                        <div class="wrapperDisplayCurrentPeriod">
+                            <span class="nameDisplayCurrentPeriod">ФАЗА</span>
+                            <div class="nameCurrentPeriod colorDisplayText">Работа</div>
+                        </div>
                     </div>
                     <div class="wrapperDisplayCountOfWork">
-                        <span class="nameDisplayCountOfWork">Осталось еще циклов</span>
-
+                        <span class="nameDisplayCountOfWork">ЦИКЛЫ</span>
                         <div class="displayCountOfWork">
-                            <div class="currentCountOfWork">3</div>
+                            <div class="currentCountOfWork colorDisplayText">3</div>
 
                         </div>
                     </div>
-
+                    <div class="wrapperLogoUssr">
+                        <img src="./src/img/logoUssr.png" alt="logoUssr" class="logoUssr">
+                    </div>
                 </div>
 
             </div>
@@ -105,9 +111,11 @@
         <div class="blockSound">
 
             <div class="wrapperDisplayVolume">
+                <div class="wrapperDisplaySoundAndVolume">
+                    <span class="nameDisplaySound">ГРОМКОСТЬ</span>
+                    <div class="displayVolume colorDisplayText"><span class="currentVolume">99</span><span class="currentVolumeDb">:dB</span></div>
 
-                <div class="displayVolume"><span class="currentVolume">99</span><span class="currentVolumeDb">:dB</span></div>
-
+                </div>
                 <div class="controlVolume">
                     <div class="sliderVolume"></div>
                     <span class="nameControlVolume">звук</span>
@@ -181,7 +189,6 @@
 </div>
 
 <script defer src="./js/main.js" type="module"></script>
-
 
 </body>
 </html>
