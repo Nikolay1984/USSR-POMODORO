@@ -123,4 +123,7 @@ const configRoundForCheckOptions = {
 (0, _setOptionsTimer.default)(configTimeForCheckOptions);
 (0, _setOptionsTimer.default)(configBigRestForCheckOptions);
 (0, _setOptionsSound.default)(configBehavior.volume);
-const timer = new _Timer.default("timerPomodoro", configBehavior);
+const timer = new _Timer.default("timerPomodoro", configBehavior); // window.onbeforeunload = function() {
+//     console.log(1111111111)
+//     return false;
+// };

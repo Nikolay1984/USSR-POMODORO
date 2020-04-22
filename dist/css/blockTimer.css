@@ -1,7 +1,7 @@
 .blockTimer
 {
     margin-right: 50px;
-    padding: var(--padding-mainBlockTimer);
+    padding:30px;
     border: var(--border-style);
     border-radius: var(--border-style-radius);
     background-color: #455c40;
@@ -12,6 +12,12 @@
 {
     text-align: left;
 }
+
+.nameDisplayTime{
+    font-family: "galsten";
+
+}
+
 .nameDisplayTimer
 {
     font-size: 25px;
@@ -20,7 +26,7 @@
 {
     display: flex;
 
-    padding: var(--padding-wrapperDisplayAndControl) ;
+
 
     justify-content: space-evenly;
 }
@@ -46,9 +52,9 @@
     text-align: center;
 }
 .nameCurrentPeriod{
-    width: 215px;
+    width: 362px;
     height: 48px;
-    background: url("../src/img/bgPeriod.png") no-repeat;
+    background: url("../src/img/bgPeriod1.png") no-repeat;
     line-height: 48px;
     margin-top: 10px;
 }
@@ -214,7 +220,7 @@
 .displayOfRests
 {
     position: relative;
-    background: url(../src/img/range.png);
+    background: url(../src/img/range1.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 100px;

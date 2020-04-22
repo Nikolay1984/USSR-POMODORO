@@ -1,6 +1,6 @@
 .blockSound
 {
-    padding: var(--padding-mainBlockTimer);
+    padding: 30px;
     border: var(--border-style);
     border: 1px solid black;
     border-radius: var(--border-style-radius);

@@ -130,3 +130,7 @@ checkOptionsSound( configBehavior.volume );
 
 const timer = new Timer( "timerPomodoro" , configBehavior );
 
+// window.onbeforeunload = function() {
+//     console.log(1111111111)
+//     return false;
+// };

@@ -18,7 +18,9 @@
 
     border: 1px solid black;
     border-radius: 50%;
-    background: gray;
+    background: url("../src/img/1.png")  no-repeat;
+    background-size: cover;
+
 }
 
 .circleSmall
@@ -32,9 +34,9 @@
 
     transform: translate(-50%, -50%);
 
-    border: 1px solid black;
+
     border-radius: 50%;
-    background: white;
+
 }
 .ball
 {

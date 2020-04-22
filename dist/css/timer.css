@@ -1,6 +1,6 @@
 body{
     background: url("../src/img/concrete.jpg");
-
+    font-family:"galsten";
 }
 .bg{
     display: inline-block;
@@ -29,4 +29,3 @@ body{
 .colorDisplayText{
     color: #2b8e00;
 }
-
