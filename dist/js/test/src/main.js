@@ -6,10 +6,13 @@ var _circleSliderDragAndDrop = _interopRequireDefault(require("./circleSliderDra
 
 var _setOptionsSound = _interopRequireDefault(require("./setOptionsSound.js"));
 
+var _animationButtons = _interopRequireDefault(require("./animationButtons.js"));
+
 var _Timer = _interopRequireDefault(require("./Timer.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const rootClassName = "timerPomodoro";
 const configTime = {
   selectorOutputElem: ".timeHidden",
   selectorTargetToPage: ".sliderMinute",
@@ -123,7 +126,8 @@ const configRoundForCheckOptions = {
 (0, _setOptionsTimer.default)(configTimeForCheckOptions);
 (0, _setOptionsTimer.default)(configBigRestForCheckOptions);
 (0, _setOptionsSound.default)(configBehavior.volume);
-const timer = new _Timer.default("timerPomodoro", configBehavior); // window.onbeforeunload = function() {
+const timer = new _Timer.default(rootClassName, configBehavior);
+(0, _animationButtons.default)(rootClassName); // window.onbeforeunload = function() {
 //     console.log(1111111111)
 //     return false;
 // };

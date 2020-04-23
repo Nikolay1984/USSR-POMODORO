@@ -1,9 +1,12 @@
 import checkOptions from "./setOptionsTimer.js";
 import transformElementToCircleSlider from "./circleSliderDragAndDrop.js";
 import checkOptionsSound from "./setOptionsSound.js";
+import addAnimationToButtons from "./animationButtons.js";
+
 
 import Timer from "./Timer.js";
 
+const rootClassName = "timerPomodoro";
 const configTime = {
     selectorOutputElem   : ".timeHidden" ,
     selectorTargetToPage : ".sliderMinute" ,
@@ -121,6 +124,7 @@ const configRoundForCheckOptions = {
     classOutputElement : "currentCountOfWork" ,
     maxRange           : 15 ,
 };
+
 checkOptions( configRoundForCheckOptions );
 checkOptions( configRestForCheckOptions );
 checkOptions( configTimeForCheckOptions );
@@ -128,7 +132,8 @@ checkOptions( configBigRestForCheckOptions );
 
 checkOptionsSound( configBehavior.volume );
 
-const timer = new Timer( "timerPomodoro" , configBehavior );
+const timer = new Timer( rootClassName , configBehavior );
+addAnimationToButtons(rootClassName);
 
 // window.onbeforeunload = function() {
 //     console.log(1111111111)

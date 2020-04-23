@@ -1,6 +1,6 @@
 body{
     background: url("../src/img/concrete.jpg");
-    font-family:"galsten";
+    /*font-family:"galsten";*/
 }
 .bg{
     display: inline-block;
@@ -26,6 +26,27 @@ body{
 .deactivate{
     opacity: 0.5;
 }
-.colorDisplayText{
+.styleDisplayText{
     color: #2b8e00;
+    letter-spacing: 5px;
+    font-family:"Captureit";
+}
+.styleInscriptionOfDisplay{
+    font-family:"Stamper_Bold"
+}
+.styleInscriptionOfCheckSound{
+    font-family:"Stamper_Bold"
+}
+.styleInscriptionOfCircleSlider{
+    font-family:"Captureit";
+    font-size: 18px;
+}
+
+button{
+    font-family:"soviet";
+    background: linear-gradient(to top, #3a3a3a , #8c8b8b);
+    border: 1px solid white;
+    transition-property: background-color;
+    transition-duration: 0.1s;
+
 }

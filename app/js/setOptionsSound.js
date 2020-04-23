@@ -116,6 +116,7 @@ export default function ( config ) {
 
             } );
             buttonOnOffSound.classList.remove( "soundOn" );
+            buttonOnOffSound.classList.add( "buttonActive");
             buttonOnOffSound.innerHTML = "ВКЛ ЗВУК";
             return;
 
@@ -127,6 +128,7 @@ export default function ( config ) {
 
         } );
         buttonOnOffSound.classList.add( "soundOn" );
+        buttonOnOffSound.classList.remove(  "buttonActive" );
         buttonOnOffSound.innerHTML = "ВЫКЛ ЗВУК";
 
     }

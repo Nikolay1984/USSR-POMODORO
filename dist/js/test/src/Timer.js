@@ -226,7 +226,7 @@ class Timer {
     handlerSetInterval = handlerSetInterval.bind(this);
     this.timerId = setInterval(handlerSetInterval, 100);
     this.buttonStartStop.innerHTML = "СТОП";
-    this.buttonStartStop.classList.add("timerRun");
+    this.buttonStartStop.classList.add("timerRun", "buttonActive");
     this.onTimer = true;
   }
 
@@ -252,7 +252,7 @@ class Timer {
     this.onTimer = false;
     clearInterval(this.timerId);
     this.buttonStartStop.innerHTML = "СТАРТ";
-    this.buttonStartStop.classList.remove("timerRun");
+    this.buttonStartStop.classList.remove("timerRun", "buttonActive");
   }
 
   resetTimer() {
@@ -266,7 +266,7 @@ class Timer {
 
     this._drawDisplayTimer(timeString);
 
-    this.buttonStartStop.classList.remove("timerRun");
+    this.buttonStartStop.classList.remove("timerRun", "buttonActive");
   }
 
   _getWorkTimeConfig() {

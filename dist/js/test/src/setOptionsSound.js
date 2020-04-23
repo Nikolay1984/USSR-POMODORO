@@ -89,6 +89,7 @@ function _default(config) {
         elem.children[0].muted = true;
       });
       buttonOnOffSound.classList.remove("soundOn");
+      buttonOnOffSound.classList.add("buttonActive");
       buttonOnOffSound.innerHTML = "ВКЛ ЗВУК";
       return;
     }
@@ -97,6 +98,7 @@ function _default(config) {
       elem.children[0].muted = false;
     });
     buttonOnOffSound.classList.add("soundOn");
+    buttonOnOffSound.classList.remove("buttonActive");
     buttonOnOffSound.innerHTML = "ВЫКЛ ЗВУК";
   }
 

@@ -13,10 +13,6 @@
     text-align: left;
 }
 
-.nameDisplayTime{
-    font-family: "galsten";
-
-}
 
 .nameDisplayTimer
 {
@@ -161,13 +157,22 @@
 {
     width: 100px;
     height: 100px;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
+
+}
+.ballTime{
+    background: #c48703;
+}
+.ballRound{
+    background: #3cc500;
+}
+.ballBigRest{
+    background: red;
+}
+.ballRest{
+    background: green;
 }
 
-.titelControlMinute
-{
-    font-size: 20px;
-}
 .onOffTimer
 {
     padding-top: 15px;
@@ -181,14 +186,14 @@
     width: 100%;
 
     border-radius: 10px;
-    background-color: red;
 }
 .start
 {
     margin-bottom: 15px;
+    color: black;
 }
-.titelControlRound{
-    font-size: 20px;
+.reset{
+    color: red;
 }
 .controlRest{
     flex-basis: 180px;
@@ -199,10 +204,7 @@
     text-align: center;
 }
 
-.titelMinuteOfBigRest
-{
-    font-size: 20px;
-}
+
 .controlMinuteOfRest
 {
     text-align: center;
@@ -211,10 +213,6 @@
 {
     width: 100px;
     height: 100px;
-}
-.titelMinuteOfRest
-{
-    font-size: 20px;
 }
 
 .displayOfRests
