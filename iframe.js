@@ -1,5 +1,5 @@
 var http = require("http");
-var server = new http.Server();
+var iframe = new http.Server();
 var responseHtml = "<!DOCTYPE html>\n" +
     "<html lang=\"en\">\n" +
     "<head>\n" +
@@ -8,10 +8,9 @@ var responseHtml = "<!DOCTYPE html>\n" +
     "\n" +
     "</head>\n" +
     "<body>\n" +
-    "<iframe src=\"http://127.0.0.1:8070/\" frameborder=\"0\" height = \"300\" width=\"300\">  </iframe>\n" +
     "\n" +
     "\n" +
-    "<div style='width: 100px; height: 100px; background: green'>\n" +
+    "<div style='width: 100px; height: 100px; background: red'>\n" +
     "\n" +
     "</div>\n" +
     "\n" +
@@ -19,9 +18,9 @@ var responseHtml = "<!DOCTYPE html>\n" +
     "\n" +
     "</body>\n" +
     "</html>";
-server.listen(8010,"127.0.0.2");
+iframe.listen(8070,"127");
 
-server.on('request',function (req,res) {
-
+iframe.on('request',function (req,res) {
+    res.setHeader ("X-Frame-Options", "ALLOW-FROM 127.0.0.2");
     res.end(responseHtml);
 });
