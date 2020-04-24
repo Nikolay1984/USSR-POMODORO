@@ -52,27 +52,23 @@
     font-size: 20px;
 
 }
-.checkBeep{
-    border: 2px solid black;
-    border-radius: 15px;
-    padding: 5px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-around;
-}
+
 .wrapperCheckAlarm{
     padding: 10px;
     margin-top: 10px;
     font-size: 20px;
     margin-bottom: 20px;
 }
-.checkAlarm{
-    border: 2px solid black;
+.checkAlarm, .checkBeep{
+    border: 1px solid black;
     border-radius: 15px;
-    padding: 5px;
+    padding: 4px;
     margin-bottom: 15px;
     display: flex;
     justify-content: space-around;
+    background: linear-gradient(to top, #24401e, #2a5620 );
+    box-shadow: inset 0 0  20px #000000;
+
 }
 .onOffSound {
     width: 100%;
@@ -81,14 +77,36 @@
 
 }
 .checkSoundInput{
-    border: 2px solid black;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    background: blue;
+    /*border: 2px solid black;*/
+    border-radius: 10px;
+    width: 50px;
+    height: 30px;
+    background: linear-gradient(to top, #3a3a3a , #8c8b8b);
+    box-shadow:  0 0 5px #000000;
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.1s;
 }
 
 .checkSoundInputActive{
-    border: 3px solid red;
-    background-color: green;
+    /*border: 3px solid red;*/
+    background: linear-gradient(to top, #3a3a3a , #3a3a3a);;
+    box-shadow: inset -1px 1px 2px #000000;
+}
+.noSoundBeep{
+    border-radius: 10px;
+    width: 50px;
+    height: 30px;
+    background-image :url("../src/img/noSound.png") ,linear-gradient(to top, #3a3a3a , #8c8b8b);
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow:  0 0 5px #000000;
+    background-position:  center center;
+    transition-property: background-image, box-shadow;
+    transition-duration: 0.1s;
+}
+.noSoundBeepActive{
+    background-image : linear-gradient(to top, rgba(0, 0, 0,.5)  , rgba(0, 0, 0,.5)),  url("../src/img/noSound.png"), linear-gradient(to top, #3a3a3a , #8c8b8b);
+    box-shadow: inset -1px 1px 2px #000000;
+
+
 }

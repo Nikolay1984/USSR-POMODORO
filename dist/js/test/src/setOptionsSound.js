@@ -53,6 +53,30 @@ function _default(config) {
     const {
       target
     } = e;
+    const parentTarget = target.parentElement;
+    const activeElem = parentTarget.querySelector(".checkSoundInputActive");
+    const beepOff = target.classList.contains("noSoundBeepActive");
+    const beepCheckSoundInputs = parentTarget.querySelectorAll(".checkSoundInput");
+    const soundOff = !document.querySelector(".soundOn");
+    console.log(soundOff);
+
+    if (target.classList.contains("noSoundBeep")) {
+      if (soundOff) {
+        target.classList.add("noSoundBeepActive");
+        return;
+      }
+
+      if (!beepOff) {
+        target.classList.add("noSoundBeepActive");
+        beepCheckSoundInputs.forEach(elem => {
+          elem.children[0].muted = true;
+        });
+      }
+
+      if (activeElem) {
+        activeElem.classList.remove("checkSoundInputActive");
+      }
+    }
 
     if (target.className.indexOf("checkSoundInput") === -1) {
       return;
@@ -62,11 +86,20 @@ function _default(config) {
       currentTarget
     } = e;
     const activeAudioElements = currentTarget.querySelectorAll(".checkSoundInputActive");
-    const parentTarget = target.parentElement;
     const targetAudioElem = target.children[0];
-    const activeElem = parentTarget.querySelector(".checkSoundInputActive");
-    activeElem.classList.remove("checkSoundInputActive");
-    target.classList.add("checkSoundInputActive");
+
+    if (!activeElem) {
+      let noSoundBeepActive = parentTarget.querySelector('.noSoundBeepActive');
+      noSoundBeepActive.classList.remove("noSoundBeepActive");
+      target.classList.add("checkSoundInputActive");
+      beepCheckSoundInputs.forEach(elem => {
+        elem.children[0].muted = false;
+      });
+    } else {
+      activeElem.classList.remove("checkSoundInputActive");
+      target.classList.add("checkSoundInputActive");
+    }
+
     handlerClickSound();
   }
 
@@ -85,12 +118,18 @@ function _default(config) {
     const soundIsOn = buttonOnOffSound.classList.contains("soundOn");
 
     if (soundIsOn) {
+      flagBeepMute = beepMute.classList.contains("noSoundBeepActive");
       checkSoundInputAll.forEach(elem => {
         elem.children[0].muted = true;
       });
       buttonOnOffSound.classList.remove("soundOn");
       buttonOnOffSound.classList.add("buttonActive");
       buttonOnOffSound.innerHTML = "ВКЛ ЗВУК";
+
+      if (!flagBeepMute) {
+        beepMute.classList.add("noSoundBeepActive");
+      }
+
       return;
     }
 
@@ -100,12 +139,16 @@ function _default(config) {
     buttonOnOffSound.classList.add("soundOn");
     buttonOnOffSound.classList.remove("buttonActive");
     buttonOnOffSound.innerHTML = "ВЫКЛ ЗВУК";
+
+    if (!flagBeepMute) {
+      beepMute.classList.remove("noSoundBeepActive");
+    }
   }
 
   function handlerChangePeriodOfSound() {
     const timerIsRun = buttonStartStop.classList.contains("timerRun");
     const activeAlarm = alarmElementParent.querySelector(".checkSoundInputActive").children[0];
-    const activeBeep = beepElementParent.querySelector(".checkSoundInputActive").children[0];
+    let activeBeep = beepElementParent.querySelector(".checkSoundInputActive");
     activeAlarm.addEventListener("ended", function () {
       if (timerIsRun) {
         activeBeep.loop = true;
@@ -114,7 +157,12 @@ function _default(config) {
     }, {
       once: true
     });
-    activeBeep.pause();
+
+    if (activeBeep) {
+      activeBeep = activeBeep.children[0];
+      activeBeep.pause();
+    }
+
     activeAlarm.play();
   }
 
@@ -140,6 +188,8 @@ function _default(config) {
     childList: true,
     characterData: true
   };
+  const beepMute = document.querySelector(".noSoundBeep");
+  let flagBeepMute;
   observeNameCurrentPeriod.observe(nameCurrentPeriod, configMutationObserver);
   wrapperControlSound.addEventListener("click", handlerClickChangeBeepAndAlarm);
   ballVolume.addEventListener("mousedown", handlerMouseDown);

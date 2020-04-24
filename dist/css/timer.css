@@ -46,7 +46,12 @@ button{
     font-family:"soviet";
     background: linear-gradient(to top, #3a3a3a , #8c8b8b);
     border: 1px solid white;
-    transition-property: background-color;
+    transition-property: background-color, box-shadow;
     transition-duration: 0.1s;
+    box-shadow:  0 0 5px #000000;
 
+}
+
+.styleTextHidden{
+    font-family:"Captureit";
 }

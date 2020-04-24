@@ -170,8 +170,12 @@ class Timer {
   timeRun() {
     // запускаем бип при старте
     const activeSoundElement = this.beepElementParent.querySelector(".checkSoundInputActive");
-    activeSoundElement.children[0].loop = true;
-    activeSoundElement.children[0].play(); // делаем неактивными крутилки как только нажали на старт
+
+    if (activeSoundElement) {
+      activeSoundElement.children[0].loop = true;
+      activeSoundElement.children[0].play();
+    } // делаем неактивными крутилки как только нажали на старт
+
 
     for (const key in this.configBehavior) {
       if (this.configBehavior[key].hint === "sound") {
@@ -231,11 +235,16 @@ class Timer {
   }
 
   stopTimeRun() {
-    const activeBeep = this.beepElementParent.querySelector(".checkSoundInputActive").children[0];
+    let activeBeep = this.beepElementParent.querySelector(".checkSoundInputActive");
     const activeAlarm = this.alarmElementParent.querySelector(".checkSoundInputActive").children[0];
-    activeBeep.loop = false;
-    activeBeep.pause();
-    activeBeep.currentTime = 0;
+
+    if (activeBeep) {
+      activeBeep = activeBeep.children[0];
+      activeBeep.loop = false;
+      activeBeep.pause();
+      activeBeep.currentTime = 0;
+    }
+
     activeAlarm.pause();
     activeAlarm.currentTime = 0;
     this.flagChangeSetting = true;
