@@ -8,6 +8,7 @@ exports.default = _default;
 function _default(className) {
   let container = document.querySelector(`.${className}`);
   let arrOfButton = container.querySelectorAll("button");
+  let buttonStart = container.querySelector(".start");
 
   function handlerClick(e) {
     let buttonIsReset = e.target.classList.contains("reset");
@@ -31,6 +32,8 @@ function _default(className) {
     setTimeout(() => {
       e.target.style.background = "linear-gradient(to top, #3a3a3a , #8c8b8b)";
       e.target.style.boxShadow = "0 0 5px #000000";
+      buttonStart.style.background = "linear-gradient(to top, #3a3a3a , #8c8b8b)";
+      buttonStart.style.boxShadow = "0 0 5px #000000";
     }, 500);
   }
 

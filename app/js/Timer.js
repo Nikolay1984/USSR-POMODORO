@@ -34,8 +34,8 @@ export default class Timer {
         const numberOfRest = this.workTimeConfig.countOfRest;
         if ( numberOfRest === 0 ) {
 
-            numberOfWork = "Последний";
-            this.displayCountOfWorkDiv.classList.add( "lastWork" );
+            numberOfWork = "0";
+            // this.displayCountOfWorkDiv.classList.add( "lastWork" );
 
         }
         else {

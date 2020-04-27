@@ -29,7 +29,7 @@ export default function ( config ) {
     }
     function handlerClickChangeBeepAndAlarm ( e ) {
 
-        const timerIsRun = document.querySelector( ".start " ).classList.contains( "timerRun" );
+        const timerIsRun = buttonStartStop.classList.contains( "timerRun" );
 
         function handlerClickSound() {
 
@@ -65,15 +65,15 @@ export default function ( config ) {
 
         }
 
-        const {
-            target ,
-        } = e;
+        const {target} = e;
         const parentTarget = target.parentElement;
-        const activeElem = parentTarget.querySelector( ".checkSoundInputActive" );
-        const beepOff = target.classList.contains("noSoundBeepActive");
         const beepCheckSoundInputs = parentTarget.querySelectorAll(".checkSoundInput");
-        const soundOff = !document.querySelector(".soundOn");
-        console.log(soundOff);
+
+        const soundOff = !document.querySelector(".soundOn"); //класс на общей кнопке звука: есть - не нажата, нету - нажата
+        const beepOff = target.classList.contains("noSoundBeepActive");// класс вещается на кнопку отключения звука, когда на нее нажимаешь или нажимаешь на общую кнопку звука
+        const activeElem = parentTarget.querySelector( ".checkSoundInputActive" );//активный элемент
+
+
         if (target.classList.contains("noSoundBeep")){
             if(soundOff){
                 target.classList.add("noSoundBeepActive");
@@ -81,8 +81,9 @@ export default function ( config ) {
             }
             if(!beepOff){
                 target.classList.add("noSoundBeepActive");
+                activeElem.children[ 0 ].pause();
                 beepCheckSoundInputs.forEach( ( elem ) => {
-
+                    // elem.children[ 0 ].pause();
                     elem.children[ 0 ].muted = true;
 
                 } );
@@ -105,13 +106,17 @@ export default function ( config ) {
             currentTarget ,
         } = e;
         const activeAudioElements = currentTarget.querySelectorAll( ".checkSoundInputActive" );
-
         const targetAudioElem = target.children[ 0 ];
 
         if(!activeElem ){
+            target.classList.add( "checkSoundInputActive" );
+            if(soundOff){
+                return
+            }
+
             let noSoundBeepActive = parentTarget.querySelector('.noSoundBeepActive');
             noSoundBeepActive.classList.remove("noSoundBeepActive");
-            target.classList.add( "checkSoundInputActive" );
+
             beepCheckSoundInputs.forEach( ( elem ) => {
 
                 elem.children[ 0 ].muted = false;
@@ -146,6 +151,7 @@ export default function ( config ) {
     function handlerClickButtonOnOffSound( e ) {
 
         const soundIsOn = buttonOnOffSound.classList.contains( "soundOn" );
+        const timerIsRun = buttonStartStop.classList.contains( "timerRun" );
 
         if ( soundIsOn ) {
             flagBeepMute = beepMute.classList.contains("noSoundBeepActive");
@@ -164,6 +170,7 @@ export default function ( config ) {
             return;
 
         }
+        let activeBeep = beepElementParent.querySelector(".checkSoundInputActive");
 
         checkSoundInputAll.forEach( ( elem ) => {
 
@@ -173,10 +180,16 @@ export default function ( config ) {
         buttonOnOffSound.classList.add( "soundOn" );
         buttonOnOffSound.classList.remove(  "buttonActive" );
         buttonOnOffSound.innerHTML = "ВЫКЛ ЗВУК";
-        if(!flagBeepMute){
-        beepMute.classList.remove("noSoundBeepActive");
+        // if(!flagBeepMute){
+        if(!activeBeep){
+            return;
         }
-
+        beepMute.classList.remove("noSoundBeepActive");
+        // }
+        if(activeBeep && timerIsRun){
+            activeBeep.children[0].loop = true;
+            activeBeep.children[0].play();
+        }
     }
     function handlerChangePeriodOfSound() {
 
@@ -187,7 +200,7 @@ export default function ( config ) {
         activeAlarm.addEventListener( "ended" , function () {
 
 
-            if ( timerIsRun ) {
+            if ( timerIsRun && activeBeep) {
 
                 activeBeep.loop = true;
                 activeBeep.play();
@@ -197,6 +210,8 @@ export default function ( config ) {
         } , {
             once: true ,
         } );
+
+
         if (activeBeep){
             activeBeep = activeBeep.children[ 0 ];
             activeBeep.pause();
