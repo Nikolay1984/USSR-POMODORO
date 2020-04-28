@@ -119,6 +119,8 @@
     margin: 0 auto;
     position: relative;
     box-shadow: 0 0 5px #000000;
+    text-align: center;
+
 }
 .screw{
     width: 20px;
@@ -153,6 +155,30 @@
     margin: 0 auto;
     box-shadow: inset 0 0 2px #000000;
 }
+.recess1{
+    transform: rotate(30deg);
+
+}
+.recess2{
+    transform: rotate(15deg);
+
+}
+.recess3{
+    transform: rotate(80deg);
+
+}
+.recess4{
+    transform: rotate(3deg);
+
+}
+.subscribeCap{
+    font-family: "Captureit";
+    line-height: 100px;
+    font-size: 30px;
+    color: #24401e;
+}
+
+
 .qualityUssr{
     padding-top: 30px;
 

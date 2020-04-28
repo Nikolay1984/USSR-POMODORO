@@ -55,3 +55,14 @@ button{
 .styleTextHidden{
     font-family:"Captureit";
 }
+.footerTimerSubscription p{
+    font-size: 70px;
+    font-family: "Stamper_Bold";
+    opacity: 0.6;
+
+}
+.authors{
+
+    font-size: 30px;
+    font-family:"soviet";
+}
