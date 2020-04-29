@@ -1,34 +1,28 @@
+
 @font-face {
-    font-family: "Captureit";
-    src: url(../src/fonts/Captureit.ttf) format("truetype");
+    font-family: 'Captureit';
+    src: url('../src/fonts/captureit-webfont.woff2')format('woff2');
+    font-weight: 400;
     font-style: normal;
-    font-weight: 400
+    font-display: block;
+
 }
 
 @font-face {
     font-family: "Stamper_Bold";
-    src: url(../src/fonts/Stamper_Bold.ttf) format("truetype");
+    src: url('../src/fonts/stamper_bold-webfont.woff2')format('woff2');
     font-style: normal;
-    font-weight: 400
+    font-weight: 400;
+    font-display: block;
 }
 
-@font-face {
-    font-family: "KellySlab-Regular";
-    src: url(../src/fonts/KellySlab-Regular.ttf) format("truetype");
-    font-style: normal;
-    font-weight: 400
-}
 
-@font-face {
-    font-family: "PressStart2P-Regular";
-    src: url(../src/fonts/PressStart2P-Regular.ttf) format("truetype");
-    font-style: normal;
-    font-weight: 400
-}
+
 
 @font-face {
     font-family: "soviet";
-    src: url(../src/fonts/soviet.ttf) format("truetype");
+    src: url('../src/fonts/soviet-webfont.woff2') format("woff2");
     font-style: normal;
-    font-weight: 400
+    font-weight: 400;
+    font-display: block;
 }

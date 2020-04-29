@@ -227,7 +227,7 @@ class Timer {
     };
 
     handlerSetInterval = handlerSetInterval.bind(this);
-    this.timerId = setInterval(handlerSetInterval, 100);
+    this.timerId = setInterval(handlerSetInterval, 1000);
     this.buttonStartStop.innerHTML = "СТОП";
     this.buttonStartStop.classList.add("timerRun", "buttonActive");
     this.onTimer = true;

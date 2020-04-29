@@ -83,7 +83,6 @@
     position: relative;
     top:13px;
     font-size: 30px;
-    /*margin: 10px 0;*/
 }
 .styleRest{
     opacity: .4;
@@ -225,10 +224,6 @@
     background-repeat: no-repeat;
     width: 100px;
     height: 250px;
-
-
-
-    /*flex-basis: 150px;*/
 
     border: 2px solid black;
     border-radius: 10px;

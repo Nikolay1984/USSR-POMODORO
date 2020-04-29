@@ -77,7 +77,6 @@
     margin-bottom: 30px;
 }
 .checkSoundInput{
-    /*border: 2px solid black;*/
     border-radius: 10px;
     width: 50px;
     height: 30px;
@@ -88,7 +87,7 @@
 }
 
 .checkSoundInputActive{
-    /*border: 3px solid red;*/
+
     background: linear-gradient(to top, #3a3a3a , #3a3a3a);;
     box-shadow: inset -1px 1px 2px #000000;
 }
@@ -172,7 +171,7 @@
 
 }
 .subscribeCap{
-    font-family: "Captureit";
+    font-family: "Captureit",'Tahoma','sans-serif';
     line-height: 100px;
     font-size: 30px;
     color: #24401e;
