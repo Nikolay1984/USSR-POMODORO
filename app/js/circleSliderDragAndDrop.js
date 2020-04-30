@@ -67,12 +67,31 @@ export default function ( config ) {
         } );
 
     }
+    function handlerTouchDown ( e ) {
+
+        const handlerTouchmoveBind = handlerTouchmove.bind( this );
+
+        document.addEventListener( "touchmove" , handlerTouchmoveBind,  { passive: false } );
+
+        document.addEventListener( "touchend" , function ( e ) {
+
+            document.removeEventListener( "touchmove" , handlerTouchmoveBind );
+
+        } , {
+            once: true ,
+        } );
+
+    }
     ball.addEventListener( "dragstart" , function ( e ) {
 
         e.preventDefault();
 
     } );
     ball.addEventListener( "mousedown" , handlerMouseDown );
+
+    // mobile development
+    ball.addEventListener("touchstart",handlerTouchDown);
+
 
     // Use function
 
@@ -142,6 +161,79 @@ export default function ( config ) {
         outputElem.innerHTML = calculateValuePosition( mouseCordsPolar.angle , innerRadius , maxRange , hint , minPosition );
 
     }
+    function handlerTouchmove( e ) {
+        e.preventDefault();
+        const ball = this;
+        const ballCords = {
+            offsetLeft : ball.offsetLeft ,
+            offsetTop  : ball.offsetTop ,
+            viewX      : ball.getBoundingClientRect().x ,
+            viewY      : ball.getBoundingClientRect().y ,
+            radius     : ball.offsetWidth / 2 ,
+        };
+
+        const touchCords = {
+            x : e.targetTouches[0].clientX ,
+            y : e.targetTouches[0].clientY ,
+        };
+        const parent = this.offsetParent;
+
+        const parentRadius = parent.offsetWidth / 2;
+        const innerRadius = parentRadius - ballCords.radius;
+        const touchCordsDecard = {
+            x : ( touchCords.x - ballCords.viewX + ballCords.offsetLeft ) - parentRadius ,
+            y : ( touchCords.y - ballCords.viewY + ballCords.offsetTop ) - parentRadius ,
+        };
+
+        const touchCordsPolar = {
+            angle: Math.atan( touchCordsDecard.y / touchCordsDecard.x ) ,
+        };
+
+        if ( touchCordsDecard.x < 0 ) {
+            touchCordsPolar.angle = touchCordsPolar.angle + Math.PI;
+
+        }
+
+        const targetCordsDecard = {
+            x : innerRadius * Math.cos( touchCordsPolar.angle ) ,
+            y : innerRadius * Math.sin( touchCordsPolar.angle ) ,
+        };
+
+        const targetCordsOffset = {
+            x : parentRadius + targetCordsDecard.x - ballCords.radius ,
+            y : parentRadius + targetCordsDecard.y - ballCords.radius ,
+        };
+
+        const currentArc = calculateValuePosition( touchCordsPolar.angle , innerRadius );
+
+        // console.log(currentArc)
+
+        if ( limiter ) {
+
+            if ( saveLengthCirclePercent == maxLengthCirclePercent && ( currentArc >= maxLengthCirclePercent || currentArc < 50 ) ) {
+
+                return;
+
+            }
+
+            if ( saveLengthCirclePercent <= 10 && currentArc > 50 ) {
+
+                return;
+
+            }
+
+            saveLengthCirclePercent = currentArc;
+
+        }
+
+        ball.style.left = targetCordsOffset.x + "px";
+        ball.style.top = targetCordsOffset.y + "px";
+
+        outputElem.innerHTML = calculateValuePosition( touchCordsPolar.angle , innerRadius , maxRange , hint , minPosition );
+
+    }
+
+
     function addClassNameToElemFromArr( arrNames , elem ) {
 
         for ( let i = 0; i < arrNames.length; i++ ) {
